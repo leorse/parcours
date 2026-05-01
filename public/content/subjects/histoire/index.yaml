@@ -1,0 +1,21 @@
+subject_id: "histoire"
+courses:
+  - id: "hist-antiquite-01"
+    title: "L'Antiquité"
+    thumbnail: null
+    description: "Grèce, Rome, Égypte"
+    stepsCount: 4
+    progress: 0
+    status: "available"
+    order: 1
+    path: "subjects/histoire/courses/hist-antiquite-01/course.yaml"
+
+  - id: "hist-moyen-age-01"
+    title: "Le Moyen Âge"
+    thumbnail: null
+    description: "Châteaux, chevaliers, cathédrales"
+    stepsCount: 5
+    progress: 0
+    status: "locked"
+    order: 2
+    path: "subjects/histoire/courses/hist-moyen-age-01/course.yaml"

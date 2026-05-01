@@ -1,0 +1,21 @@
+subject_id: "francais"
+courses:
+  - id: "fr-conjugaison-01"
+    title: "La conjugaison"
+    thumbnail: null
+    description: "Présent, passé, futur"
+    stepsCount: 4
+    progress: 0.25
+    status: "available"
+    order: 1
+    path: "subjects/francais/courses/fr-conjugaison-01/course.yaml"
+
+  - id: "fr-grammaire-01"
+    title: "La grammaire"
+    thumbnail: null
+    description: "Sujets, verbes, compléments"
+    stepsCount: 6
+    progress: 0
+    status: "locked"
+    order: 2
+    path: "subjects/francais/courses/fr-grammaire-01/course.yaml"

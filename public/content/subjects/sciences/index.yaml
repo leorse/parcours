@@ -1,0 +1,21 @@
+subject_id: "sciences"
+courses:
+  - id: "sci-corps-humain-01"
+    title: "Le corps humain"
+    thumbnail: null
+    description: "Organes, systèmes, fonctions"
+    stepsCount: 3
+    progress: 0
+    status: "available"
+    order: 1
+    path: "subjects/sciences/courses/sci-corps-humain-01/course.yaml"
+
+  - id: "sci-systeme-solaire-01"
+    title: "Le système solaire"
+    thumbnail: null
+    description: "Planètes, étoiles, galaxies"
+    stepsCount: 5
+    progress: 0
+    status: "locked"
+    order: 2
+    path: "subjects/sciences/courses/sci-systeme-solaire-01/course.yaml"

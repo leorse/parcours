@@ -1,0 +1,72 @@
+.lesson-content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  line-height: 1.7;
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+/* Markdown */
+.md-block h1,
+.md-block h2 { font-size: 1.35rem; font-weight: 700; margin: 1.75rem 0 0.75rem; }
+.md-block h3 { font-size: 1.15rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+.md-block p  { margin: 0.75rem 0; }
+.md-block strong { font-weight: 700; }
+.md-block em { font-style: italic; }
+.md-block ul,
+.md-block ol { margin: 0.75rem 0 0.75rem 1.5rem; }
+.md-block li { margin: 0.25rem 0; }
+.md-block code { background: #f0f0f0; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+
+/* KaTeX */
+.math-block        { text-align: center; margin: 1.5rem 0; overflow-x: auto; }
+.math-block .katex-display { margin: 0; }
+.math-caption      { text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem; }
+
+/* Image */
+.image-block       { margin: 1.5rem 0; text-align: center; }
+.image-block img   { max-width: 100%; border-radius: 8px; }
+.image-placeholder {
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 2.5rem 1rem;
+  color: #aaa;
+  font-style: italic;
+}
+figcaption { font-size: 0.85rem; color: #666; margin-top: 0.5rem; }
+
+/* Notice */
+.notice-block {
+  padding: 0.85rem 1rem 0.85rem 1.25rem;
+  margin: 1.25rem 0;
+  border-radius: 0 8px 8px 0;
+}
+.notice-icon  { font-size: 1.1rem; margin-right: 0.4rem; }
+.notice-label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; }
+.notice-block .md-block p:first-child { margin-top: 0; }
+.notice-block .md-block p:last-child  { margin-bottom: 0; }
+.notice-author { display: block; margin-top: 0.5rem; font-size: 0.85rem; color: #888; font-style: italic; }
+
+/* Exercice placeholder */
+.exercise-placeholder {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  color: #6c757d;
+}
+.exercise-placeholder-icon { font-size: 1.2rem; }
+.exercise-placeholder code { font-size: 0.85rem; background: #e9ecef; padding: 0.1em 0.4em; border-radius: 4px; }
+.exercise-placeholder-badge {
+  margin-left: auto;
+  font-size: 0.75rem;
+  background: #e9ecef;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  white-space: nowrap;
+}

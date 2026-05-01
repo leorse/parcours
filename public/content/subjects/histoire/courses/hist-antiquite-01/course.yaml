@@ -1,0 +1,76 @@
+course:
+  id: "hist-antiquite-01"
+  version: "1.0"
+  title: "L'Antiquité"
+  subject: "histoire"
+  domain: "histoire-ancienne"
+  thumbnail: null
+  xp_total: 100
+
+  grandes_etapes:
+
+    - id: "ge-ant-rome"
+      title: "Rome antique"
+      icon: "R"
+      color: "#2484e0"
+      order: 1
+      status: "in_progress"
+
+      lessons:
+        - id: "lec-ant-001"
+          title: "La fondation de Rome"
+          type: "lesson"
+          order: 1
+          status: "in_progress"
+          content_ref: "lec-ant-001"
+
+        - id: "lec-ant-002"
+          title: "L'empire romain"
+          type: "lesson"
+          order: 2
+          status: "locked"
+          content_ref: "lec-ant-002"
+
+    - id: "ge-ant-grece"
+      title: "Grèce antique"
+      icon: "G"
+      color: "#9c50c8"
+      order: 2
+      status: "locked"
+
+      lessons:
+        - id: "lec-ant-003"
+          title: "La cité-état"
+          type: "lesson"
+          order: 3
+          status: "locked"
+          content_ref: "lec-ant-003"
+
+        - id: "lec-ant-004"
+          title: "Les dieux grecs"
+          type: "lesson"
+          order: 4
+          status: "locked"
+          content_ref: "lec-ant-004"
+
+  steps_content:
+
+    - id: "lec-ant-001"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-ant-002"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-ant-003"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-ant-004"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."

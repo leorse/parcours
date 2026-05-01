@@ -1,0 +1,88 @@
+course:
+  id: "math-geometrie-01"
+  version: "1.0"
+  title: "Géométrie plane"
+  subject: "mathematiques"
+  domain: "geometrie"
+  thumbnail: null
+  xp_total: 100
+
+  grandes_etapes:
+
+    - id: "ge-geo-figures"
+      title: "Figures planes"
+      icon: "△"
+      color: "#2484e0"
+      order: 1
+      status: "completed"
+
+      lessons:
+        - id: "lec-geo-001"
+          title: "Les triangles"
+          type: "lesson"
+          order: 1
+          status: "completed"
+          content_ref: "lec-geo-001"
+
+        - id: "lec-geo-002"
+          title: "Les quadrilatères"
+          type: "lesson"
+          order: 2
+          status: "completed"
+          content_ref: "lec-geo-002"
+
+        - id: "lec-geo-003"
+          title: "Le cercle"
+          type: "lesson"
+          order: 3
+          status: "completed"
+          content_ref: "lec-geo-003"
+
+    - id: "ge-geo-mesures"
+      title: "Mesures"
+      icon: "◻"
+      color: "#9c50c8"
+      order: 2
+      status: "completed"
+
+      lessons:
+        - id: "lec-geo-004"
+          title: "Périmètres et aires"
+          type: "lesson"
+          order: 4
+          status: "completed"
+          content_ref: "lec-geo-004"
+
+        - id: "lec-geo-005"
+          title: "Exercices — Mesures"
+          type: "exercise_set"
+          order: 5
+          status: "completed"
+          content_ref: "lec-geo-005"
+
+  steps_content:
+
+    - id: "lec-geo-001"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-geo-002"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-geo-003"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-geo-004"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-geo-005"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."

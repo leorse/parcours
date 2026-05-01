@@ -1,0 +1,44 @@
+course:
+  id: "fr-grammaire-01"
+  version: "1.0"
+  title: "La grammaire"
+  subject: "francais"
+  domain: "grammaire"
+  thumbnail: null
+  xp_total: 80
+
+  grandes_etapes:
+
+    - id: "ge-gram-bases"
+      title: "Bases"
+      icon: "G"
+      color: "#27ae60"
+      order: 1
+      status: "locked"
+
+      lessons:
+        - id: "lec-gram-001"
+          title: "Sujet et verbe"
+          type: "lesson"
+          order: 1
+          status: "locked"
+          content_ref: "lec-gram-001"
+
+        - id: "lec-gram-002"
+          title: "Les compléments"
+          type: "lesson"
+          order: 2
+          status: "locked"
+          content_ref: "lec-gram-002"
+
+  steps_content:
+
+    - id: "lec-gram-001"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-gram-002"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."

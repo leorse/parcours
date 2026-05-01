@@ -1,0 +1,31 @@
+subject_id: "mathematiques"
+courses:
+  - id: "math-geometrie-01"
+    title: "Géométrie plane"
+    thumbnail: null
+    description: "Triangles, carrés, cercles"
+    stepsCount: 5
+    progress: 1
+    status: "completed"
+    order: 1
+    path: "subjects/mathematiques/courses/math-geometrie-01/course.yaml"
+
+  - id: "math-multiplication-01"
+    title: "La multiplication"
+    thumbnail: null
+    description: "Tables et propriétés"
+    stepsCount: 5
+    progress: 0.4
+    status: "available"
+    order: 2
+    path: "subjects/mathematiques/courses/math-multiplication-01/course.yaml"
+
+  - id: "math-fractions-01"
+    title: "Les fractions"
+    thumbnail: null
+    description: "Numérateur, dénominateur, opérations"
+    stepsCount: 5
+    progress: 0
+    status: "locked"
+    order: 3
+    path: "subjects/mathematiques/courses/math-fractions-01/course.yaml"

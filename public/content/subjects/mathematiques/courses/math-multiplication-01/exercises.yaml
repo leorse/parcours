@@ -1,0 +1,157 @@
+exercises:
+
+  - id: "exo-mul-001"
+    xp: 15
+    skills:
+      - tag: "multiplication/sens"
+        weight: 1.0
+    difficulty: 1
+    exercise:
+      type: multiple_choice
+      question: |
+        Que représente $3 \times 4$ ?
+      choices:
+        - id: a
+          text: "Trois fois quatre"
+          correct: true
+          feedback: "Oui ! $3 \\times 4$ c'est 4 répété 3 fois."
+        - id: b
+          text: "Quatre moins trois"
+          correct: false
+          feedback: "Non, ça c'est une soustraction."
+        - id: c
+          text: "Trois plus quatre"
+          correct: false
+          feedback: "Non, $3+4=7$, alors que $3 \\times 4 = 12$."
+      settings:
+        shuffle: true
+
+  - id: "exo-mul-002"
+    xp: 20
+    skills:
+      - tag: "multiplication/calcul"
+        weight: 1.0
+    difficulty: 1
+    exercise:
+      type: fill_in_the_blank
+      instruction: "Complète les égalités."
+      segments:
+        - text: "$6 \\times 3 =$"
+        - blank:
+            id: b1
+            answer: "18"
+        - text: "et $3 \\times 6 =$"
+        - blank:
+            id: b2
+            answer: "18"
+      hint: "Utilise la commutativité !"
+
+  - id: "exo-mul-003"
+    xp: 10
+    skills:
+      - tag: "multiplication/table-2"
+        weight: 1.0
+    difficulty: 1
+    exercise:
+      type: multiple_choice
+      question: "$2 \\times 7 = ?$"
+      choices:
+        - id: a
+          text: "14"
+          correct: true
+          feedback: "Parfait !"
+        - id: b
+          text: "9"
+          correct: false
+          feedback: "Non, $2+7=9$ mais $2 \\times 7 = 14$."
+        - id: c
+          text: "12"
+          correct: false
+          feedback: "Non, $12 = 2 \\times 6$."
+      settings:
+        shuffle: true
+
+  - id: "exo-mul-004"
+    xp: 10
+    skills:
+      - tag: "multiplication/table-3"
+        weight: 1.0
+    difficulty: 1
+    exercise:
+      type: fill_in_the_blank
+      instruction: "Calcule."
+      segments:
+        - text: "$3 \\times 8 =$"
+        - blank:
+            id: b1
+            answer: "24"
+      hint: "3 + 3 + 3 + 3 + 3 + 3 + 3 + 3 = ?"
+
+  - id: "exo-mul-005"
+    xp: 15
+    skills:
+      - tag: "multiplication/table-5"
+        weight: 1.0
+    difficulty: 2
+    exercise:
+      type: multiple_choice
+      question: "$5 \\times 9 = ?$"
+      choices:
+        - id: a
+          text: "45"
+          correct: true
+          feedback: "Excellent !"
+        - id: b
+          text: "54"
+          correct: false
+          feedback: "Non, tu as inversé les chiffres. $5 \\times 9 = 45$."
+        - id: c
+          text: "40"
+          correct: false
+          feedback: "Non, $5 \\times 8 = 40$."
+      settings:
+        shuffle: true
+
+  - id: "exo-mul-006"
+    xp: 20
+    skills:
+      - tag: "multiplication/revision"
+        weight: 1.0
+    difficulty: 2
+    exercise:
+      type: fill_in_the_blank
+      instruction: "Révision générale — complète."
+      segments:
+        - text: "$7 \\times 6 =$"
+        - blank:
+            id: b1
+            answer: "42"
+        - text: "et $8 \\times 9 =$"
+        - blank:
+            id: b2
+            answer: "72"
+
+  - id: "exo-mul-007"
+    xp: 25
+    skills:
+      - tag: "multiplication/revision"
+        weight: 1.0
+    difficulty: 3
+    exercise:
+      type: multiple_choice
+      question: "Laquelle de ces égalités est correcte ?"
+      choices:
+        - id: a
+          text: "$7 \\times 8 = 54$"
+          correct: false
+          feedback: "$7 \\times 8 = 56$, pas 54."
+        - id: b
+          text: "$6 \\times 9 = 54$"
+          correct: true
+          feedback: "Oui ! $6 \\times 9 = 54$."
+        - id: c
+          text: "$8 \\times 7 = 52$"
+          correct: false
+          feedback: "$8 \\times 7 = 56$."
+      settings:
+        shuffle: true

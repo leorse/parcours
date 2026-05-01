@@ -1,0 +1,76 @@
+course:
+  id: "fr-conjugaison-01"
+  version: "1.0"
+  title: "La conjugaison"
+  subject: "francais"
+  domain: "grammaire"
+  thumbnail: null
+  xp_total: 90
+
+  grandes_etapes:
+
+    - id: "ge-conj-present"
+      title: "Le présent"
+      icon: "P"
+      color: "#27ae60"
+      order: 1
+      status: "in_progress"
+
+      lessons:
+        - id: "lec-conj-001"
+          title: "Le présent de l'indicatif"
+          type: "lesson"
+          order: 1
+          status: "completed"
+          content_ref: "lec-conj-001"
+
+        - id: "lec-conj-002"
+          title: "Exercices — Présent"
+          type: "exercise_set"
+          order: 2
+          status: "in_progress"
+          content_ref: "lec-conj-002"
+
+    - id: "ge-conj-autres"
+      title: "Autres temps"
+      icon: "T"
+      color: "#2484e0"
+      order: 2
+      status: "locked"
+
+      lessons:
+        - id: "lec-conj-003"
+          title: "Le passé composé"
+          type: "lesson"
+          order: 3
+          status: "locked"
+          content_ref: "lec-conj-003"
+
+        - id: "lec-conj-004"
+          title: "Le futur simple"
+          type: "lesson"
+          order: 4
+          status: "locked"
+          content_ref: "lec-conj-004"
+
+  steps_content:
+
+    - id: "lec-conj-001"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-conj-002"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-conj-003"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-conj-004"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."

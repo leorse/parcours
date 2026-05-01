@@ -1,0 +1,44 @@
+course:
+  id: "sci-systeme-solaire-01"
+  version: "1.0"
+  title: "Le système solaire"
+  subject: "sciences"
+  domain: "astronomie"
+  thumbnail: null
+  xp_total: 80
+
+  grandes_etapes:
+
+    - id: "ge-sol-planetes"
+      title: "Les planètes"
+      icon: "🪐"
+      color: "#0891B2"
+      order: 1
+      status: "locked"
+
+      lessons:
+        - id: "lec-sol-001"
+          title: "Les 8 planètes"
+          type: "lesson"
+          order: 1
+          status: "locked"
+          content_ref: "lec-sol-001"
+
+        - id: "lec-sol-002"
+          title: "Le Soleil"
+          type: "lesson"
+          order: 2
+          status: "locked"
+          content_ref: "lec-sol-002"
+
+  steps_content:
+
+    - id: "lec-sol-001"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-sol-002"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."

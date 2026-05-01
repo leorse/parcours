@@ -1,0 +1,64 @@
+course:
+  id: "sci-corps-humain-01"
+  version: "1.0"
+  title: "Le corps humain"
+  subject: "sciences"
+  domain: "biologie"
+  thumbnail: null
+  xp_total: 90
+
+  grandes_etapes:
+
+    - id: "ge-corps-locomoteur"
+      title: "Locomoteur"
+      icon: "L"
+      color: "#2484e0"
+      order: 1
+      status: "in_progress"
+
+      lessons:
+        - id: "lec-corps-001"
+          title: "Le squelette"
+          type: "lesson"
+          order: 1
+          status: "in_progress"
+          content_ref: "lec-corps-001"
+
+        - id: "lec-corps-002"
+          title: "Les muscles"
+          type: "lesson"
+          order: 2
+          status: "locked"
+          content_ref: "lec-corps-002"
+
+    - id: "ge-corps-systemes"
+      title: "Les systèmes"
+      icon: "S"
+      color: "#9c50c8"
+      order: 2
+      status: "locked"
+
+      lessons:
+        - id: "lec-corps-003"
+          title: "La digestion"
+          type: "lesson"
+          order: 3
+          status: "locked"
+          content_ref: "lec-corps-003"
+
+  steps_content:
+
+    - id: "lec-corps-001"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-corps-002"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-corps-003"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."

@@ -1,0 +1,44 @@
+course:
+  id: "hist-moyen-age-01"
+  version: "1.0"
+  title: "Le Moyen Âge"
+  subject: "histoire"
+  domain: "histoire-medievale"
+  thumbnail: null
+  xp_total: 90
+
+  grandes_etapes:
+
+    - id: "ge-ma-chateaux"
+      title: "Châteaux et chevaliers"
+      icon: "🏰"
+      color: "#c0392b"
+      order: 1
+      status: "locked"
+
+      lessons:
+        - id: "lec-ma-001"
+          title: "Les châteaux forts"
+          type: "lesson"
+          order: 1
+          status: "locked"
+          content_ref: "lec-ma-001"
+
+        - id: "lec-ma-002"
+          title: "La vie des chevaliers"
+          type: "lesson"
+          order: 2
+          status: "locked"
+          content_ref: "lec-ma-002"
+
+  steps_content:
+
+    - id: "lec-ma-001"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-ma-002"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."

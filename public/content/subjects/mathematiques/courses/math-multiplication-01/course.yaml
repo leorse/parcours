@@ -1,0 +1,204 @@
+course:
+  id: "math-multiplication-01"
+  version: "1.0"
+  title: "La multiplication"
+  subject: "mathematiques"
+  domain: "calcul"
+  thumbnail: null
+  xp_total: 120
+
+  grandes_etapes:
+
+    - id: "ge-mult-tables-base"
+      title: "Tables de base"
+      icon: "✖"
+      color: "#2484e0"
+      order: 1
+      status: "in_progress"
+
+      lessons:
+        - id: "lec-mult-001"
+          title: "Qu'est-ce que la multiplication ?"
+          type: "lesson"
+          order: 1
+          status: "completed"
+          content_ref: "lec-mult-001"
+
+        - id: "lec-mult-002"
+          title: "La commutativité"
+          type: "lesson"
+          order: 2
+          status: "completed"
+          content_ref: "lec-mult-002"
+
+        - id: "lec-mult-003"
+          title: "Exercices — Tables de 2 et 3"
+          type: "exercise_set"
+          order: 3
+          status: "in_progress"
+          content_ref: "lec-mult-003"
+
+    - id: "ge-mult-tables-avancees"
+      title: "Tables avancées"
+      icon: "🔢"
+      color: "#9c50c8"
+      order: 2
+      status: "locked"
+
+      lessons:
+        - id: "lec-mult-004"
+          title: "Tables de 4 à 6"
+          type: "lesson"
+          order: 4
+          status: "locked"
+          content_ref: "lec-mult-004"
+
+        - id: "lec-mult-005"
+          title: "Exercices — Toutes les tables"
+          type: "exercise_set"
+          order: 5
+          status: "locked"
+          content_ref: "lec-mult-005"
+
+  steps_content:
+
+    - id: "lec-mult-001"
+      content:
+
+        - type: md
+          text: |
+            La multiplication est une manière rapide d'effectuer une **addition répétée** du même nombre.
+
+        - type: notice
+          style: example
+          text: |
+            Si tu as 3 paquets de 4 bonbons, au lieu de faire $4+4+4$, on écrit :
+            $$4 \times 3 = 12$$
+
+        - type: md
+          text: |
+            ### Le signe ×
+
+            Le symbole **×** se lit « fois ». L'opération $4 \times 3$ se lit « quatre fois trois ».
+
+        - type: math
+          display: block
+          tex: "4 \\times 3 = 4 + 4 + 4 = 12"
+          caption: "4 répété 3 fois donne 12"
+
+        - type: notice
+          style: info
+          text: |
+            La multiplication est définie pour tous les nombres entiers positifs.
+            Elle s'étend ensuite aux fractions, aux décimaux et aux négatifs.
+
+        - type: notice
+          style: warning
+          text: "Attention, la commutativité **ne fonctionne pas** pour la soustraction ni pour la division !"
+
+        - type: exercise
+          ref: "exo-mul-001"
+
+    - id: "lec-mult-002"
+      content:
+
+        - type: md
+          text: |
+            ### La propriété de commutativité
+
+            Peu importe l'ordre des nombres, le résultat est le même.
+
+        - type: math
+          display: block
+          tex: "a \\times b = b \\times a"
+          caption: "La propriété de commutativité"
+
+        - type: notice
+          style: tip
+          text: |
+            **Astuce mémo :** Pour la table de 9, le chiffre des dizaines est toujours $n-1$
+            et les deux chiffres font toujours 9.
+            Exemple : $9 \times 7 = 63$ → $6+3=9$ ✓
+
+        - type: notice
+          style: definition
+          title: "Facteur"
+          text: |
+            Les nombres qu'on multiplie entre eux s'appellent des **facteurs**.
+            Dans $4 \times 3$, les facteurs sont 4 et 3. Le résultat s'appelle le **produit**.
+
+        - type: image
+          src: null
+          caption: "La table de multiplication de 1 à 10"
+          alt: "Table de multiplication"
+
+        - type: notice
+          style: danger
+          text: |
+            **Erreur fréquente :** Confondre $3 \times 0 = 0$ avec $3 \times 1 = 3$.
+            Multiplier par zéro donne toujours zéro !
+
+        - type: exercise
+          ref: "exo-mul-002"
+
+    - id: "lec-mult-003"
+      content:
+
+        - type: md
+          text: |
+            ### Entraînement — Tables de 2 et 3
+
+            Entraîne-toi avec ces exercices sur les tables de 2 et 3.
+            N'oublie pas de bien lire chaque question avant de répondre.
+
+        - type: notice
+          style: quote
+          text: |
+            « La répétition est la mère de l'apprentissage. »
+          author: "Proverbe latin"
+
+        - type: exercise
+          ref: "exo-mul-003"
+
+        - type: exercise
+          ref: "exo-mul-004"
+
+    - id: "lec-mult-004"
+      content:
+
+        - type: md
+          text: |
+            ### Tables de 4 à 6
+
+            Une fois les tables de 2 et 3 maîtrisées, les tables de 4, 5 et 6 suivent la même logique.
+
+        - type: notice
+          style: tip
+          text: "La table de 5 se termine toujours par 0 ou 5. C'est la plus facile à retenir !"
+
+        - type: math
+          display: block
+          tex: "5 \\times n = \\frac{10 \\times n}{2}"
+          caption: "Astuce pour la table de 5"
+
+        - type: exercise
+          ref: "exo-mul-005"
+
+    - id: "lec-mult-005"
+      content:
+
+        - type: md
+          text: |
+            ### Révision générale
+
+            Tu as maintenant appris toutes les tables. C'est l'heure de la révision !
+
+        - type: notice
+          style: info
+          text: "Prends ton temps. Mieux vaut répondre juste lentement que vite et faux."
+
+        - type: exercise
+          ref: "exo-mul-006"
+
+        - type: exercise
+          ref: "exo-mul-007"

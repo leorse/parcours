@@ -1,0 +1,88 @@
+course:
+  id: "math-fractions-01"
+  version: "1.0"
+  title: "Les fractions"
+  subject: "mathematiques"
+  domain: "calcul"
+  thumbnail: null
+  xp_total: 110
+
+  grandes_etapes:
+
+    - id: "ge-frac-bases"
+      title: "Bases"
+      icon: "½"
+      color: "#2484e0"
+      order: 1
+      status: "in_progress"
+
+      lessons:
+        - id: "lec-frac-001"
+          title: "Qu'est-ce qu'une fraction ?"
+          type: "lesson"
+          order: 1
+          status: "in_progress"
+          content_ref: "lec-frac-001"
+
+        - id: "lec-frac-002"
+          title: "Numérateur et dénominateur"
+          type: "lesson"
+          order: 2
+          status: "locked"
+          content_ref: "lec-frac-002"
+
+        - id: "lec-frac-003"
+          title: "Fractions équivalentes"
+          type: "lesson"
+          order: 3
+          status: "locked"
+          content_ref: "lec-frac-003"
+
+    - id: "ge-frac-operations"
+      title: "Opérations"
+      icon: "+"
+      color: "#9c50c8"
+      order: 2
+      status: "locked"
+
+      lessons:
+        - id: "lec-frac-004"
+          title: "Additionner des fractions"
+          type: "lesson"
+          order: 4
+          status: "locked"
+          content_ref: "lec-frac-004"
+
+        - id: "lec-frac-005"
+          title: "Simplifier une fraction"
+          type: "lesson"
+          order: 5
+          status: "locked"
+          content_ref: "lec-frac-005"
+
+  steps_content:
+
+    - id: "lec-frac-001"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-frac-002"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-frac-003"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-frac-004"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
+
+    - id: "lec-frac-005"
+      content:
+        - type: md
+          text: "Le contenu de cette leçon sera disponible prochainement."
