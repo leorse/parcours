@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\prog\\\\parcours\\\\src\" -Recurse -Include \"*.jsx\", \"*.js\")",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"c:\\\\prog\\\\parcours\\\\public\\\\content\" -Recurse | Select-Object -First 20 FullName | ForEach-Object { $_.FullName })",
+      "Bash(Get-ChildItem -Path \"c:\\\\prog\\\\parcours\" -Filter \"*.md\" -File)",
+      "Bash(Select-Object Name)",
+      "Bash(Get-ChildItem -Path \"c:\\\\prog\\\\parcours\\\\src\\\\services\\\\\" -ErrorAction SilentlyContinue | Select-Object Name)"
+    ]
+  }
+}

@@ -155,3 +155,125 @@ exercises:
           feedback: "$8 \\times 7 = 56$."
       settings:
         shuffle: true
+
+  - id: "exo-mul-img-001"
+    xp: 15
+    skills:
+      - tag: "multiplication/table-3"
+        weight: 1.0
+    difficulty: 2
+    exercise:
+      type: image_tap
+      instruction: "Clique sur un multiple de 3."
+      image: null
+      zones:
+        - id: z1
+          label: "7"
+          correct: false
+          feedback: "7 n'est pas un multiple de 3."
+        - id: z2
+          label: "9"
+          correct: true
+          feedback: "Oui ! $3 \\times 3 = 9$."
+        - id: z3
+          label: "8"
+          correct: false
+          feedback: "8 n'est pas un multiple de 3."
+        - id: z4
+          label: "12"
+          correct: true
+          feedback: "Oui ! $3 \\times 4 = 12$."
+        - id: z5
+          label: "10"
+          correct: false
+          feedback: "10 n'est pas un multiple de 3."
+        - id: z6
+          label: "15"
+          correct: true
+          feedback: "Oui ! $3 \\times 5 = 15$."
+
+  - id: "exo-mul-drag-001"
+    xp: 25
+    skills:
+      - tag: "multiplication/calcul"
+        weight: 1.0
+    difficulty: 2
+    exercise:
+      type: drag_drop
+      instruction: "Glisse chaque multiplication vers son résultat."
+      pairs:
+        - source:
+            id: src1
+            tex: "4 \\times 3"
+          target:
+            id: tgt1
+            text: "12"
+        - source:
+            id: src2
+            tex: "5 \\times 6"
+          target:
+            id: tgt2
+            text: "30"
+        - source:
+            id: src3
+            tex: "7 \\times 8"
+          target:
+            id: tgt3
+            text: "56"
+
+  - id: "exo-mul-time-001"
+    xp: 20
+    skills:
+      - tag: "multiplication/sens"
+        weight: 1.0
+    difficulty: 2
+    exercise:
+      type: timeline
+      instruction: "Remets ces étapes du calcul $3 \\times 4$ dans le bon ordre."
+      items:
+        - id: e1
+          text: "On part du nombre 3"
+          correct_position: 1
+        - id: e2
+          text: "On ajoute 3 une deuxième fois : $3+3=6$"
+          correct_position: 2
+        - id: e3
+          text: "On ajoute 3 une troisième fois : $6+3=9$"
+          correct_position: 3
+        - id: e4
+          text: "On ajoute 3 une quatrième fois : $9+3=12$"
+          correct_position: 4
+      settings:
+        shuffle: true
+
+  - id: "exo-mul-match-001"
+    xp: 20
+    skills:
+      - tag: "multiplication/revision"
+        weight: 1.0
+    difficulty: 2
+    exercise:
+      type: matching
+      instruction: "Relie chaque multiplication à son résultat."
+      pairs:
+        - left:  { id: l1, text: "$3 \\times 4$" }
+          right: { id: r1, text: "12" }
+        - left:  { id: l2, text: "$6 \\times 7$" }
+          right: { id: r2, text: "42" }
+        - left:  { id: l3, text: "$5 \\times 9$" }
+          right: { id: r3, text: "45" }
+        - left:  { id: l4, text: "$8 \\times 8$" }
+          right: { id: r4, text: "64" }
+      settings:
+        shuffle_right: true
+
+  - id: "exo-mul-text-001"
+    xp: 10
+    skills:
+      - tag: "multiplication/sens"
+        weight: 1.0
+    difficulty: 1
+    exercise:
+      type: free_text
+      instruction: "Explique avec tes propres mots ce qu'est la commutativité."
+      prompt: "La commutativité, c'est quand…"

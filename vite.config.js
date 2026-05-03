@@ -9,4 +9,12 @@ export default defineConfig({
       '@images': fileURLToPath(new URL('./images', import.meta.url)),
     },
   },
+  test: {
+    environment: 'node',
+    globals: true,
+    coverage: {
+      reporter: ['text', 'html'],
+      include: ['src/services/**', 'src/debug/utils/**'],
+    },
+  },
 })

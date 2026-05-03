@@ -1,0 +1,44 @@
+skills:
+
+  - id: "multiplication/sens"
+    label: "Sens de la multiplication"
+    subject: "mathematiques"
+    color: "#2484e0"
+    prerequisites: []
+
+  - id: "multiplication/calcul"
+    label: "Calcul multiplicatif"
+    subject: "mathematiques"
+    color: "#2484e0"
+    prerequisites:
+      - "multiplication/sens"
+
+  - id: "multiplication/table-2"
+    label: "Table de 2"
+    subject: "mathematiques"
+    color: "#2484e0"
+    prerequisites:
+      - "multiplication/calcul"
+
+  - id: "multiplication/table-3"
+    label: "Table de 3"
+    subject: "mathematiques"
+    color: "#2484e0"
+    prerequisites:
+      - "multiplication/calcul"
+
+  - id: "multiplication/table-5"
+    label: "Table de 5"
+    subject: "mathematiques"
+    color: "#2484e0"
+    prerequisites:
+      - "multiplication/calcul"
+
+  - id: "multiplication/revision"
+    label: "Révision — toutes les tables"
+    subject: "mathematiques"
+    color: "#9c50c8"
+    prerequisites:
+      - "multiplication/table-2"
+      - "multiplication/table-3"
+      - "multiplication/table-5"

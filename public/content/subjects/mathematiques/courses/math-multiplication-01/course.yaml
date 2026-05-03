@@ -184,6 +184,15 @@ course:
         - type: exercise
           ref: "exo-mul-005"
 
+        - type: exercise
+          ref: "exo-mul-img-001"
+
+        - type: exercise
+          ref: "exo-mul-drag-001"
+
+        - type: exercise
+          ref: "exo-mul-match-001"
+
     - id: "lec-mult-005"
       content:
 
@@ -202,3 +211,9 @@ course:
 
         - type: exercise
           ref: "exo-mul-007"
+
+        - type: exercise
+          ref: "exo-mul-time-001"
+
+        - type: exercise
+          ref: "exo-mul-text-001"
