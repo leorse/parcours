@@ -29,3 +29,13 @@ courses:
     status: "locked"
     order: 3
     path: "subjects/mathematiques/courses/math-fractions-01/course.yaml"
+
+  - id: "math-diviseurs-01"
+    title: "Multiple, diviseurs et nombres premiers"
+    thumbnail: null
+    description: "Numérateur, dénominateur, opérations"
+    stepsCount: 5
+    progress: 0
+    status: "available"
+    order: 4
+    path: "subjects/mathematiques/courses/math-diviseurs-01/course.yaml"

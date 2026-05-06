@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react'
+import { getCurrentUser } from '../services/profileService'
 
 const AppContext = createContext(null)
 
@@ -10,8 +11,8 @@ export const AppProvider = ({ children }) => {
   const [musicEnabled, setMusicEnabled] = useState(true)
   const [soundEnabled, setSoundEnabled] = useState(true)
 
-  // Jalon 4 — sera rempli par Firebase Auth
-  const [user, setUser] = useState(null)
+  // Jalon 4 — initialisé depuis localStorage (Jalon 7 : Firebase Auth)
+  const [user, setUser] = useState(() => getCurrentUser())
 
   // Jalon 5 — sera rempli par le backend
   const [xp, setXp] = useState(0)

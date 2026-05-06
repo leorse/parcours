@@ -1,1 +1,140 @@
-exercises: []
+exercises:
+
+  - id: exo-frac-tap-001
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "mathematiques/fractions"
+        weight: 1.0
+    exercise:
+      type: fraction_tap
+      question: "Sélectionne la moitié **(1/2)** de la pizza."
+      target_numerator: 1
+      target_denominator: 2
+      shape: pizza
+      pieces: 4
+      feedback:
+        correct: "Bravo ! 2 parts sur 4, c'est bien 1/2 de la pizza !"
+        incorrect: "Pas tout à fait... Il fallait sélectionner {expected} parts."
+
+  - id: exo-frac-tap-002
+    xp: 20
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/fractions"
+        weight: 1.0
+    exercise:
+      type: fraction_tap
+      question: "Sélectionne **1/4** de la pizza."
+      target_numerator: 1
+      target_denominator: 4
+      shape: pizza
+      pieces: 8
+      feedback:
+        correct: "Super ! 2 parts sur 8 font bien 1/4."
+        incorrect: "Presque ! Il fallait {expected} parts sur 8."
+
+  - id: exo-frac-tap-003
+    xp: 20
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/fractions"
+        weight: 1.0
+    exercise:
+      type: fraction_tap
+      question: "Sélectionne **2/3** du gâteau au chocolat."
+      target_numerator: 2
+      target_denominator: 3
+      shape: chocolate
+      pieces: 6
+      feedback:
+        correct: "Excellent ! 4 carrés sur 6, c'est bien 2/3 !"
+        incorrect: "Il manque quelques carrés ! Il en fallait {expected}."
+
+  - id: exo-frac-vis-001
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "mathematiques/fractions"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      visual:
+        type: pizza
+        numerator: 3
+        denominator: 4
+      question: "Quelle fraction représente ce dessin ?"
+      choices:
+        - id: a
+          text: "1/4"
+          correct: false
+          feedback: "Non, 1/4 c'est une seule part sur 4."
+        - id: b
+          text: "3/4"
+          correct: true
+          feedback: "Oui ! 3 parts sur 4 = 3/4."
+        - id: c
+          text: "4/3"
+          correct: false
+          feedback: "4/3 serait plus d'une pizza entière !"
+        - id: d
+          text: "1/3"
+          correct: false
+          feedback: "1/3 correspond à 1 part sur 3, pas sur 4."
+
+  - id: exo-frac-vis-002
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "mathematiques/fractions"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      visual:
+        type: gauge
+        numerator: 2
+        denominator: 5
+      instruction: "La jauge ci-dessus est remplie à 2/5."
+      segments:
+        - text: "La jauge est remplie à "
+        - blank:
+            id: b1
+            answer: "2"
+            accept_variants: ["deux"]
+        - text: " parts sur "
+        - blank:
+            id: b2
+            answer: "5"
+            accept_variants: ["cinq"]
+        - text: "."
+
+  - id: exo-frac-vis-003
+    xp: 20
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/fractions"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      visual:
+        type: pizza
+        numerator: 3
+        denominator: 2
+      question: "Ces pizzas représentent la fraction **3/2**. Que vaut-elle ?"
+      choices:
+        - id: a
+          text: "Moins d'une pizza"
+          correct: false
+          feedback: "Non ! 3/2 = 1,5, c'est plus d'une pizza entière."
+        - id: b
+          text: "Exactement 2 pizzas"
+          correct: false
+          feedback: "Non, 2 pizzas ça serait 4/2."
+        - id: c
+          text: "1 pizza et demie"
+          correct: true
+          feedback: "Exactement ! 3/2 = 1,5 = 1 pizza entière + 1 demi-pizza."
+        - id: d
+          text: "3 pizzas"
+          correct: false
+          feedback: "Non, 3/2 est bien inférieur à 3 pizzas entières."

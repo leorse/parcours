@@ -1,21 +1,114 @@
-export default function FreeTextExercise({ exercise }) {
+import { useState, useMemo } from 'react'
+import MathText from '../shared/MathText'
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:8000'
+
+export default function FreeTextExercise({ exercise, onSubmit, result, exerciseData, courseId }) {
+  const [text,    setText]    = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error,   setError]   = useState(null)
+
+  const isSubmitted = result !== null
+
+  const wordCount = useMemo(
+    () => text.trim().split(/\s+/).filter(Boolean).length,
+    [text]
+  )
+
+  const minWords = exercise.min_words ?? 10
+  const maxWords = exercise.max_words ?? 200
+  const canSubmit = !isSubmitted && !loading && wordCount >= minWords && wordCount <= maxWords
+
+  const handleSubmit = async () => {
+    setLoading(true)
+    setError(null)
+
+    // TODO: remplacer par getAuth().currentUser.getIdToken() quand l'app Android sera prête
+    const token = 'mock-token'
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/api/ai/correct`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firebase_token: token,
+          exercise_id:    exerciseData?.id ?? 'unknown',
+          course_id:      courseId ?? null,
+          student_text:   text,
+          ai_correction:  exercise.ai_correction ?? {},
+        }),
+      })
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ detail: `Erreur ${res.status}` }))
+        throw new Error(err.detail ?? 'Erreur serveur')
+      }
+
+      const aiResult = await res.json()
+      onSubmit({
+        type:           'ai_result',
+        score:          aiResult.score / (aiResult.score_max || 10),
+        feedback:       aiResult.feedback,
+        points_reussis: aiResult.points_reussis,
+        a_ameliorer:    aiResult.a_ameliorer,
+        flag:           aiResult.flag,
+        xp_earned:      aiResult.xp_earned,
+      })
+    } catch (e) {
+      setError(e.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const counterClass = wordCount < minWords ? 'under' : wordCount > maxWords ? 'over' : 'ok'
+
   return (
     <div className="exercise-free-text">
       {exercise.instruction && (
         <p className="exercise-instruction">{exercise.instruction}</p>
       )}
-      {exercise.prompt && (
-        <p className="exercise-free-text-prompt">{exercise.prompt}</p>
+
+      {exercise.image && (
+        <img
+          src={`/content/${exercise.image}`}
+          alt="Image de l'exercice"
+          className="freetext-image"
+        />
       )}
+
       <textarea
-        className="exercise-free-text-area"
-        disabled
-        placeholder="Correction manuelle — disponible prochainement (jalon 3bis)"
-        rows={4}
+        className="exercise-free-text-area freetext-textarea"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder={exercise.placeholder ?? exercise.prompt ?? 'Écris ta réponse ici…'}
+        disabled={isSubmitted || loading}
+        rows={5}
       />
-      <div className="exercise-free-text-notice">
-        ✏️ Cet exercice sera corrigé dans une prochaine version.
-      </div>
+
+      {!isSubmitted && (
+        <div className={`word-counter word-counter--${counterClass}`}>
+          {wordCount} mot{wordCount !== 1 ? 's' : ''}
+          {wordCount < minWords && ` (minimum ${minWords})`}
+          {wordCount > maxWords && ` (maximum ${maxWords})`}
+        </div>
+      )}
+
+      {error && (
+        <div className="freetext-error">⚠️ {error}</div>
+      )}
+
+      {!isSubmitted && (
+        <button
+          className="exercise-btn-validate"
+          disabled={!canSubmit}
+          onClick={handleSubmit}
+        >
+          {loading
+            ? <span>✏️ Correction en cours…</span>
+            : '✉️ Envoyer ma réponse'}
+        </button>
+      )}
     </div>
   )
 }

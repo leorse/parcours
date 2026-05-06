@@ -1,0 +1,667 @@
+exercises:
+
+  # ═══════════════════════════════════════════════
+  # GRANDE ÉTAPE 1 — Divisibilité et diviseurs
+  # ═══════════════════════════════════════════════
+
+  # ── Exercice 1 : fill_in_the_blank — Les rubis de Link ──
+  - id: "exo-div-fitb-001"
+    xp: 30
+    difficulty: 1
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: |
+        🧝 **Link a trouvé 60 rubis** dans un coffre du donjon de la Forêt.
+        Il veut les répartir **équitablement** entre ses compagnons sans en garder.
+        Complète les phrases suivantes.
+      segments:
+        - text: "60 divisé par 4 donne "
+        - blank:
+            id: "b1"
+            answer: "15"
+        - text: " et un reste de "
+        - blank:
+            id: "b2"
+            answer: "0"
+        - text: ". Donc 4 "
+        - blank:
+            id: "b3"
+            answer: "divise"
+            accept_variants:
+              - "est un diviseur de"
+              - "divide"
+        - text: " 60. Link peut répartir ses rubis entre 4 compagnons."
+      hint: "Effectue la division euclidienne : 60 = 4 × ? + reste"
+
+  # ── Exercice 2 : multiple_choice — Critères de divisibilité (pots du donjon) ──
+  - id: "exo-div-mc-001"
+    xp: 30
+    difficulty: 1
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        🧝 Dans le donjon du Feu, Link doit casser des pots par **groupes de 9**.
+        Parmi les nombres suivants, lequel représente un nombre de pots que Link peut casser **exactement par groupes de 9** ?
+      choices:
+        - id: "a"
+          text: "124"
+          correct: false
+          feedback: "Non : $1+2+4 = 7$, qui n'est pas divisible par 9."
+        - id: "b"
+          text: "207"
+          correct: true
+          feedback: "Exact ! $2+0+7 = 9$, divisible par 9. Link peut casser 207 pots par groupes de 9 ✅"
+        - id: "c"
+          text: "315"
+          correct: false
+          feedback: "Attention : $3+1+5 = 9$ → divisible par 9 ! En fait c'est correct aussi… mais 315 n'était pas l'unique réponse."
+        - id: "d"
+          text: "412"
+          correct: false
+          feedback: "Non : $4+1+2 = 7$, pas divisible par 9."
+      settings:
+        shuffle: true
+
+  # ── Exercice 3 : multiple_choice — Critères de divisibilité (multi-critères) ──
+  - id: "exo-div-mc-002"
+    xp: 40
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        🧝 Link trouve **324 pièces d'or** dans le trésor de Ganon.
+        Il veut les ranger dans des coffres. Par lesquels des nombres suivants 324 est-il **divisible** ?
+        *(Plusieurs réponses possibles)*
+      choices:
+        - id: "a"
+          text: "2"
+          correct: true
+          feedback: "Oui ! 324 se termine par 4, c'est un nombre pair ✅"
+        - id: "b"
+          text: "3"
+          correct: true
+          feedback: "Oui ! $3+2+4=9$, divisible par 3 ✅"
+        - id: "c"
+          text: "5"
+          correct: false
+          feedback: "Non, 324 ne se termine pas par 0 ni par 5."
+        - id: "d"
+          text: "9"
+          correct: true
+          feedback: "Oui ! $3+2+4=9$, divisible par 9 ✅"
+      settings:
+        shuffle: true
+
+  # ── Exercice 4 : drag_drop — Paires de diviseurs de 360 (salles du château) ──
+  - id: "exo-div-drag-001"
+    xp: 50
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: drag_drop
+      instruction: |
+        🧝 Le château d'Hyrule a une surface de **360 m²**.
+        Relie chaque largeur de salle à la **longueur correspondante** pour former un rectangle de 360 m².
+      pairs:
+        - source:
+            id: "s1"
+            text: "Largeur : 4 m"
+          target:
+            id: "t1"
+            text: "Longueur : 90 m"
+        - source:
+            id: "s2"
+            text: "Largeur : 8 m"
+          target:
+            id: "t2"
+            text: "Longueur : 45 m"
+        - source:
+            id: "s3"
+            text: "Largeur : 9 m"
+          target:
+            id: "t3"
+            text: "Longueur : 40 m"
+        - source:
+            id: "s4"
+            text: "Largeur : 12 m"
+          target:
+            id: "t4"
+            text: "Longueur : 30 m"
+        - source:
+            id: "s5"
+            text: "Largeur : 15 m"
+          target:
+            id: "t5"
+            text: "Longueur : 24 m"
+
+  # ═══════════════════════════════════════════════
+  # GRANDE ÉTAPE 2 — Multiples et PPCM
+  # ═══════════════════════════════════════════════
+
+  # ── Exercice 5 : multiple_choice — Multiples communs (Mario et Luigi) ──
+  - id: "exo-ppcm-mc-001"
+    xp: 30
+    difficulty: 1
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        🍄 **Mario** ramasse une pièce tous les **4 pas**, **Luigi** tous les **6 pas**.
+        Parmi les positions suivantes, à laquelle ramassent-ils **tous les deux** une pièce ?
+      choices:
+        - id: "a"
+          text: "18"
+          correct: false
+          feedback: "18 est un multiple de 6 mais pas de 4 (18 ÷ 4 = 4,5)."
+        - id: "b"
+          text: "24"
+          correct: true
+          feedback: "Bravo ! $24 = 4 \\times 6 = 6 \\times 4$. Ils ramassent tous les deux une pièce au pas 24 ✅"
+        - id: "c"
+          text: "20"
+          correct: false
+          feedback: "20 est un multiple de 4 mais pas de 6 (20 ÷ 6 ≈ 3,33)."
+        - id: "d"
+          text: "16"
+          correct: false
+          feedback: "16 est un multiple de 4 mais pas de 6."
+      settings:
+        shuffle: true
+
+  # ── Exercice 6 : fill_in_the_blank — PPCM (Mario et Luigi) ──
+  - id: "exo-ppcm-fitb-001"
+    xp: 40
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: |
+        🍄 **Mario** ramasse des pièces toutes les **4 secondes**, **Luigi** toutes les **6 secondes**.
+        Calcule le PPCM pour trouver à quelle seconde ils ramassent une pièce **en même temps** pour la première fois.
+      segments:
+        - text: "Les multiples de 4 sont : 4, 8, "
+        - blank:
+            id: "b1"
+            answer: "12"
+        - text: ", 16, 20, 24…"
+        - text: " Les multiples de 6 sont : 6, "
+        - blank:
+            id: "b2"
+            answer: "12"
+        - text: ", 18, 24…"
+        - text: " Le premier multiple commun non nul est "
+        - blank:
+            id: "b3"
+            answer: "12"
+        - text: ". Donc PPCM(4, 6) = "
+        - blank:
+            id: "b4"
+            answer: "12"
+        - text: " secondes."
+      hint: "Liste les multiples de 4 et de 6 jusqu'à trouver le premier commun."
+
+  # ── Exercice 7 : fill_in_the_blank — PPCM (Sonic, Tails) ──
+  - id: "exo-ppcm-fitb-002"
+    xp: 50
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: |
+        ⚡ **Sonic** collecte des anneaux par paquets de **8**, **Tails** par paquets de **6**.
+        À partir de combien d'anneaux ont-ils tous les deux un nombre **exact** de paquets ?
+        Calcule PPCM(8, 6).
+      segments:
+        - text: "$8 = $"
+        - blank:
+            id: "b1"
+            answer: "2³"
+            accept_variants:
+              - "2^3"
+              - "8"
+        - text: " et $6 = 2 \\times 3$. Pour le PPCM on prend les facteurs avec le plus grand exposant : $2^3 \\times 3 = $"
+        - blank:
+            id: "b2"
+            answer: "24"
+        - text: ". Donc PPCM(8, 6) = "
+        - blank:
+            id: "b3"
+            answer: "24"
+        - text: " anneaux."
+      hint: "Décompose 8 et 6 en facteurs premiers, puis prends le plus grand exposant de chaque facteur."
+
+  # ═══════════════════════════════════════════════
+  # GRANDE ÉTAPE 3 — Nombres premiers
+  # ═══════════════════════════════════════════════
+
+  # ── Exercice 8 : multiple_choice — Identifier nombres premiers (cristaux de Ganon) ──
+  - id: "exo-prem-mc-001"
+    xp: 40
+    difficulty: 1
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        🧝 Ganon a enfermé des fées dans des cristaux numérotés.
+        **Link ne peut libérer que les fées dans les cristaux à nombre premier.**
+        Lesquels des cristaux suivants Link doit-il briser ?
+        *(Plusieurs réponses possibles)*
+      choices:
+        - id: "a"
+          text: "Cristal n°17"
+          correct: true
+          feedback: "17 est premier (diviseurs : 1 et 17 seulement) ✅ La fée est libérée !"
+        - id: "b"
+          text: "Cristal n°21"
+          correct: false
+          feedback: "21 = 3 × 7, ce n'est pas un nombre premier. La fée reste prisonnière."
+        - id: "c"
+          text: "Cristal n°29"
+          correct: true
+          feedback: "29 est premier ✅ La fée est libérée !"
+        - id: "d"
+          text: "Cristal n°1"
+          correct: false
+          feedback: "1 n'est pas premier par définition : il n'a qu'un seul diviseur."
+        - id: "e"
+          text: "Cristal n°23"
+          correct: true
+          feedback: "23 est premier ✅ La fée est libérée !"
+      settings:
+        shuffle: true
+
+  # ── Exercice 9 : multiple_choice — Crible, nombres premiers jusqu'à 30 ──
+  - id: "exo-prem-mc-002"
+    xp: 40
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        ⚡ **Dr. Eggman** numérote ses robots de 1 à 30 pour les aligner.
+        Grâce au crible d'Ératosthène, quels sont **tous** les nombres premiers entre 1 et 30 ?
+      choices:
+        - id: "a"
+          text: "2, 3, 5, 7, 11, 13, 17, 19, 23, 29"
+          correct: true
+          feedback: "Parfait ! Ce sont bien les 10 nombres premiers inférieurs à 30 ✅"
+        - id: "b"
+          text: "1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29"
+          correct: false
+          feedback: "Presque ! Mais 1 n'est **pas** un nombre premier."
+        - id: "c"
+          text: "2, 3, 5, 7, 11, 13, 17, 19, 23, 27, 29"
+          correct: false
+          feedback: "27 n'est pas premier : $27 = 3^3$."
+        - id: "d"
+          text: "2, 3, 5, 7, 11, 13, 17, 19, 23, 25, 29"
+          correct: false
+          feedback: "25 n'est pas premier : $25 = 5^2$."
+      settings:
+        shuffle: true
+
+  # ── Exercice 10 : fill_in_the_blank — Décomposition en facteurs premiers (Goombas de Bowser) ──
+  - id: "exo-prem-fitb-001"
+    xp: 50
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: |
+        🍄 **Bowser** dispose **84 Goombas** en rectangles parfaits pour garder son château.
+        Décompose 84 en facteurs premiers par divisions successives.
+      segments:
+        - text: "$84 \\div 2 = $"
+        - blank:
+            id: "b1"
+            answer: "42"
+        - text: ", donc 2 est un facteur."
+        - text: " $42 \\div 2 = $"
+        - blank:
+            id: "b2"
+            answer: "21"
+        - text: ", donc 2 est encore un facteur."
+        - text: " $21 \\div 3 = $"
+        - blank:
+            id: "b3"
+            answer: "7"
+        - text: ", donc 3 est un facteur."
+        - text: " $7$ est premier. Donc $84 = 2^$"
+        - blank:
+            id: "b4"
+            answer: "2"
+        - text: " $\\times 3 \\times $"
+        - blank:
+            id: "b5"
+            answer: "7"
+      hint: "Divise successivement par 2, puis par 3, puis par 7."
+
+  # ── Exercice 11 : free_text — 97 robots d'Eggman (nombre premier) ──
+  - id: "exo-prem-free-001"
+    xp: 60
+    difficulty: 3
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: free_text
+      instruction: |
+        ⚡ **Dr. Eggman** a fabriqué **97 robots** pour envahir la ville.
+        Il veut les aligner en rangées **égales** de plus d'un robot, pour qu'ils aient l'air plus impressionnants.
+        **Est-ce possible ? Justifie ta réponse.**
+      placeholder: "Explique si 97 est un nombre premier et pourquoi Eggman ne peut pas former de rangées égales…"
+      min_words: 30
+      max_words: 150
+      ai_correction:
+        context: |
+          L'élève doit déterminer si 97 est un nombre premier.
+          97 est bien un nombre premier (ses seuls diviseurs sont 1 et 97).
+          Pour le vérifier, il faut tester tous les entiers jusqu'à √97 ≈ 9,8, soit 2, 3, 5, 7.
+          Aucun ne divise 97. Donc Eggman ne peut pas former de rangées égales de plus d'un robot.
+        scoring_guide: |
+          3 points : L'élève affirme que 97 est premier, teste les diviseurs jusqu'à environ 10 (ou √97), et conclut correctement.
+          2 points : Bonne conclusion mais la vérification est incomplète (teste seulement 2 et 3 par exemple).
+          1 point : L'élève donne la bonne réponse sans justification.
+          0 point : Réponse fausse ou hors sujet.
+        score_max: 3
+        age_target: 14
+        language: "fr"
+
+  # ═══════════════════════════════════════════════
+  # GRANDE ÉTAPE 4 — PGCD et applications
+  # ═══════════════════════════════════════════════
+
+  # ── Exercice 12 : fill_in_the_blank — PGCD (trousses de Link) ──
+  - id: "exo-pgcd-fitb-001"
+    xp: 50
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: |
+        🧝 **Link** possède **48 flèches** et **36 bombes**. Il veut faire des **trousses d'aventurier** identiques
+        en mettant dans chacune le même nombre de flèches et de bombes, **sans rien gâcher**.
+        Utilise la méthode par liste pour trouver le PGCD.
+      segments:
+        - text: "Diviseurs de 48 : 1, 2, 3, 4, 6, 8, 12, 16, 24, 48. Diviseurs de 36 : 1, 2, 3, 4, 6, 9, 12, 18, 36."
+        - text: " Le plus grand diviseur commun est "
+        - blank:
+            id: "b1"
+            answer: "12"
+        - text: ". Link peut faire "
+        - blank:
+            id: "b2"
+            answer: "12"
+        - text: " trousses, avec "
+        - blank:
+            id: "b3"
+            answer: "4"
+        - text: " flèches et "
+        - blank:
+            id: "b4"
+            answer: "3"
+        - text: " bombes chacune."
+      hint: "Le PGCD est le plus grand nombre dans la liste des diviseurs communs."
+
+  # ── Exercice 13 : timeline — Étapes de l'algorithme d'Euclide (anneaux de Sonic) ──
+  - id: "exo-pgcd-timeline-001"
+    xp: 60
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: timeline
+      instruction: |
+        ⚡ **Sonic** a **72 anneaux dorés** et **60 anneaux argentés**. Il veut les ranger en piles identiques.
+        Remets les étapes de l'**algorithme d'Euclide** dans le bon ordre pour calculer PGCD(72, 60).
+      items:
+        - id: "e1"
+          text: "On divise 72 par 60 : $72 = 1 \\times 60 + 12$"
+          correct_position: 1
+        - id: "e2"
+          text: "On divise 60 par 12 : $60 = 5 \\times 12 + 0$"
+          correct_position: 2
+        - id: "e3"
+          text: "Le reste est nul, donc le PGCD est le dernier diviseur non nul : **12**"
+          correct_position: 3
+        - id: "e4"
+          text: "Sonic peut donc faire des piles de **12 anneaux** chacune"
+          correct_position: 4
+      settings:
+        shuffle: true
+
+  # ── Exercice 14 : fill_in_the_blank — Algorithme d'Euclide (Sonic) ──
+  - id: "exo-pgcd-fitb-002"
+    xp: 60
+    difficulty: 3
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: |
+        ⚡ Applique l'**algorithme d'Euclide** pour calculer PGCD(84, 36).
+        *(Indice : 84 = les Goombas de Bowser, 36 = les étoiles de Mario !)*
+      segments:
+        - text: "Étape 1 : $84 = $"
+        - blank:
+            id: "b1"
+            answer: "2"
+        - text: " $\\times 36 + $"
+        - blank:
+            id: "b2"
+            answer: "12"
+        - text: ". Étape 2 : $36 = $"
+        - blank:
+            id: "b3"
+            answer: "3"
+        - text: " $\\times 12 + $"
+        - blank:
+            id: "b4"
+            answer: "0"
+        - text: ". Le reste est nul. Donc PGCD(84, 36) = "
+        - blank:
+            id: "b5"
+            answer: "12"
+      hint: "À chaque étape : divise le plus grand par le plus petit et note le reste."
+
+  # ── Exercice 15 : matching — PGCD et applications (Mario fractions) ──
+  - id: "exo-pgcd-matching-001"
+    xp: 50
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: matching
+      instruction: |
+        🍄 **Mario** relie chaque étape du calcul du PGCD(36, 84) à son résultat correct.
+        Aide-le à simplifier la fraction $\frac{36}{84}$ !
+      pairs:
+        - left:
+            id: "l1"
+            text: "Étape algo : $84 = ? \\times 36 + r$"
+          right:
+            id: "r1"
+            text: "$84 = 2 \\times 36 + 12$"
+        - left:
+            id: "l2"
+            text: "Étape algo : $36 = ? \\times 12 + r$"
+          right:
+            id: "r2"
+            text: "$36 = 3 \\times 12 + 0$"
+        - left:
+            id: "l3"
+            text: "PGCD(36, 84)"
+          right:
+            id: "r3"
+            text: "$12$"
+        - left:
+            id: "l4"
+            text: "Fraction simplifiée de $\frac{36}{84}$"
+          right:
+            id: "r4"
+            text: "$\frac{3}{7}$"
+      settings:
+        shuffle_right: true
+
+  # ── Exercice 16 : fill_in_the_blank — Application PGCD (simplification fraction) ──
+  - id: "exo-pgcd-fitb-003"
+    xp: 40
+    difficulty: 2
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: |
+        🍄 **Mario** a complété $\frac{36}{84}$ des niveaux du château de Bowser.
+        Simplifie cette fraction en utilisant PGCD(36, 84) = 12.
+      segments:
+        - text: "$\frac{36}{84} = \frac{36 \\div $"
+        - blank:
+            id: "b1"
+            answer: "12"
+        - text: "}{84 \\div $"
+        - blank:
+            id: "b2"
+            answer: "12"
+        - text: "} = \frac{"
+        - blank:
+            id: "b3"
+            answer: "3"
+        - text: "}{"
+        - blank:
+            id: "b4"
+            answer: "7"
+        - text: "}"
+      hint: "Divise numérateur et dénominateur par le PGCD."
+
+  # ═══════════════════════════════════════════════
+  # GRANDE ÉTAPE 5 — Synthèse
+  # ═══════════════════════════════════════════════
+
+  # ── Exercice 17 : multiple_choice — Lien PGCD × PPCM (synthèse) ──
+  - id: "exo-syn-mc-001"
+    xp: 60
+    difficulty: 3
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        🍄 **Mario** sait que PGCD(12, 18) = 6.
+        En utilisant la relation $\text{PGCD}(a,b) \\times \text{PPCM}(a,b) = a \\times b$,
+        quelle est la valeur de PPCM(12, 18) ?
+      choices:
+        - id: "a"
+          text: "36"
+          correct: true
+          feedback: "Exact ! $6 \\times \text{PPCM} = 12 \\times 18 = 216$, donc $\text{PPCM} = 216 \\div 6 = 36$ ✅"
+        - id: "b"
+          text: "216"
+          correct: false
+          feedback: "216 est le produit $12 \\times 18$, pas le PPCM. Pense à diviser par le PGCD."
+        - id: "c"
+          text: "18"
+          correct: false
+          feedback: "18 est l'un des deux entiers, pas le PPCM."
+        - id: "d"
+          text: "72"
+          correct: false
+          feedback: "Vérifie : $6 \\times 72 = 432 \neq 12 \\times 18 = 216$."
+      settings:
+        shuffle: true
+
+  # ── Exercice 18 : free_text — Problème carrelage Temple du Temps ──
+  - id: "exo-syn-free-001"
+    xp: 80
+    difficulty: 3
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: free_text
+      instruction: |
+        🧝 Pour **reconstruire le Temple du Temps**, Link doit carreler un sol rectangulaire
+        de **120 cm × 84 cm** avec des dalles carrées identiques, **sans découpe ni chevauchement**.
+        **Quelle est la taille maximale d'une dalle ? Combien de dalles faut-il ?**
+        Rédige ta démarche complète.
+      placeholder: "Commence par identifier ce que tu cherches, puis calcule le PGCD de 120 et 84…"
+      min_words: 40
+      max_words: 200
+      ai_correction:
+        context: |
+          La taille maximale de la dalle est le PGCD(120, 84).
+          Algorithme d'Euclide : 120 = 1×84+36 ; 84 = 2×36+12 ; 36 = 3×12+0. Donc PGCD = 12 cm.
+          Nombre de dalles = (120/12) × (84/12) = 10 × 7 = 70 dalles.
+        scoring_guide: |
+          4 points : PGCD correctement calculé (12 cm), nombre de dalles correct (70), démarche claire.
+          3 points : PGCD correct mais nombre de dalles incorrect ou non calculé.
+          2 points : Méthode correcte (algorithme d'Euclide ou liste) mais erreur de calcul.
+          1 point : Le problème est identifié comme lié au PGCD sans calcul abouti.
+          0 point : Hors sujet ou réponse fausse sans démarche.
+        score_max: 4
+        age_target: 14
+        language: "fr"
+
+  # ── Exercice 19 : fill_in_the_blank — PPCM à 3 termes (Sonic, Tails, Knuckles) ──
+  - id: "exo-syn-fitb-001"
+    xp: 70
+    difficulty: 3
+    skills:
+      - tag: "mathematiques/arithmetique"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: |
+        ⚡ **Sonic**, **Tails** et **Knuckles** franchissent des checkpoints respectivement
+        toutes les **4**, **6** et **9** secondes.
+        À quelle seconde se retrouvent-ils **tous les trois** au même checkpoint pour la première fois ?
+        Calcule PPCM(4, 6, 9).
+      segments:
+        - text: "$4 = 2^2$, $6 = 2 \\times 3$, $9 = 3^2$. On prend les plus grands exposants : $2^2 \\times 3^$"
+        - blank:
+            id: "b1"
+            answer: "2"
+        - text: " $= 4 \\times $"
+        - blank:
+            id: "b2"
+            answer: "9"
+        - text: " $= $"
+        - blank:
+            id: "b3"
+            answer: "36"
+        - text: ". Donc ils se retrouvent tous au même checkpoint à la seconde "
+        - blank:
+            id: "b4"
+            answer: "36"
+        - text: "."
+      hint: "Décompose chaque nombre en facteurs premiers et prends le plus grand exposant de chaque facteur."

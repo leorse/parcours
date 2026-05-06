@@ -3,7 +3,7 @@ import MathText from './MathText'
 export default function ExerciseResult({ result, xp, onReset }) {
   if (!result) return null
 
-  const { correct, score, details } = result
+  const { correct, score, details, points_reussis, a_ameliorer, flag } = result
   const isIndeterminate = correct === null
   const isSuccess = !isIndeterminate && score >= 0.5
   const xpEarned = isIndeterminate ? null : Math.round((xp ?? 0) * (score ?? 0))
@@ -25,6 +25,25 @@ export default function ExerciseResult({ result, xp, onReset }) {
             <MathText text={feedback} />
           </div>
         )}
+
+        {points_reussis?.length > 0 && (
+          <div className="result-points-reussis">
+            <strong>✅ Ce que tu as bien fait :</strong>
+            <ul>{points_reussis.map((p, i) => <li key={i}>{p}</li>)}</ul>
+          </div>
+        )}
+        {a_ameliorer?.length > 0 && (
+          <div className="result-ameliorer">
+            <strong>💡 Pour progresser :</strong>
+            <ul>{a_ameliorer.map((p, i) => <li key={i}>{p}</li>)}</ul>
+          </div>
+        )}
+        {flag === 'inappropriate' && (
+          <div className="result-inappropriate">
+            ⚠️ Rappel : écris des réponses respectueuses.
+          </div>
+        )}
+
         {xpEarned !== null && (
           <div className="exercise-result-xp">+{xpEarned} XP</div>
         )}

@@ -1,1 +1,77 @@
-exercises: []
+exercises:
+
+  - id: exo-ant-map-001
+    xp: 20
+    difficulty: 2
+    skills:
+      - tag: "histoire/antiquite"
+        weight: 1.0
+    exercise:
+      type: image_tap
+      instruction: "Clique sur la région qui correspond à l'**Égypte** antique."
+      image: "/content/images/carte-mediterranee-antique.svg"
+      zones:
+        - id: gaule
+          coords: { x: 0, y: 0, width: 27, height: 33 }
+          correct: false
+          feedback: "C'est la Gaule, territoire des anciens Gaulois."
+        - id: iberie
+          coords: { x: 0, y: 33, width: 20, height: 30 }
+          correct: false
+          feedback: "C'est la péninsule ibérique (Espagne et Portugal actuels)."
+        - id: italie
+          shape: polygon
+          points: "40,13 47.5,13 50,60 42.5,63 37.5,53"
+          correct: false
+          feedback: "C'est la péninsule italique, berceau de Rome."
+        - id: grece
+          shape: polygon
+          points: "55,19 70,18 72.5,43 60,47"
+          correct: false
+          feedback: "C'est la Grèce antique, berceau de la démocratie."
+        - id: egypte
+          coords: { x: 70, y: 53, width: 30, height: 40 }
+          correct: true
+          feedback: "Oui ! L'Égypte antique, sur les rives du Nil, est l'une des grandes civilisations de l'Antiquité."
+        - id: afrique-nord
+          coords: { x: 20, y: 73, width: 50, height: 27 }
+          correct: false
+          feedback: "C'est l'Afrique du Nord antique (Carthage, Numidie)."
+
+  - id: exo-ant-map-002
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "histoire/antiquite"
+        weight: 1.0
+    exercise:
+      type: image_tap
+      instruction: "Clique sur la région qui correspond à la **Grèce** antique."
+      image: "/content/images/carte-mediterranee-antique.svg"
+      zones:
+        - id: gaule
+          coords: { x: 0, y: 0, width: 27, height: 33 }
+          correct: false
+          feedback: "C'est la Gaule."
+        - id: iberie
+          coords: { x: 0, y: 33, width: 20, height: 30 }
+          correct: false
+          feedback: "C'est la péninsule ibérique."
+        - id: italie
+          shape: polygon
+          points: "40,13 47.5,13 50,60 42.5,63 37.5,53"
+          correct: false
+          feedback: "C'est l'Italie (Rome). Proche, mais pas la Grèce !"
+        - id: grece
+          shape: polygon
+          points: "55,19 70,18 72.5,43 60,47"
+          correct: true
+          feedback: "Bravo ! La Grèce antique, berceau de la philosophie, de la démocratie et des Jeux Olympiques."
+        - id: egypte
+          coords: { x: 70, y: 53, width: 30, height: 40 }
+          correct: false
+          feedback: "C'est l'Égypte, à l'est du bassin méditerranéen."
+        - id: afrique-nord
+          coords: { x: 20, y: 73, width: 50, height: 27 }
+          correct: false
+          feedback: "C'est l'Afrique du Nord antique."

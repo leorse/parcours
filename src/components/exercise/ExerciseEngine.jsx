@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { validateAnswer } from '../../services/exerciseService'
 import { calcScore, recordResult } from '../../services/scoreService'
 import ExerciseResult from './shared/ExerciseResult'
+import SvgIllustration from './shared/SvgIllustration'
 import MultipleChoiceExercise from './exercises/MultipleChoiceExercise'
 import FillInTheBlanksExercise from './exercises/FillInTheBlanksExercise'
 import ImageTapExercise from './exercises/ImageTapExercise'
@@ -9,6 +10,7 @@ import DragDropExercise from './exercises/DragDropExercise'
 import TimelineExercise from './exercises/TimelineExercise'
 import FreeTextExercise from './exercises/FreeTextExercise'
 import MatchingExercise from './exercises/MatchingExercise'
+import FractionTapExercise from './exercises/FractionTapExercise'
 
 const EXERCISE_REGISTRY = {
   multiple_choice: MultipleChoiceExercise,
@@ -18,10 +20,12 @@ const EXERCISE_REGISTRY = {
   timeline: TimelineExercise,
   free_text: FreeTextExercise,
   matching: MatchingExercise,
+  fraction_tap: FractionTapExercise,
 }
 
 export default function ExerciseEngine({
   exercise,
+  courseId = null,
   injectedAnswer = null,
   debugMode = false,
   onDebugResult = null,
@@ -70,10 +74,15 @@ export default function ExerciseEngine({
         </span>
         <span className="exercise-xp-badge">{exercise.xp ?? 0} XP</span>
       </div>
+      {exercise.exercise.visual && (
+        <SvgIllustration visual={exercise.exercise.visual} />
+      )}
       <ExerciseComponent
         exercise={exercise.exercise}
         onSubmit={handleSubmit}
         result={result}
+        exerciseData={exercise}
+        courseId={courseId}
       />
       <ExerciseResult result={result} xp={exercise.xp} onReset={result ? handleReset : null} />
     </div>

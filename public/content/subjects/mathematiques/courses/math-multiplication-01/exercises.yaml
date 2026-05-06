@@ -275,5 +275,21 @@ exercises:
     difficulty: 1
     exercise:
       type: free_text
-      instruction: "Explique avec tes propres mots ce qu'est la commutativité."
-      prompt: "La commutativité, c'est quand…"
+      instruction: "Explique avec tes propres mots ce qu'est la commutativité de la multiplication."
+      placeholder: "La commutativité, c'est quand…"
+      min_words: 10
+      max_words: 80
+      ai_correction:
+        context: |
+          L'élève doit expliquer la commutativité de la multiplication.
+          Éléments attendus (au moins 1 sur 2) :
+          - Changer l'ordre des facteurs ne change pas le résultat
+          - Exemple concret : 3 × 4 = 4 × 3 = 12
+        scoring_guide: |
+          10/10 : explique le concept clairement et donne un exemple correct
+          6/10  : explique le concept sans exemple ou exemple incomplet
+          3/10  : vague mais dans la bonne direction
+          0/10  : hors sujet ou incompréhensible
+        score_max: 10
+        age_target: 9
+        language: "fr"

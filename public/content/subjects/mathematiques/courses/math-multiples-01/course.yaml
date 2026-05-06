@@ -1,0 +1,25 @@
+course:
+  id: "math-multiples-01"
+  version: "1.0"
+  title: "Multiples, diviseurs et nombres premiers"
+  subject: "mathematiques"
+  domain: "calcul"
+  thumbnail: null
+  xp_total: 120
+
+  grandes_etapes:
+
+    - id: "ge-mult-tables-base"
+      title: "Tables de base"
+      icon: "✖"
+      color: "#2484e0"
+      order: 1
+      status: "in_progress"
+
+      lessons:
+        - id: "lec-mult-001"
+          title: "Qu'est-ce que la multiplication ?"
+          type: "lesson"
+          order: 1
+          status: "completed"
+          content_ref: "lec-mult-001"

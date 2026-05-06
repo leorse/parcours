@@ -1,21 +1,28 @@
 import { useNavigate } from 'react-router-dom'
-import { Volume2, VolumeX, LogIn, Play } from 'lucide-react'
+import { Volume2, VolumeX, Play, LogOut } from 'lucide-react'
 import { motion } from 'framer-motion'
 import logoImg from '@images/logo.png'
 import gribouilleImg from '@images/gribouille_saute.webp'
 import PageTransition from '../../components/layout/PageTransition'
 import Button from '../../components/ui/Button'
 import { useAppContext } from '../../context/AppContext'
+import { useProfile } from '../../hooks/useProfile'
 import { ROUTES } from '../../router/AppRouter'
 
 export default function MainMenuScreen() {
   const navigate = useNavigate()
   const { musicEnabled, setMusicEnabled } = useAppContext()
+  const { pseudo, isAdmin, logout } = useProfile()
+
+  const handleLogout = () => {
+    logout()
+    navigate(ROUTES.PROFILE_SELECT, { replace: true })
+  }
 
   return (
     <PageTransition className="relative flex flex-col items-center justify-between py-12 px-6 bg-app-gradient">
-      {/* Toggle son */}
-      <div className="absolute top-6 right-6">
+      {/* Haut : son + déconnexion */}
+      <div className="absolute top-6 right-6 flex gap-2">
         <button
           onClick={() => setMusicEnabled(!musicEnabled)}
           className="p-3 bg-white/10 rounded-2xl hover:bg-white/20 transition-colors"
@@ -24,6 +31,13 @@ export default function MainMenuScreen() {
             ? <Volume2 className="text-white w-5 h-5" />
             : <VolumeX className="text-brand-5/60 w-5 h-5" />
           }
+        </button>
+        <button
+          onClick={handleLogout}
+          className="p-3 bg-white/10 rounded-2xl hover:bg-white/20 transition-colors"
+          title="Changer de profil"
+        >
+          <LogOut className="text-white w-5 h-5" />
         </button>
       </div>
 
@@ -42,7 +56,7 @@ export default function MainMenuScreen() {
           />
         </div>
         <p className="text-brand-5 font-body text-sm">
-          Ton aventure d&apos;apprentissage
+          {pseudo ? `Bonjour, ${pseudo}${isAdmin ? ' 🔧' : ''} !` : 'Ton aventure d\'apprentissage'}
         </p>
       </motion.div>
 
@@ -54,8 +68,6 @@ export default function MainMenuScreen() {
             alt="Gribouille"
             className="h-52 object-contain drop-shadow-2xl"
           />
-          {/* Bulle de dialogue */}
-          
         </div>
       </div>
 
@@ -74,16 +86,12 @@ export default function MainMenuScreen() {
         <Button
           variant="ghost"
           size="lg"
-          disabled
           className="w-full flex items-center justify-center gap-3"
+          onClick={handleLogout}
         >
-          <LogIn className="w-5 h-5" />
-          Se connecter
+          <LogOut className="w-5 h-5" />
+          Changer de profil
         </Button>
-
-        <p className="text-center text-xs text-brand-5/50">
-          Connexion disponible au jalon 4
-        </p>
       </div>
     </PageTransition>
   )

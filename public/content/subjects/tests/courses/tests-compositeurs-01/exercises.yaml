@@ -1,0 +1,101 @@
+exercises:
+
+  - id: exo-test-comp-001
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "tests/compositeurs"
+        weight: 1.0
+    exercise:
+      type: image_tap
+      instruction: "Clique sur le portrait de **Beethoven**."
+      image: "/content/images/compositeurs.jpg"
+      svg_zones: "/content/images/compositeurs.svg"
+      zones:
+        - id: bet
+          correct: true
+          feedback: "Oui ! Ludwig van Beethoven (1770–1827), compositeur de la Cinquième Symphonie."
+        - id: moz
+          correct: false
+          feedback: "Non, c'est Wolfgang Amadeus Mozart (1756–1791)."
+        - id: bac
+          correct: false
+          feedback: "Non, c'est Johann Sebastian Bach (1685–1750)."
+        - id: viv
+          correct: false
+          feedback: "Non, c'est Antonio Vivaldi (1678–1741)."
+
+  - id: exo-test-comp-002
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "tests/compositeurs"
+        weight: 1.0
+    exercise:
+      type: image_tap
+      instruction: "Clique sur le portrait de **Mozart**."
+      image: "/content/images/compositeurs.jpg"
+      svg_zones: "/content/images/compositeurs.svg"
+      zones:
+        - id: bet
+          correct: false
+          feedback: "Non, c'est Ludwig van Beethoven (1770–1827)."
+        - id: moz
+          correct: true
+          feedback: "Bravo ! Wolfgang Amadeus Mozart (1756–1791), génie de l'opéra et du concerto."
+        - id: bac
+          correct: false
+          feedback: "Non, c'est Johann Sebastian Bach (1685–1750)."
+        - id: viv
+          correct: false
+          feedback: "Non, c'est Antonio Vivaldi (1678–1741)."
+
+  - id: exo-test-comp-003
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "tests/compositeurs"
+        weight: 1.0
+    exercise:
+      type: image_tap
+      instruction: "Clique sur le portrait de **Bach**."
+      image: "/content/images/compositeurs.jpg"
+      svg_zones: "/content/images/compositeurs.svg"
+      zones:
+        - id: bet
+          correct: false
+          feedback: "Non, c'est Ludwig van Beethoven (1770–1827)."
+        - id: moz
+          correct: false
+          feedback: "Non, c'est Wolfgang Amadeus Mozart (1756–1791)."
+        - id: bac
+          correct: true
+          feedback: "Exact ! Johann Sebastian Bach (1685–1750), maître du contrepoint."
+        - id: viv
+          correct: false
+          feedback: "Non, c'est Antonio Vivaldi (1678–1741)."
+
+  - id: exo-test-comp-004
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "tests/compositeurs"
+        weight: 1.0
+    exercise:
+      type: image_tap
+      instruction: "Clique sur le portrait de **Vivaldi**."
+      image: "/content/images/compositeurs.jpg"
+      svg_zones: "/content/images/compositeurs.svg"
+      zones:
+        - id: bet
+          correct: false
+          feedback: "Non, c'est Ludwig van Beethoven (1770–1827)."
+        - id: moz
+          correct: false
+          feedback: "Non, c'est Wolfgang Amadeus Mozart (1756–1791)."
+        - id: bac
+          correct: false
+          feedback: "Non, c'est Johann Sebastian Bach (1685–1750)."
+        - id: viv
+          correct: true
+          feedback: "Oui ! Antonio Vivaldi (1678–1741), compositeur des Quatre Saisons."

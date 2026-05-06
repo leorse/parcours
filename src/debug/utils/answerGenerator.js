@@ -20,6 +20,20 @@ export function generateCorrectAnswer(exercise) {
         .map((item) => item.id)
     case 'matching':
       return Object.fromEntries(exercise.pairs.map((p) => [p.left.id, p.right.id]))
+    case 'free_text':
+      return {
+        __debug_info__: 'Exercice texte libre — correction via IA',
+        context:   exercise.ai_correction?.context ?? 'Pas de contexte défini',
+        min_words: exercise.min_words,
+        max_words: exercise.max_words,
+      }
+    case 'fraction_tap': {
+      const pieces = exercise.pieces ?? 8
+      const targetNum = exercise.target_numerator ?? 1
+      const targetDen = exercise.target_denominator ?? 2
+      const count = (pieces * targetNum) / targetDen
+      return { selected: Array.from({ length: count }, (_, i) => i), pieces }
+    }
     default:
       return null
   }
@@ -55,6 +69,14 @@ export function generateWrongAnswer(exercise) {
       return Object.fromEntries(
         exercise.pairs.map((p, i) => [p.left.id, rights[(i + 1) % rights.length]])
       )
+    }
+    case 'fraction_tap': {
+      const pieces = exercise.pieces ?? 8
+      const targetNum = exercise.target_numerator ?? 1
+      const targetDen = exercise.target_denominator ?? 2
+      const correctCount = (pieces * targetNum) / targetDen
+      const wrongCount = Math.max(0, correctCount - 1)
+      return { selected: Array.from({ length: wrongCount }, (_, i) => i), pieces }
     }
     default:
       return null

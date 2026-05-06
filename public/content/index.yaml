@@ -30,3 +30,11 @@ subjects:
     description: "Physique, chimie, biologie"
     coursesCount: 7
     path: "subjects/sciences/index.yaml"
+
+  - id: "tests"
+    label: "Tests"
+    icon: "flask-conical"
+    color: "#6B21A8"
+    description: "Zone de test"
+    coursesCount: 1
+    path: "subjects/tests/index.yaml"

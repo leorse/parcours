@@ -297,6 +297,55 @@ describe('validateAnswer — matching', () => {
 })
 
 // ─────────────────────────────────────────────────────────────
+// free_text
+// ─────────────────────────────────────────────────────────────
+
+const FREE_TEXT_EXERCISE = {
+  type: 'free_text',
+  instruction: 'Explique la commutativité.',
+  min_words: 10,
+  max_words: 80,
+  ai_correction: { score_max: 10 },
+}
+
+describe('validateAnswer — free_text', () => {
+
+  test('réponse IA avec score ≥ 0.5 → correct=true', () => {
+    const result = validateAnswer(FREE_TEXT_EXERCISE, {
+      type: 'ai_result', score: 0.8, feedback: 'Bravo !',
+      points_reussis: ['Bonne structure'], a_ameliorer: [], flag: null,
+    })
+    expect(result.correct).toBe(true)
+    expect(result.score).toBe(0.8)
+  })
+
+  test('réponse IA avec score < 0.5 → correct=false', () => {
+    const result = validateAnswer(FREE_TEXT_EXERCISE, {
+      type: 'ai_result', score: 0.3, feedback: 'À revoir',
+      points_reussis: [], a_ameliorer: ['Développe davantage'], flag: null,
+    })
+    expect(result.correct).toBe(false)
+  })
+
+  // Le flag inappropriate doit être propagé dans le résultat
+  test('flag inappropriate → correct=false, score=0, flag propagé', () => {
+    const result = validateAnswer(FREE_TEXT_EXERCISE, {
+      type: 'ai_result', score: 0, feedback: 'Réponse non appropriée.',
+      points_reussis: [], a_ameliorer: [], flag: 'inappropriate',
+    })
+    expect(result.correct).toBe(false)
+    expect(result.score).toBe(0)
+    expect(result.flag).toBe('inappropriate')
+  })
+
+  // Cas limite : réponse brute (sans traitement IA) — ne doit pas planter
+  test('réponse sans type ai_result → score=0', () => {
+    const result = validateAnswer(FREE_TEXT_EXERCISE, 'texte brut sans traitement')
+    expect(result.score).toBe(0)
+  })
+})
+
+// ─────────────────────────────────────────────────────────────
 // type inconnu
 // ─────────────────────────────────────────────────────────────
 

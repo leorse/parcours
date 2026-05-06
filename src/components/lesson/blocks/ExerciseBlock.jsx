@@ -39,5 +39,5 @@ export default function ExerciseBlock({ exercise_id }) {
     )
   }
 
-  return <ExerciseEngine exercise={exercise} />
+  return <ExerciseEngine exercise={exercise} courseId={courseId} />
 }

@@ -13,7 +13,9 @@ export function validateAnswer(exercise, userAnswer) {
     case 'matching':
       return validateMatching(exercise, userAnswer)
     case 'free_text':
-      return { correct: null, score: null, details: {} }
+      return validateFreeText(exercise, userAnswer)
+    case 'fraction_tap':
+      return validateFractionTap(exercise, userAnswer)
     default:
       return { correct: false, score: 0, details: {} }
   }
@@ -89,6 +91,38 @@ function validateTimeline(exercise, userAnswer) {
     correct: correctCount === exercise.items.length,
     score: exercise.items.length > 0 ? correctCount / exercise.items.length : 0,
     details: { feedback: null },
+  }
+}
+
+function validateFreeText(exercise, userAnswer) {
+  if (userAnswer?.type === 'ai_result') {
+    return {
+      correct:        userAnswer.score >= 0.5,
+      score:          userAnswer.score,
+      flag:           userAnswer.flag ?? null,
+      points_reussis: userAnswer.points_reussis ?? [],
+      a_ameliorer:    userAnswer.a_ameliorer    ?? [],
+      details:        { feedback: userAnswer.feedback ?? null },
+    }
+  }
+  return { correct: false, score: 0, details: {} }
+}
+
+function validateFractionTap(exercise, userAnswer) {
+  const { selected = [], pieces = 1 } = userAnswer
+  const targetNum = exercise.target_numerator ?? 1
+  const targetDen = exercise.target_denominator ?? 1
+  // Accept any selection where selected/pieces == targetNum/targetDen (cross-multiply)
+  const correct = selected.length * targetDen === pieces * targetNum
+  const expectedCount = (pieces * targetNum) / targetDen
+  return {
+    correct,
+    score: correct ? 1.0 : 0.0,
+    details: {
+      feedback: correct
+        ? (exercise.feedback?.correct ?? null)
+        : (exercise.feedback?.incorrect ?? `Il fallait sélectionner ${expectedCount} part${expectedCount > 1 ? 's' : ''}.`).replace('{expected}', String(expectedCount)),
+    },
   }
 }
 

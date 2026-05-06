@@ -106,7 +106,9 @@ course:
           text: |
             ### La propriété de commutativité
 
-            Peu importe l'ordre des nombres, le résultat est le même.
+            Peu importe l'ordre 
+            des nombres, 
+            le résultat est le même.
 
         - type: math
           display: block

@@ -1,0 +1,47 @@
+course:
+  id: "tests-compositeurs-01"
+  version: "1.0"
+  title: "Identifier des compositeurs classiques"
+  subject: "tests"
+  domain: "musique"
+  thumbnail: null
+  xp_total: 60
+
+  grandes_etapes:
+
+    - id: "ge-comp-portraits"
+      title: "Les portraits"
+      icon: "🎼"
+      color: "#6B21A8"
+      order: 1
+      status: "in_progress"
+
+      lessons:
+        - id: "lec-comp-001"
+          title: "Reconnaître les compositeurs"
+          type: "lesson"
+          order: 1
+          status: "in_progress"
+          content_ref: "lec-comp-001"
+
+  steps_content:
+
+    - id: "lec-comp-001"
+      content:
+        - type: md
+          text: |
+            ## Les grands compositeurs classiques
+
+            Quatre grands noms dominent la musique classique :
+            - **Vivaldi** (1678–1741) — *Les Quatre Saisons*
+            - **Bach** (1685–1750) — *Le Clavier bien tempéré*
+            - **Mozart** (1756–1791) — *La Flûte enchantée*
+            - **Beethoven** (1770–1827) — *La Cinquième Symphonie*
+        - type: exercise
+          ref: "exo-test-comp-001"
+        - type: exercise
+          ref: "exo-test-comp-002"
+        - type: exercise
+          ref: "exo-test-comp-003"
+        - type: exercise
+          ref: "exo-test-comp-004"

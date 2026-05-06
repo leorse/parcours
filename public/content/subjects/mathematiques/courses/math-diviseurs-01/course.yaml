@@ -1,0 +1,790 @@
+course:
+  id: "math-diviseurs-01"
+  version: "1.0"
+  title: "Multiples, Diviseurs et Nombres Premiers"
+  subject: "mathematiques"
+  domain: "arithmetique"
+  thumbnail: null
+  xp_total: 1200
+
+  grandes_etapes:
+
+    # ─────────────────────────────────────────
+    # GRANDE ÉTAPE 1 — Divisibilité et diviseurs
+    # ─────────────────────────────────────────
+    - id: "ge-div-divisibilite"
+      title: "Divisibilité et diviseurs"
+      icon: "🔢"
+      color: "#4F46E5"
+      order: 1
+      status: "available"
+      lessons:
+        - id: "lec-div-001"
+          title: "Qu'est-ce que la divisibilité ?"
+          type: "lesson"
+          order: 1
+          status: "available"
+          content_ref: "lec-div-001"
+
+        - id: "lec-div-002"
+          title: "Critères de divisibilité"
+          type: "lesson"
+          order: 2
+          status: "available"
+          content_ref: "lec-div-002"
+
+        - id: "lec-div-003"
+          title: "Trouver tous les diviseurs"
+          type: "lesson"
+          order: 3
+          status: "available"
+          content_ref: "lec-div-003"
+
+        - id: "lec-div-exo-001"
+          title: "Exercices — Divisibilité"
+          type: "exercise_set"
+          order: 4
+          status: "available"
+          content_ref: "lec-div-exo-001"
+
+    # ─────────────────────────────────────────
+    # GRANDE ÉTAPE 2 — Multiples et PPCM
+    # ─────────────────────────────────────────
+    - id: "ge-div-ppcm"
+      title: "Multiples et PPCM"
+      icon: "✖️"
+      color: "#E53E3E"
+      order: 2
+      status: "available"
+      lessons:
+        - id: "lec-ppcm-001"
+          title: "Multiples d'un entier"
+          type: "lesson"
+          order: 1
+          status: "available"
+          content_ref: "lec-ppcm-001"
+
+        - id: "lec-ppcm-002"
+          title: "Le Plus Petit Commun Multiple (PPCM)"
+          type: "lesson"
+          order: 2
+          status: "available"
+          content_ref: "lec-ppcm-002"
+
+        - id: "lec-ppcm-exo-001"
+          title: "Exercices — Multiples et PPCM"
+          type: "exercise_set"
+          order: 3
+          status: "available"
+          content_ref: "lec-ppcm-exo-001"
+
+    # ─────────────────────────────────────────
+    # GRANDE ÉTAPE 3 — Nombres premiers
+    # ─────────────────────────────────────────
+    - id: "ge-div-premiers"
+      title: "Nombres premiers"
+      icon: "⭐"
+      color: "#D69E2E"
+      order: 3
+      status: "available"
+      lessons:
+        - id: "lec-prem-001"
+          title: "Définition et premiers exemples"
+          type: "lesson"
+          order: 1
+          status: "available"
+          content_ref: "lec-prem-001"
+
+        - id: "lec-prem-002"
+          title: "Le crible d'Ératosthène"
+          type: "lesson"
+          order: 2
+          status: "available"
+          content_ref: "lec-prem-002"
+
+        - id: "lec-prem-003"
+          title: "Décomposition en facteurs premiers"
+          type: "lesson"
+          order: 3
+          status: "available"
+          content_ref: "lec-prem-003"
+
+        - id: "lec-prem-exo-001"
+          title: "Exercices — Nombres premiers"
+          type: "exercise_set"
+          order: 4
+          status: "available"
+          content_ref: "lec-prem-exo-001"
+
+    # ─────────────────────────────────────────
+    # GRANDE ÉTAPE 4 — PGCD et applications
+    # ─────────────────────────────────────────
+    - id: "ge-div-pgcd"
+      title: "PGCD et applications"
+      icon: "🔗"
+      color: "#2F855A"
+      order: 4
+      status: "locked"
+      lessons:
+        - id: "lec-pgcd-001"
+          title: "Le Plus Grand Commun Diviseur (PGCD)"
+          type: "lesson"
+          order: 1
+          status: "locked"
+          content_ref: "lec-pgcd-001"
+
+        - id: "lec-pgcd-002"
+          title: "L'algorithme d'Euclide"
+          type: "lesson"
+          order: 2
+          status: "locked"
+          content_ref: "lec-pgcd-002"
+
+        - id: "lec-pgcd-003"
+          title: "Applications du PGCD"
+          type: "lesson"
+          order: 3
+          status: "locked"
+          content_ref: "lec-pgcd-003"
+
+        - id: "lec-pgcd-exo-001"
+          title: "Exercices — PGCD"
+          type: "exercise_set"
+          order: 4
+          status: "locked"
+          content_ref: "lec-pgcd-exo-001"
+
+    # ─────────────────────────────────────────
+    # GRANDE ÉTAPE 5 — Synthèse
+    # ─────────────────────────────────────────
+    - id: "ge-div-synthese"
+      title: "Synthèse et problèmes ouverts"
+      icon: "🧩"
+      color: "#6B46C1"
+      order: 5
+      status: "locked"
+      lessons:
+        - id: "lec-syn-001"
+          title: "Révisions croisées"
+          type: "lesson"
+          order: 1
+          status: "locked"
+          content_ref: "lec-syn-001"
+
+        - id: "lec-syn-exo-001"
+          title: "Problèmes de la vie courante"
+          type: "exercise_set"
+          order: 2
+          status: "locked"
+          content_ref: "lec-syn-exo-001"
+
+  # ═══════════════════════════════════════════════
+  # STEPS CONTENT
+  # ═══════════════════════════════════════════════
+
+  steps_content:
+
+    # ───────────────────────────────────────
+    # GE1 — Leçon 1.1 : Qu'est-ce que la divisibilité ?
+    # ───────────────────────────────────────
+    - id: "lec-div-001"
+      content:
+        - type: md
+          text: |
+            ## Qu'est-ce que la divisibilité ?
+
+            Dans le monde d'Hyrule, Link doit souvent **répartir équitablement** ses ressources entre ses compagnons.
+            C'est exactement ce que signifie la **divisibilité** en mathématiques !
+
+        - type: notice
+          style: definition
+          title: "Définition — Divisibilité"
+          text: |
+            On dit que l'entier $b$ est **divisible par** l'entier $a$ (avec $a \neq 0$) lorsque la division de $b$ par $a$ donne un **reste nul**.
+            On note alors : $a \mid b$ (lire : « $a$ divise $b$ »).
+
+        - type: md
+          text: |
+            ### Vocabulaire clé
+
+            Si $a \mid b$, alors :
+            - $a$ est un **diviseur** de $b$
+            - $b$ est un **multiple** de $a$
+
+        - type: notice
+          style: example
+          title: "Exemple — Les rubis de Link"
+          text: |
+            Link possède **12 rubis**. Il veut les partager entre ses compagnons sans en garder.
+
+            - Il peut les répartir entre **3** compagnons : $12 = 3 \\times 4$, reste $= 0$ ✅ → $3 \mid 12$
+            - Il peut les répartir entre **4** compagnons : $12 = 4 \\times 3$, reste $= 0$ ✅ → $4 \mid 12$
+            - Il ne peut **pas** les répartir entre **5** compagnons : $12 = 5 \\times 2 + 2$, reste $= 2$ ❌ → $5 \nmid 12$
+
+        - type: math
+          display: "block"
+          tex: "b = a \\times q + r \\quad \text{avec } 0 \\leq r < a"
+          caption: "Division euclidienne : b divisible par a ⟺ r = 0"
+
+        - type: notice
+          style: tip
+          title: "Astuce de Link"
+          text: |
+            Pour tester si $b$ est divisible par $a$, calcule $b \div a$.
+            Si le résultat est un **entier** (sans virgule), alors $a \mid b$ !
+
+        - type: exercise
+          ref: "exo-div-fitb-001"
+
+    # ───────────────────────────────────────
+    # GE1 — Leçon 1.2 : Critères de divisibilité
+    # ───────────────────────────────────────
+    - id: "lec-div-002"
+      content:
+        - type: md
+          text: |
+            ## Critères de divisibilité
+
+            Dans les donjons de Zelda, Link doit **rapidement** savoir si un nombre de pots peut être cassé par groupes égaux.
+            Les **critères de divisibilité** permettent de répondre sans faire la division !
+
+        - type: notice
+          style: info
+          title: "Critères à connaître"
+          text: |
+            | Diviseur | Critère |
+            |----------|---------|
+            | **2** | Le dernier chiffre est 0, 2, 4, 6 ou 8 (nombre pair) |
+            | **3** | La somme des chiffres est divisible par 3 |
+            | **5** | Le dernier chiffre est 0 ou 5 |
+            | **9** | La somme des chiffres est divisible par 9 |
+            | **10** | Le dernier chiffre est 0 |
+
+        - type: notice
+          style: example
+          title: "Exemple — Les pots du donjon"
+          text: |
+            Dans le donjon de l'Eau, Link trouve **324 pots** à casser.
+
+            - Divisible par **2** ? Dernier chiffre : 4 → **oui** ✅
+            - Divisible par **3** ? Somme : $3 + 2 + 4 = 9$, divisible par 3 → **oui** ✅
+            - Divisible par **5** ? Dernier chiffre : 4 → **non** ❌
+            - Divisible par **9** ? Somme : $9$, divisible par 9 → **oui** ✅
+
+        - type: notice
+          style: warning
+          title: "Attention !"
+          text: |
+            Le critère de divisibilité par **6** n'est pas dans le tableau, mais :
+            $n$ est divisible par $6$ si et seulement si $n$ est divisible par $2$ **ET** par $3$.
+
+        - type: exercise
+          ref: "exo-div-mc-001"
+
+        - type: exercise
+          ref: "exo-div-mc-002"
+
+    # ───────────────────────────────────────
+    # GE1 — Leçon 1.3 : Trouver tous les diviseurs
+    # ───────────────────────────────────────
+    - id: "lec-div-003"
+      content:
+        - type: md
+          text: |
+            ## Trouver tous les diviseurs d'un entier
+
+            Le château d'Hyrule peut être divisé en salles rectangulaires.
+            Pour trouver toutes les dimensions possibles, il faut trouver **tous les diviseurs** d'un nombre.
+
+        - type: notice
+          style: definition
+          title: "Méthode — Recherche par paires"
+          text: |
+            Pour trouver tous les diviseurs de $n$ :
+            1. Teste tous les entiers $d$ de $1$ jusqu'à $\sqrt{n}$
+            2. Si $d \mid n$, alors $\frac{n}{d}$ est aussi un diviseur
+            3. On obtient ainsi des **paires de diviseurs**
+
+        - type: notice
+          style: example
+          title: "Exemple — Les salles du château (surface = 36)"
+          text: |
+            Diviseurs de $36$ par paires :
+
+            | $d$ | $36 \div d$ | Paire |
+            |-----|------------|-------|
+            | 1 | 36 | (1, 36) |
+            | 2 | 18 | (2, 18) |
+            | 3 | 12 | (3, 12) |
+            | 4 | 9 | (4, 9) |
+            | 6 | 6 | (6, 6) |
+
+            Les diviseurs de 36 sont : **1, 2, 3, 4, 6, 9, 12, 18, 36**
+
+        - type: notice
+          style: tip
+          title: "Astuce"
+          text: |
+            On s'arrête à $\sqrt{n}$ car au-delà, on ne trouve que des diviseurs déjà trouvés (dans l'autre sens de la paire).
+            Pour $36$ : $\sqrt{36} = 6$, donc on s'arrête à $d = 6$.
+
+        - type: exercise
+          ref: "exo-div-drag-001"
+
+    # ───────────────────────────────────────
+    # GE1 — Exercices Divisibilité
+    # ───────────────────────────────────────
+    - id: "lec-div-exo-001"
+      content:
+        - type: md
+          text: "## Exercices — Divisibilité\nEntraîne-toi avec Link dans les donjons d'Hyrule !"
+        - type: exercise
+          ref: "exo-div-fitb-001"
+        - type: exercise
+          ref: "exo-div-mc-001"
+        - type: exercise
+          ref: "exo-div-mc-002"
+        - type: exercise
+          ref: "exo-div-drag-001"
+
+    # ───────────────────────────────────────
+    # GE2 — Leçon 2.1 : Multiples
+    # ───────────────────────────────────────
+    - id: "lec-ppcm-001"
+      content:
+        - type: md
+          text: |
+            ## Multiples d'un entier
+
+            Mario et Luigi collectent des pièces à intervalles réguliers dans leurs niveaux.
+            Un **multiple** d'un entier, c'est exactement ce rythme !
+
+        - type: notice
+          style: definition
+          title: "Définition — Multiple"
+          text: |
+            Les **multiples** de $a$ sont tous les entiers de la forme $a \\times k$, où $k$ est un entier naturel.
+
+            $\mathcal{M}(a) = \{0,\ a,\ 2a,\ 3a,\ 4a,\ \ldots\}$
+
+        - type: notice
+          style: example
+          title: "Exemple — Mario collecte des pièces"
+          text: |
+            Mario ramasse **une pièce tous les 4 pas**. Les positions où il ramasse une pièce sont les multiples de 4 :
+
+            $\mathcal{M}(4) = \{0, 4, 8, 12, 16, 20, 24, \ldots\}$
+
+            Luigi ramasse **une pièce tous les 6 pas** :
+
+            $\mathcal{M}(6) = \{0, 6, 12, 18, 24, 30, \ldots\}$
+
+        - type: md
+          text: |
+            ### Multiples communs
+
+            Les **multiples communs** à $a$ et $b$ sont les entiers divisibles **à la fois** par $a$ et par $b$.
+
+            Dans l'exemple : les multiples communs à 4 et 6 sont $\{0, 12, 24, 36, \ldots\}$
+
+        - type: exercise
+          ref: "exo-ppcm-mc-001"
+
+    # ───────────────────────────────────────
+    # GE2 — Leçon 2.2 : PPCM
+    # ───────────────────────────────────────
+    - id: "lec-ppcm-002"
+      content:
+        - type: md
+          text: |
+            ## Le Plus Petit Commun Multiple (PPCM)
+
+            À quel moment Mario et Luigi ramassent-ils une pièce **au même endroit** pour la première fois ?
+            C'est le **PPCM** qui répond à cette question !
+
+        - type: notice
+          style: definition
+          title: "Définition — PPCM"
+          text: |
+            Le **Plus Petit Commun Multiple** de $a$ et $b$, noté $\text{PPCM}(a, b)$, est le plus petit entier **strictement positif** divisible à la fois par $a$ et par $b$.
+
+        - type: notice
+          style: example
+          title: "Exemple — Mario et Luigi"
+          text: |
+            $\mathcal{M}(4) = \{4, 8, \mathbf{12}, 16, 20, \mathbf{24}, \ldots\}$
+
+            $\mathcal{M}(6) = \{6, \mathbf{12}, 18, \mathbf{24}, 30, \ldots\}$
+
+            Le premier multiple commun non nul est **12** → $\text{PPCM}(4, 6) = 12$
+
+        - type: notice
+          style: tip
+          title: "Méthode par décomposition en facteurs premiers"
+          text: |
+            On peut aussi calculer le PPCM à partir des décompositions en facteurs premiers :
+            - On prend **chaque facteur premier** avec son **plus grand exposant**
+
+            Exemple : $4 = 2^2$ et $6 = 2 \\times 3$
+
+            $\text{PPCM}(4, 6) = 2^2 \\times 3 = 12$ ✅
+
+        - type: exercise
+          ref: "exo-ppcm-fitb-001"
+        - type: exercise
+          ref: "exo-ppcm-fitb-002"
+
+    # ───────────────────────────────────────
+    # GE2 — Exercices PPCM
+    # ───────────────────────────────────────
+    - id: "lec-ppcm-exo-001"
+      content:
+        - type: md
+          text: "## Exercices — Multiples et PPCM\nMario, Luigi et Sonic ont besoin de toi !"
+        - type: exercise
+          ref: "exo-ppcm-mc-001"
+        - type: exercise
+          ref: "exo-ppcm-fitb-001"
+        - type: exercise
+          ref: "exo-ppcm-fitb-002"
+
+    # ───────────────────────────────────────
+    # GE3 — Leçon 3.1 : Nombres premiers
+    # ───────────────────────────────────────
+    - id: "lec-prem-001"
+      content:
+        - type: md
+          text: |
+            ## Nombres premiers
+
+            Dans le royaume d'Hyrule, certains cristaux magiques sont **uniques** :
+            ils ne peuvent être divisés qu'une seule façon. Ce sont les **nombres premiers** !
+
+        - type: notice
+          style: definition
+          title: "Définition — Nombre premier"
+          text: |
+            Un entier $n \geq 2$ est **premier** s'il possède **exactement deux diviseurs** : $1$ et lui-même.
+
+        - type: notice
+          style: warning
+          title: "Cas particuliers importants"
+          text: |
+            - **1 n'est pas premier** : il n'a qu'un seul diviseur (lui-même)
+            - **2 est premier** : c'est le seul nombre premier pair
+            - **4, 6, 8, 9…** ne sont pas premiers : ils ont plus de 2 diviseurs
+
+        - type: notice
+          style: example
+          title: "Exemples"
+          text: |
+            | Nombre | Diviseurs | Premier ? |
+            |--------|-----------|-----------|
+            | 7 | 1 et 7 | ✅ Oui |
+            | 11 | 1 et 11 | ✅ Oui |
+            | 15 | 1, 3, 5, 15 | ❌ Non |
+            | 2 | 1 et 2 | ✅ Oui |
+
+            Les premiers nombres premiers : **2, 3, 5, 7, 11, 13, 17, 19, 23, 29…**
+
+        - type: exercise
+          ref: "exo-prem-mc-001"
+
+    # ───────────────────────────────────────
+    # GE3 — Leçon 3.2 : Crible d'Ératosthène
+    # ───────────────────────────────────────
+    - id: "lec-prem-002"
+      content:
+        - type: md
+          text: |
+            ## Le crible d'Ératosthène
+
+            Comment trouver **tous** les nombres premiers jusqu'à 100 ?
+            Ératosthène (mathématicien grec) a inventé une méthode simple : le **crible** !
+
+        - type: notice
+          style: info
+          title: "Méthode — Le crible d'Ératosthène"
+          text: |
+            1. Écris tous les entiers de 2 à 100
+            2. **2 est premier** → barre tous ses multiples (4, 6, 8…)
+            3. **3 est premier** → barre tous ses multiples non encore barrés (9, 15…)
+            4. **5 est premier** → barre ses multiples
+            5. **7 est premier** → barre ses multiples
+            6. Continue jusqu'à $\sqrt{100} = 10$
+            7. Les nombres **non barrés** sont premiers !
+
+        - type: notice
+          style: example
+          title: "Nombres premiers jusqu'à 30"
+          text: |
+            Après application du crible :
+            **2, 3, 5, 7, 11, 13, 17, 19, 23, 29**
+
+        - type: notice
+          style: tip
+          title: "Pourquoi s'arrêter à $\\sqrt{n}$ ?"
+          text: |
+            Si $n$ n'est pas premier, il a un diviseur $\leq \sqrt{n}$.
+            Donc si on a barré tous les multiples jusqu'à $\sqrt{n}$, les restants sont premiers !
+
+        - type: exercise
+          ref: "exo-prem-mc-002"
+
+    # ───────────────────────────────────────
+    # GE3 — Leçon 3.3 : Décomposition en facteurs premiers
+    # ───────────────────────────────────────
+    - id: "lec-prem-003"
+      content:
+        - type: md
+          text: |
+            ## Décomposition en facteurs premiers
+
+            Bowser veut aligner ses Goombas en **rectangles parfaits**.
+            Pour connaître toutes les formations possibles, il faut décomposer en **facteurs premiers** !
+
+        - type: notice
+          style: definition
+          title: "Théorème fondamental de l'arithmétique"
+          text: |
+            Tout entier $n \geq 2$ peut s'écrire de manière **unique** (à l'ordre des facteurs près)
+            comme produit de nombres premiers.
+
+        - type: notice
+          style: info
+          title: "Méthode — Divisions successives"
+          text: |
+            1. Divise $n$ par le plus petit nombre premier qui le divise
+            2. Recommence avec le quotient obtenu
+            3. Arrête quand le quotient vaut 1
+
+        - type: notice
+          style: example
+          title: "Exemple — Bowser aligne 84 Goombas"
+          text: |
+            $84 \div 2 = 42$
+
+            $42 \div 2 = 21$
+
+            $21 \div 3 = 7$
+
+            $7 \div 7 = 1$ ✅
+
+            Donc : $84 = 2^2 \times 3 \times 7$
+
+        - type: math
+          display: "block"
+          tex: "84 = 2^2 \\times 3 \\times 7"
+          caption: "Décomposition de 84 en facteurs premiers"
+
+        - type: exercise
+          ref: "exo-prem-fitb-001"
+        - type: exercise
+          ref: "exo-prem-free-001"
+
+    # ───────────────────────────────────────
+    # GE3 — Exercices Nombres premiers
+    # ───────────────────────────────────────
+    - id: "lec-prem-exo-001"
+      content:
+        - type: md
+          text: "## Exercices — Nombres premiers\nLink, Sonic et Mario ont besoin de toi !"
+        - type: exercise
+          ref: "exo-prem-mc-001"
+        - type: exercise
+          ref: "exo-prem-mc-002"
+        - type: exercise
+          ref: "exo-prem-fitb-001"
+        - type: exercise
+          ref: "exo-prem-free-001"
+
+    # ───────────────────────────────────────
+    # GE4 — Leçon 4.1 : PGCD
+    # ───────────────────────────────────────
+    - id: "lec-pgcd-001"
+      content:
+        - type: md
+          text: |
+            ## Le Plus Grand Commun Diviseur (PGCD)
+
+            Link veut faire des **trousses d'aventurier** avec ses flèches et bombes,
+            en répartissant tout sans rien gâcher. Le **PGCD** lui donne le nombre maximum de trousses !
+
+        - type: notice
+          style: definition
+          title: "Définition — PGCD"
+          text: |
+            Le **Plus Grand Commun Diviseur** de $a$ et $b$, noté $\text{PGCD}(a, b)$,
+            est le plus grand entier qui divise à la fois $a$ et $b$.
+
+        - type: notice
+          style: info
+          title: "Méthode 1 — Par liste des diviseurs"
+          text: |
+            1. Trouve tous les diviseurs de $a$
+            2. Trouve tous les diviseurs de $b$
+            3. Identifie les diviseurs **communs**
+            4. Prends le **plus grand**
+
+        - type: notice
+          style: example
+          title: "Exemple — Link : 48 flèches et 36 bombes"
+          text: |
+            Diviseurs de $48$ : 1, 2, 3, 4, **6**, 8, **12**, 16, 24, 48
+
+            Diviseurs de $36$ : 1, 2, 3, 4, **6**, 9, **12**, 18, 36
+
+            Diviseurs communs : 1, 2, 3, 4, 6, **12**
+
+            $\text{PGCD}(48, 36) = \mathbf{12}$ → Link peut faire **12 trousses** (4 flèches + 3 bombes chacune)
+
+        - type: notice
+          style: info
+          title: "Méthode 2 — Par décomposition en facteurs premiers"
+          text: |
+            $48 = 2^4 \\times 3$ et $36 = 2^2 \\\times 3^2$
+
+            PGCD = produit des facteurs communs avec le **plus petit exposant** :
+
+            $\text{PGCD}(48, 36) = 2^2 \\times 3 = 12$ ✅
+
+        - type: exercise
+          ref: "exo-pgcd-fitb-001"
+
+    # ───────────────────────────────────────
+    # GE4 — Leçon 4.2 : Algorithme d'Euclide
+    # ───────────────────────────────────────
+    - id: "lec-pgcd-002"
+      content:
+        - type: md
+          text: |
+            ## L'algorithme d'Euclide
+
+            Pour de grands nombres, la liste des diviseurs devient trop longue.
+            L'**algorithme d'Euclide** permet de calculer le PGCD rapidement !
+
+        - type: notice
+          style: info
+          title: "Principe de l'algorithme d'Euclide"
+          text: |
+            $\text{PGCD}(a, b) = \text{PGCD}(b, r)$ où $r$ est le reste de la division de $a$ par $b$.
+
+            On répète jusqu'à obtenir un reste **nul**. Le dernier **diviseur non nul** est le PGCD.
+
+        - type: notice
+          style: example
+          title: "Exemple — Sonic : 72 anneaux dorés, 60 argentés"
+          text: |
+            **Étape 1 :** $72 = 1 \\times 60 + 12$
+
+            **Étape 2 :** $60 = 5 \\times 12 + 0$ ← reste nul !
+
+            Le dernier diviseur non nul est **12**.
+
+            $\text{PGCD}(72, 60) = \mathbf{12}$ ✅
+
+        - type: exercise
+          ref: "exo-pgcd-timeline-001"
+        - type: exercise
+          ref: "exo-pgcd-fitb-002"
+
+    # ───────────────────────────────────────
+    # GE4 — Leçon 4.3 : Applications du PGCD
+    # ───────────────────────────────────────
+    - id: "lec-pgcd-003"
+      content:
+        - type: md
+          text: |
+            ## Applications du PGCD
+
+            Le PGCD est utile dans de nombreuses situations : simplifier des fractions,
+            résoudre des problèmes de partage, ou déterminer si deux nombres sont premiers entre eux.
+
+        - type: notice
+          style: definition
+          title: "Nombres premiers entre eux"
+          text: |
+            Deux entiers $a$ et $b$ sont dits **premiers entre eux** (ou **coprimes**) si $\text{PGCD}(a, b) = 1$.
+            Cela **ne signifie pas** que $a$ ou $b$ est un nombre premier !
+
+        - type: notice
+          style: example
+          title: "Application — Simplifier une fraction avec Mario"
+          text: |
+            Mario a complété $\frac{36}{84}$ des niveaux du château.
+
+            $\text{PGCD}(36, 84) = 12$
+
+            $\frac{36}{84} = \frac{36 \div 12}{84 \div 12} = \frac{3}{7}$
+
+            La fraction irréductible est $\frac{3}{7}$.
+
+        - type: exercise
+          ref: "exo-pgcd-matching-001"
+        - type: exercise
+          ref: "exo-pgcd-fitb-003"
+
+    # ───────────────────────────────────────
+    # GE4 — Exercices PGCD
+    # ───────────────────────────────────────
+    - id: "lec-pgcd-exo-001"
+      content:
+        - type: md
+          text: "## Exercices — PGCD\nLink, Sonic et Mario comptent sur toi !"
+        - type: exercise
+          ref: "exo-pgcd-fitb-001"
+        - type: exercise
+          ref: "exo-pgcd-timeline-001"
+        - type: exercise
+          ref: "exo-pgcd-fitb-002"
+        - type: exercise
+          ref: "exo-pgcd-matching-001"
+        - type: exercise
+          ref: "exo-pgcd-fitb-003"
+
+    # ───────────────────────────────────────
+    # GE5 — Leçon 5.1 : Révisions croisées
+    # ───────────────────────────────────────
+    - id: "lec-syn-001"
+      content:
+        - type: md
+          text: |
+            ## Révisions croisées
+
+            Il est temps de rassembler toutes tes connaissances !
+            PGCD, PPCM, nombres premiers, décomposition… tout est lié.
+
+        - type: notice
+          style: info
+          title: "Lien entre PGCD et PPCM"
+          text: |
+            Pour tous entiers $a$ et $b$ :
+
+            $\text{PGCD}(a, b) \\times \text{PPCM}(a, b) = a \\times b$
+
+        - type: notice
+          style: example
+          title: "Vérification avec Mario et Luigi"
+          text: |
+            $a = 4$, $b = 6$
+
+            $\text{PGCD}(4, 6) = 2$ et $\text{PPCM}(4, 6) = 12$
+
+            $2 \\times 12 = 24 = 4 \\times 6$ ✅
+
+        - type: exercise
+          ref: "exo-syn-mc-001"
+
+    # ───────────────────────────────────────
+    # GE5 — Exercices Synthèse
+    # ───────────────────────────────────────
+    - id: "lec-syn-exo-001"
+      content:
+        - type: md
+          text: "## Problèmes ouverts\nDes aventures complètes avec Link, Sonic et Mario !"
+        - type: exercise
+          ref: "exo-syn-free-001"
+        - type: exercise
+          ref: "exo-syn-fitb-001"
+        - type: exercise
+          ref: "exo-syn-mc-001"
