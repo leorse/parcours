@@ -11,6 +11,7 @@ import TimelineExercise from './exercises/TimelineExercise'
 import FreeTextExercise from './exercises/FreeTextExercise'
 import MatchingExercise from './exercises/MatchingExercise'
 import FractionTapExercise from './exercises/FractionTapExercise'
+import DictationExercise from './exercises/DictationExercise'
 
 const EXERCISE_REGISTRY = {
   multiple_choice: MultipleChoiceExercise,
@@ -21,6 +22,7 @@ const EXERCISE_REGISTRY = {
   free_text: FreeTextExercise,
   matching: MatchingExercise,
   fraction_tap: FractionTapExercise,
+  dictation: DictationExercise,
 }
 
 export default function ExerciseEngine({

@@ -60,6 +60,14 @@ const EXERCISES = [
   },
 ]
 
+const DICTATION_EXO = {
+  type: 'dictation',
+  words: [
+    { text: 'grenouille' },
+    { text: 'appareil' },
+  ],
+}
+
 // ─────────────────────────────────────────────────────────────
 // Cohérence génération / validation
 // ─────────────────────────────────────────────────────────────
@@ -113,5 +121,37 @@ describe('answerGenerator — valeurs retournées', () => {
     const answer = generateCorrectAnswer(EXERCISES[4].exercise)
     expect(Array.isArray(answer)).toBe(true)
     expect(answer).toEqual(['e1', 'e2', 'e3'])
+  })
+})
+
+// ─────────────────────────────────────────────────────────────
+// dictation
+// ─────────────────────────────────────────────────────────────
+
+describe('answerGenerator — dictation', () => {
+
+  test('generateCorrectAnswer retourne un tableau de strings', () => {
+    const answer = generateCorrectAnswer(DICTATION_EXO)
+    expect(Array.isArray(answer)).toBe(true)
+    expect(answer).toHaveLength(2)
+  })
+
+  test('generateCorrectAnswer retourne les mots exacts', () => {
+    const answer = generateCorrectAnswer(DICTATION_EXO)
+    expect(answer[0]).toBe('grenouille')
+    expect(answer[1]).toBe('appareil')
+  })
+
+  test('generateCorrectAnswer valide dans exerciseService → correct=true', () => {
+    const answer = generateCorrectAnswer(DICTATION_EXO)
+    const result = validateAnswer(DICTATION_EXO, answer)
+    expect(result.correct).toBe(true)
+    expect(result.score).toBe(1.0)
+  })
+
+  test('generateWrongAnswer retourne des réponses incorrectes', () => {
+    const answer = generateWrongAnswer(DICTATION_EXO)
+    const result = validateAnswer(DICTATION_EXO, answer)
+    expect(result.correct).toBe(false)
   })
 })

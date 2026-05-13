@@ -18,6 +18,11 @@
 .md-block ol { margin: 0.75rem 0 0.75rem 1.5rem; }
 .md-block li { margin: 0.25rem 0; }
 .md-block code { background: #f0f0f0; padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.9em; }
+.md-block table { border-collapse: collapse; width: 100%; margin: 0.75rem 0; font-size: 0.92rem; }
+.md-block th,
+.md-block td    { border: 1px solid #d0d0d0; padding: 0.45rem 0.75rem; text-align: left; }
+.md-block th    { background: #f0f0f0; font-weight: 700; }
+.md-block tr:nth-child(even) td { background: #fafafa; }
 
 /* KaTeX */
 .math-block        { text-align: center; margin: 1.5rem 0; overflow-x: auto; }
@@ -191,6 +196,23 @@ figcaption { font-size: 0.85rem; color: #666; margin-top: 0.5rem; }
   color: #666;
   margin: 0.4rem 0 0;
 }
+
+/* ── Formula with blanks (KaTeX + positioned inputs) ─────────── */
+.exercise-formula-segment { margin: 1rem 0; }
+.formula-with-blanks { position: relative; display: inline-block; }
+
+.formula-blank {
+  background: white;
+  border: 1.5px solid #61cdfb;
+  border-radius: 4px;
+  font-size: 0.9em;
+  padding: 1px 3px;
+  cursor: text;
+  min-width: 32px;
+  line-height: 1;
+}
+.formula-blank.correct   { border-color: #85bb4b; background: #f0f9e8; }
+.formula-blank.incorrect { border-color: #ec6d5c; background: #fff3f1; }
 
 /* ── Image Tap ───────────────────────────────────────────────── */
 .exercise-image-container { position: relative; }
@@ -572,3 +594,84 @@ figcaption { font-size: 0.85rem; color: #666; margin-top: 0.5rem; }
   transition: color 0.15s;
 }
 .reset-link:hover { color: rgba(255,255,255,0.6); }
+
+/* ── Dictée ─────────────────────────────────────────────────── */
+.exercise-dictation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.dictation-progress {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.dictation-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 340px;
+}
+
+.dictation-btn-listen {
+  flex-shrink: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  border: 2px solid #61cdfb;
+  background: #f0faff;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.12s, opacity 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dictation-btn-listen:hover:not(:disabled) { background: #d4f0fd; }
+.dictation-btn-listen.speaking { background: #cce5ff; border-color: #0d6efd; }
+.dictation-btn-listen:disabled { opacity: 0.4; cursor: default; }
+
+.dictation-input {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  font-size: 1.05rem;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  transition: border-color 0.15s;
+}
+.dictation-input:focus { border-color: #61cdfb; outline: none; }
+.dictation-input:disabled { background: #f8f8f8; color: #aaa; }
+
+.dictation-hint-container { text-align: center; }
+.dictation-btn-hint {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.dictation-btn-hint:disabled { opacity: 0.4; cursor: default; }
+.dictation-hint {
+  font-size: 0.88rem;
+  color: #856404;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  margin: 0;
+}
+
+.exercise-dictation-unavailable {
+  text-align: center;
+  padding: 1.5rem;
+  color: #888;
+}
+.exercise-dictation-unavailable span { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+.dictation-unavailable-hint { font-size: 0.85rem; color: #aaa; margin: 0.25rem 0 0; }

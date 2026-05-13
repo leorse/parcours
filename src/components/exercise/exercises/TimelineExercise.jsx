@@ -15,6 +15,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import MathText from '../shared/MathText'
 
 function SortableItem({ item, index, isSubmitted, expectedIndex }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
@@ -44,7 +45,7 @@ function SortableItem({ item, index, isSubmitted, expectedIndex }) {
       {...(isSubmitted ? {} : listeners)}
     >
       <span className="timeline-handle">{isSubmitted ? (isCorrect ? '✓' : '✗') : '⠿'}</span>
-      <span className="timeline-text">{item.text}</span>
+      <span className="timeline-text"><MathText text={item.text} inline /></span>
     </div>
   )
 }
@@ -83,7 +84,7 @@ export default function TimelineExercise({ exercise, onSubmit, result }) {
   return (
     <div className="exercise-timeline">
       {exercise.instruction && (
-        <p className="exercise-instruction">{exercise.instruction}</p>
+        <div className="exercise-instruction"><MathText text={exercise.instruction} /></div>
       )}
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <SortableContext items={items.map((i) => i.id)} strategy={verticalListSortingStrategy}>

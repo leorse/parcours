@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import MathText from '../shared/MathText'
+import { getFirebaseToken } from '../../../services/profileService'
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:8000'
 
@@ -23,8 +24,10 @@ export default function FreeTextExercise({ exercise, onSubmit, result, exerciseD
     setLoading(true)
     setError(null)
 
-    // TODO: remplacer par getAuth().currentUser.getIdToken() quand l'app Android sera prête
-    const token = 'mock-token'
+    // ═══════════════════════════════════════════════════
+    // JALON 7 — Remplacer par le vrai token Firebase (app Android)
+    // ═══════════════════════════════════════════════════
+    const token = await getFirebaseToken()
 
     try {
       const res = await fetch(`${BACKEND_URL}/api/ai/correct`, {
@@ -66,7 +69,7 @@ export default function FreeTextExercise({ exercise, onSubmit, result, exerciseD
   return (
     <div className="exercise-free-text">
       {exercise.instruction && (
-        <p className="exercise-instruction">{exercise.instruction}</p>
+        <div className="exercise-instruction"><MathText text={exercise.instruction} /></div>
       )}
 
       {exercise.image && (
@@ -84,6 +87,7 @@ export default function FreeTextExercise({ exercise, onSubmit, result, exerciseD
         placeholder={exercise.placeholder ?? exercise.prompt ?? 'Écris ta réponse ici…'}
         disabled={isSubmitted || loading}
         rows={5}
+        {...(exercise.disable_spellcheck ? { autoComplete: 'off', autoCorrect: 'off', autoCapitalize: 'off', spellCheck: false } : {})}
       />
 
       {!isSubmitted && (

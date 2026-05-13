@@ -5,14 +5,25 @@ import logoImg from '@images/logo.png'
 import parcoursImg from '@images/parcours.png'
 import PageTransition from '../../components/layout/PageTransition'
 import { ROUTES } from '../../router/AppRouter'
+import { useProfile } from '../../hooks/useProfile'
+import { checkStreak } from '../../services/progressService'
 
 export default function SplashScreen() {
   const navigate = useNavigate()
+  const { user } = useProfile()
 
   useEffect(() => {
-    const timer = setTimeout(() => navigate(ROUTES.MENU), 2800)
+    // checkStreak une fois par jour — fire and forget
+    if (user?.uid) {
+      checkStreak()
+    }
+  }, [user?.uid])
+
+  useEffect(() => {
+    const dest = user ? ROUTES.SUBJECTS : ROUTES.PROFILE_SELECT
+    const timer = setTimeout(() => navigate(dest), 2800)
     return () => clearTimeout(timer)
-  }, [navigate])
+  }, [navigate, user])
 
   return (
     <PageTransition className="flex items-center justify-center bg-app-gradient">

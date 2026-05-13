@@ -95,7 +95,7 @@ export default function DragDropExercise({ exercise, onSubmit, result }) {
   return (
     <div className="exercise-drag-drop">
       {exercise.instruction && (
-        <p className="exercise-instruction">{exercise.instruction}</p>
+        <div className="exercise-instruction"><MathText text={exercise.instruction} /></div>
       )}
       <DndContext
         collisionDetection={closestCenter}

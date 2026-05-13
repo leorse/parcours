@@ -5,7 +5,7 @@ course:
   subject: "tests"
   domain: "musique"
   thumbnail: null
-  xp_total: 60
+  xp_total: 105
 
   grandes_etapes:
 
@@ -45,3 +45,7 @@ course:
           ref: "exo-test-comp-003"
         - type: exercise
           ref: "exo-test-comp-004"
+        - type: exercise
+          ref: "exo-test-dict-001"
+        - type: exercise
+          ref: "exo-test-dict-002"

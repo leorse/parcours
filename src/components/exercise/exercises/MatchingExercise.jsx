@@ -84,7 +84,7 @@ export default function MatchingExercise({ exercise, onSubmit, result }) {
   return (
     <div className="exercise-matching">
       {exercise.instruction && (
-        <p className="exercise-instruction">{exercise.instruction}</p>
+        <div className="exercise-instruction"><MathText text={exercise.instruction} /></div>
       )}
 
       {!isSubmitted && !selectedLeft && (

@@ -217,13 +217,13 @@ course:
           text: |
             Link possède **12 rubis**. Il veut les partager entre ses compagnons sans en garder.
 
-            - Il peut les répartir entre **3** compagnons : $12 = 3 \\times 4$, reste $= 0$ ✅ → $3 \mid 12$
-            - Il peut les répartir entre **4** compagnons : $12 = 4 \\times 3$, reste $= 0$ ✅ → $4 \mid 12$
-            - Il ne peut **pas** les répartir entre **5** compagnons : $12 = 5 \\times 2 + 2$, reste $= 2$ ❌ → $5 \nmid 12$
+            - Il peut les répartir entre **3** compagnons : $12 = 3 \times 4$, reste $= 0$ ✅ → $3 \mid 12$
+            - Il peut les répartir entre **4** compagnons : $12 = 4 \times 3$, reste $= 0$ ✅ → $4 \mid 12$
+            - Il ne peut **pas** les répartir entre **5** compagnons : $12 = 5 \times 2 + 2$, reste $= 2$ ❌ → $5 \nmid 12$
 
         - type: math
           display: "block"
-          tex: "b = a \\times q + r \\quad \text{avec } 0 \\leq r < a"
+          tex: "b = a \\times q + r \\quad \\text{avec } 0 \\leq r < a"
           caption: "Division euclidienne : b divisible par a ⟺ r = 0"
 
         - type: notice
@@ -337,7 +337,7 @@ course:
     - id: "lec-div-exo-001"
       content:
         - type: md
-          text: "## Exercices — Divisibilité\nEntraîne-toi avec Link dans les donjons d'Hyrule !"
+          text: "## Exercices — Divisibilité\\nEntraîne-toi avec Link dans les donjons d'Hyrule !"
         - type: exercise
           ref: "exo-div-fitb-001"
         - type: exercise
@@ -363,7 +363,7 @@ course:
           style: definition
           title: "Définition — Multiple"
           text: |
-            Les **multiples** de $a$ sont tous les entiers de la forme $a \\times k$, où $k$ est un entier naturel.
+            Les **multiples** de $a$ sont tous les entiers de la forme $a \times k$, où $k$ est un entier naturel.
 
             $\mathcal{M}(a) = \{0,\ a,\ 2a,\ 3a,\ 4a,\ \ldots\}$
 
@@ -425,9 +425,9 @@ course:
             On peut aussi calculer le PPCM à partir des décompositions en facteurs premiers :
             - On prend **chaque facteur premier** avec son **plus grand exposant**
 
-            Exemple : $4 = 2^2$ et $6 = 2 \\times 3$
+            Exemple : $4 = 2^2$ et $6 = 2 \times 3$
 
-            $\text{PPCM}(4, 6) = 2^2 \\times 3 = 12$ ✅
+            $\text{PPCM}(4, 6) = 2^2 \times 3 = 12$ ✅
 
         - type: exercise
           ref: "exo-ppcm-fitb-001"
@@ -440,7 +440,7 @@ course:
     - id: "lec-ppcm-exo-001"
       content:
         - type: md
-          text: "## Exercices — Multiples et PPCM\nMario, Luigi et Sonic ont besoin de toi !"
+          text: "## Exercices — Multiples et PPCM\\nMario, Luigi et Sonic ont besoin de toi !"
         - type: exercise
           ref: "exo-ppcm-mc-001"
         - type: exercise
@@ -588,7 +588,7 @@ course:
     - id: "lec-prem-exo-001"
       content:
         - type: md
-          text: "## Exercices — Nombres premiers\nLink, Sonic et Mario ont besoin de toi !"
+          text: "## Exercices — Nombres premiers\\nLink, Sonic et Mario ont besoin de toi !"
         - type: exercise
           ref: "exo-prem-mc-001"
         - type: exercise
@@ -642,11 +642,11 @@ course:
           style: info
           title: "Méthode 2 — Par décomposition en facteurs premiers"
           text: |
-            $48 = 2^4 \\times 3$ et $36 = 2^2 \\\times 3^2$
+            $48 = 2^4 \times 3$ et $36 = 2^2 \times 3^2$
 
             PGCD = produit des facteurs communs avec le **plus petit exposant** :
 
-            $\text{PGCD}(48, 36) = 2^2 \\times 3 = 12$ ✅
+            $\text{PGCD}(48, 36) = 2^2 \times 3 = 12$ ✅
 
         - type: exercise
           ref: "exo-pgcd-fitb-001"
@@ -675,9 +675,9 @@ course:
           style: example
           title: "Exemple — Sonic : 72 anneaux dorés, 60 argentés"
           text: |
-            **Étape 1 :** $72 = 1 \\times 60 + 12$
+            **Étape 1 :** $72 = 1 \times 60 + 12$
 
-            **Étape 2 :** $60 = 5 \\times 12 + 0$ ← reste nul !
+            **Étape 2 :** $60 = 5 \times 12 + 0$ ← reste nul !
 
             Le dernier diviseur non nul est **12**.
 
@@ -730,7 +730,7 @@ course:
     - id: "lec-pgcd-exo-001"
       content:
         - type: md
-          text: "## Exercices — PGCD\nLink, Sonic et Mario comptent sur toi !"
+          text: "## Exercices — PGCD\\nLink, Sonic et Mario comptent sur toi !"
         - type: exercise
           ref: "exo-pgcd-fitb-001"
         - type: exercise
@@ -760,7 +760,7 @@ course:
           text: |
             Pour tous entiers $a$ et $b$ :
 
-            $\text{PGCD}(a, b) \\times \text{PPCM}(a, b) = a \\times b$
+            $\text{PGCD}(a, b) \times \text{PPCM}(a, b) = a \times b$
 
         - type: notice
           style: example
@@ -770,7 +770,7 @@ course:
 
             $\text{PGCD}(4, 6) = 2$ et $\text{PPCM}(4, 6) = 12$
 
-            $2 \\times 12 = 24 = 4 \\times 6$ ✅
+            $2 \times 12 = 24 = 4 \times 6$ ✅
 
         - type: exercise
           ref: "exo-syn-mc-001"
@@ -781,7 +781,7 @@ course:
     - id: "lec-syn-exo-001"
       content:
         - type: md
-          text: "## Problèmes ouverts\nDes aventures complètes avec Link, Sonic et Mario !"
+          text: "## Problèmes ouverts\\nDes aventures complètes avec Link, Sonic et Mario !"
         - type: exercise
           ref: "exo-syn-free-001"
         - type: exercise

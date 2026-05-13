@@ -4,36 +4,28 @@ from fastapi import HTTPException
 
 logger = logging.getLogger(__name__)
 
-_firebase_initialized = False
+
+def verify_token(token: str) -> dict:
+    """
+    Jalon 4b : accepte les fake tokens en mode development.
+    ═══════════════════════════════════════════════════════
+    JALON 7 — remplacer cette fonction par :
+        decoded = firebase_admin.auth.verify_id_token(token)
+        return { "uid": decoded["uid"], "fake": False }
+    ═══════════════════════════════════════════════════════
+    """
+    env = os.getenv("ENV", "development")
+
+    if env == "development" and token.startswith("fake-token-"):
+        uid = token.replace("fake-token-", "")
+        if not uid:
+            raise HTTPException(status_code=401, detail="UID manquant dans le token fictif")
+        logger.debug("Fake token accepté (dev) — uid: %s", uid)
+        return {"uid": uid, "fake": True}
+
+    # En production : uniquement Firebase (activé au jalon 7)
+    raise HTTPException(status_code=401, detail="Token invalide")
 
 
-def _init_firebase():
-    global _firebase_initialized
-    if _firebase_initialized:
-        return
-    import firebase_admin
-    if not firebase_admin._apps:
-        creds_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-        if creds_path:
-            from firebase_admin import credentials
-            cred = credentials.Certificate(creds_path)
-            firebase_admin.initialize_app(cred)
-        else:
-            # Tente l'initialisation avec les credentials par défaut (GCP)
-            firebase_admin.initialize_app()
-    _firebase_initialized = True
-
-
-def verify_firebase_token(token: str) -> dict:
-    # Bypass pour le développement local — ne jamais activer en production
-    if os.getenv("SKIP_FIREBASE_AUTH", "false").lower() == "true":
-        logger.warning("SKIP_FIREBASE_AUTH=true — auth Firebase désactivée (dev uniquement)")
-        return {"uid": f"dev-user"}
-
-    try:
-        _init_firebase()
-        from firebase_admin import auth as firebase_auth
-        decoded = firebase_auth.verify_id_token(token)
-        return decoded
-    except Exception as e:
-        raise HTTPException(status_code=401, detail="Token Firebase invalide")
+# Alias maintenu pour ai_correction.py (jalon 3quater)
+verify_firebase_token = verify_token

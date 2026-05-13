@@ -75,6 +75,62 @@ exercises:
           correct: false
           feedback: "Non, c'est Antonio Vivaldi (1678–1741)."
 
+  - id: "exo-test-dict-001"
+    xp: 20
+    difficulty: 1
+    skills:
+      - tag: "orthographe/dictee"
+        weight: 1.0
+    exercise:
+      type: dictation
+      disable_spellcheck: true
+      words:
+        - text: "Vivaldi"
+          hint: "compositeur des Quatre Saisons"
+        - text: "Mozart"
+          hint: "il a composé La Flûte enchantée"
+        - text: "Beethoven"
+          hint: "auteur de la Cinquième Symphonie"
+        - text: "Bach"
+          hint: "maître du contrepoint et de la fugue"
+
+  - id: "exo-test-dict-002"
+    xp: 25
+    difficulty: 2
+    skills:
+      - tag: "orthographe/dictee"
+        weight: 1.0
+    exercise:
+      type: dictation
+      disable_spellcheck: true
+      words:
+        - text: "symphonie"
+          hint: "grande composition pour orchestre entier"
+        - text: "concerto"
+          hint: "composition pour un soliste et l'orchestre"
+        - text: "fugue"
+          hint: "forme musicale polyphonique, chère à Bach"
+        - text: "sonate"
+          hint: "pièce pour un ou deux instruments"
+        - text: "partition"
+          hint: "le document écrit de la musique"
+        
+  - id: "exo-test-dict-003"
+    xp: 25
+    difficulty: 2
+    skills:
+      - tag: "orthographe/dictee"
+        weight: 1.0
+    exercise:
+      type: dictation
+      disable_spellcheck: true
+      words:
+        - text: "je suis allé en cours"
+        - text: "on sort en boîte"
+        - text: "thibaut sort du cinéma"
+        - text: "les voitures sortent du garage"
+        - text: "les journaux du jour"
+
   - id: exo-test-comp-004
     xp: 15
     difficulty: 1

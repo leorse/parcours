@@ -16,6 +16,8 @@ export function validateAnswer(exercise, userAnswer) {
       return validateFreeText(exercise, userAnswer)
     case 'fraction_tap':
       return validateFractionTap(exercise, userAnswer)
+    case 'dictation':
+      return validateDictation(exercise, userAnswer)
     default:
       return { correct: false, score: 0, details: {} }
   }
@@ -31,15 +33,18 @@ function validateMultipleChoice(exercise, userAnswer) {
 }
 
 function validateFillInTheBlank(exercise, userAnswer) {
-  const blanks = exercise.segments.filter((s) => s.blank)
+  const blanks = exercise.segments.flatMap((s) =>
+    s.blank ? [s.blank] : s.formula ? (s.blanks ?? []) : []
+  )
   let correct = 0
   const feedbacks = []
   const isCaseSensitive = exercise.settings?.case_sensitive ?? false
 
   blanks.forEach((s) => {
-    const expected = s.blank.answer
-    const variants = s.blank.accept_variants ?? []
-    const given = (userAnswer[s.blank.id] ?? '').trim()
+    const expected = s.answer ?? s.blank?.answer
+    const variants = s.accept_variants ?? s.blank?.accept_variants ?? []
+    const id = s.id ?? s.blank?.id
+    const given = (userAnswer[id] ?? '').trim()
 
     const normalize = (v) => (isCaseSensitive ? v : v.toLowerCase())
     const match =
@@ -135,5 +140,35 @@ function validateMatching(exercise, userAnswer) {
     correct: correct === exercise.pairs.length,
     score: exercise.pairs.length > 0 ? correct / exercise.pairs.length : 0,
     details: { feedback: null },
+  }
+}
+
+function validateDictation(exercise, userAnswer) {
+  if (!Array.isArray(userAnswer) || !userAnswer.length) {
+    return { correct: false, score: 0, details: { feedback: null } }
+  }
+  const words = exercise.words ?? []
+  let correct = 0
+  const errors = []
+
+  words.forEach((word, i) => {
+    const expected = word.text.toLowerCase().trim().normalize('NFD')
+    const given    = (userAnswer[i] ?? '').toLowerCase().trim().normalize('NFD')
+    if (expected === given) {
+      correct++
+    } else {
+      errors.push(`"${userAnswer[i]}" → attendu : "${word.text}"`)
+    }
+  })
+
+  const score = words.length > 0 ? correct / words.length : 0
+  return {
+    correct: correct === words.length,
+    score:   Math.round(score * 100) / 100,
+    details: {
+      feedback: errors.length > 0
+        ? `${correct}/${words.length} mots corrects. ${errors.slice(0, 2).join(', ')}`
+        : null,
+    },
   }
 }

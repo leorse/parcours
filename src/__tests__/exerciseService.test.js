@@ -346,6 +346,73 @@ describe('validateAnswer — free_text', () => {
 })
 
 // ─────────────────────────────────────────────────────────────
+// dictation
+// ─────────────────────────────────────────────────────────────
+
+const DICTATION_EXERCISE = {
+  type: 'dictation',
+  disable_spellcheck: true,
+  words: [
+    { text: 'grenouille', hint: 'un animal qui saute' },
+    { text: 'appareil',   hint: null },
+    { text: 'chrysanthème', hint: 'une fleur' },
+  ],
+}
+
+describe('validateAnswer — dictation', () => {
+
+  test('tous les mots corrects → correct=true, score=1', () => {
+    const result = validateAnswer(DICTATION_EXERCISE, ['grenouille', 'appareil', 'chrysanthème'])
+    expect(result.correct).toBe(true)
+    expect(result.score).toBe(1.0)
+  })
+
+  test('un mot incorrect → correct=false, score≈0.67', () => {
+    const result = validateAnswer(DICTATION_EXERCISE, ['grenouille', 'apareil', 'chrysanthème'])
+    expect(result.correct).toBe(false)
+    expect(result.score).toBeCloseTo(2 / 3)
+  })
+
+  test('tous incorrects → correct=false, score=0', () => {
+    const result = validateAnswer(DICTATION_EXERCISE, ['grenouy', 'apareil', 'chrisanteme'])
+    expect(result.correct).toBe(false)
+    expect(result.score).toBe(0)
+  })
+
+  test('insensible à la casse', () => {
+    const result = validateAnswer(DICTATION_EXERCISE, ['Grenouille', 'APPAREIL', 'Chrysanthème'])
+    expect(result.correct).toBe(true)
+  })
+
+  test('espaces en début/fin ignorés', () => {
+    const result = validateAnswer(DICTATION_EXERCISE, ['  grenouille  ', '  appareil  ', '  chrysanthème  '])
+    expect(result.correct).toBe(true)
+  })
+
+  test('accent manquant → incorrect (NFD robuste)', () => {
+    const result = validateAnswer(DICTATION_EXERCISE, ['grenouille', 'appareil', 'chrysantheme'])
+    expect(result.correct).toBe(false)
+  })
+
+  test('feedback liste les erreurs', () => {
+    const result = validateAnswer(DICTATION_EXERCISE, ['grenouille', 'apareil', 'chrysanthème'])
+    expect(result.details.feedback).toContain('appareil')
+  })
+
+  test('réponse vide → score=0', () => {
+    const result = validateAnswer(DICTATION_EXERCISE, [])
+    expect(result.score).toBe(0)
+    expect(result.correct).toBe(false)
+  })
+
+  test('réponse null → score=0 sans erreur', () => {
+    const result = validateAnswer(DICTATION_EXERCISE, null)
+    expect(result.score).toBe(0)
+    expect(result.correct).toBe(false)
+  })
+})
+
+// ─────────────────────────────────────────────────────────────
 // type inconnu
 // ─────────────────────────────────────────────────────────────
 

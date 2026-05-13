@@ -42,3 +42,24 @@ skills:
       - "multiplication/table-2"
       - "multiplication/table-3"
       - "multiplication/table-5"
+
+  - id: "orthographe/dictee"
+    label: "Dictée"
+    subject: "francais"
+    color: "#059669"
+    description: "Écrire correctement les mots entendus"
+    prerequisites: []
+
+  - id: "orthographe/accords"
+    label: "Accords"
+    subject: "francais"
+    color: "#059669"
+    description: "Accords en genre et en nombre"
+    prerequisites: []
+
+  - id: "orthographe/homophones"
+    label: "Homophones"
+    subject: "francais"
+    color: "#059669"
+    description: "Distinguer les homophones (a/à, ou/où…)"
+    prerequisites: []

@@ -14,7 +14,7 @@ from datetime import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routers import ai_correction
+from .routers import ai_correction, progress
 
 # ── Handler de rotation avec compression gzip (aucune suppression) ────────────
 
@@ -50,6 +50,7 @@ app.add_middleware(
 )
 
 app.include_router(ai_correction.router)
+app.include_router(progress.router)
 
 
 @app.on_event("startup")

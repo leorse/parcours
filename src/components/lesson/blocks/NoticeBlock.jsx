@@ -1,4 +1,5 @@
 import MdBlock from './MdBlock'
+import MathText from '../../exercise/shared/MathText'
 
 const STYLES = {
   info:       { bg: '#e8f4fd', border: '#3498db', icon: 'ℹ️',  label: 'Info' },
@@ -20,7 +21,9 @@ export default function NoticeBlock({ style = 'info', text, title, author }) {
     >
       {s.icon && <span className="notice-icon">{s.icon}</span>}
       {(s.label || title) && (
-        <strong className="notice-label">{title ?? s.label}</strong>
+        <strong className="notice-label">
+          <MathText text={title ?? s.label} inline />
+        </strong>
       )}
       <MdBlock text={text} />
       {author && <cite className="notice-author">— {author}</cite>}

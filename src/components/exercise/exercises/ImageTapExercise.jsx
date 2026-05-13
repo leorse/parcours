@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import MathText from '../shared/MathText'
 
 const INKSCAPE_NS = 'http://www.inkscape.org/namespaces/inkscape'
 
@@ -120,7 +121,7 @@ export default function ImageTapExercise({ exercise, onSubmit, result }) {
   return (
     <div className="exercise-image-tap">
       {exercise.instruction && (
-        <p className="exercise-instruction">{exercise.instruction}</p>
+        <div className="exercise-instruction"><MathText text={exercise.instruction} /></div>
       )}
       {exercise.image ? (
         <div className="exercise-image-container">

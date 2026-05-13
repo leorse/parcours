@@ -34,6 +34,8 @@ export function generateCorrectAnswer(exercise) {
       const count = (pieces * targetNum) / targetDen
       return { selected: Array.from({ length: count }, (_, i) => i), pieces }
     }
+    case 'dictation':
+      return (exercise.words ?? []).map((w) => w.text)
     default:
       return null
   }
@@ -78,6 +80,8 @@ export function generateWrongAnswer(exercise) {
       const wrongCount = Math.max(0, correctCount - 1)
       return { selected: Array.from({ length: wrongCount }, (_, i) => i), pieces }
     }
+    case 'dictation':
+      return (exercise.words ?? []).map((w) => w.text + 'x')
     default:
       return null
   }
