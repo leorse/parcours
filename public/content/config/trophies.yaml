@@ -1,0 +1,28 @@
+trophies:
+
+  - id: "trophy-streak-30"
+    label: "Un mois sans relâche"
+    description: "30 jours consécutifs"
+    icon: "🏅"
+    condition:
+      type: "streak"
+      operator: "gte"
+      value: 30
+
+  - id: "trophy-all-badges"
+    label: "Collectionneur"
+    description: "Obtiens tous les badges"
+    icon: "🎖️"
+    condition:
+      type: "badge_count"
+      operator: "gte"
+      value: 9
+
+  - id: "trophy-xp-1000"
+    label: "Mille points"
+    description: "Atteins 1000 XP"
+    icon: "💎"
+    condition:
+      type: "total_xp"
+      operator: "gte"
+      value: 1000

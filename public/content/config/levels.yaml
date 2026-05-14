@@ -1,0 +1,35 @@
+levels:
+  - level: 1
+    xp_required: 0
+    label: "Explorateur"
+    icon: "🌱"
+
+  - level: 2
+    xp_required: 100
+    label: "Apprenti"
+    icon: "📚"
+
+  - level: 3
+    xp_required: 300
+    label: "Aventurier"
+    icon: "🧭"
+
+  - level: 4
+    xp_required: 600
+    label: "Expert"
+    icon: "⭐"
+
+  - level: 5
+    xp_required: 1000
+    label: "Maître"
+    icon: "🏆"
+
+  - level: 6
+    xp_required: 1500
+    label: "Champion"
+    icon: "👑"
+
+  - level: 7
+    xp_required: 2200
+    label: "Légende"
+    icon: "🌟"

@@ -675,3 +675,339 @@ figcaption { font-size: 0.85rem; color: #666; margin-top: 0.5rem; }
 }
 .exercise-dictation-unavailable span { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
 .dictation-unavailable-hint { font-size: 0.85rem; color: #aaa; margin: 0.25rem 0 0; }
+
+/* ── Gamification — XP Bar ──────────────────────────────────── */
+.xp-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.xp-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+}
+.xp-bar-track {
+  width: 100%;
+  height: 12px;
+  background: #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4F46E5, #7C3AED);
+  border-radius: 8px;
+}
+.xp-bar-next { font-size: 0.75rem; color: #888; text-align: right; }
+
+/* ── XP Gain Animation ─────────────────────────────────────── */
+.xp-gain {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #4F46E5;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+/* ── Level Up Celebration ──────────────────────────────────── */
+.levelup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.levelup-content {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.levelup-icon { font-size: 3rem; margin-bottom: 0.75rem; display: block; }
+.levelup-content h2 { font-size: 1.4rem; font-weight: 700; margin: 0 0 0.5rem; color: #1a1a2e; }
+.levelup-content p  { color: #555; margin: 0 0 1.2rem; }
+.levelup-content button {
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.65rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ── Badge Unlock ──────────────────────────────────────────── */
+.badge-unlock-overlay {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: min(90vw, 320px);
+}
+.badge-unlock-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  border: 2px solid #4F46E5;
+}
+.badge-unlock-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4F46E5;
+  margin: 0 0 0.5rem;
+}
+.badge-icon-large { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.badge-unlock-card h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 0.25rem; }
+.badge-unlock-card p  { font-size: 0.85rem; color: #666; margin: 0 0 1rem; }
+.badge-unlock-card button {
+  background: #4F46E5;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ── Streak Display ────────────────────────────────────────── */
+.streak-display { display: flex; align-items: center; gap: 0.3rem; font-weight: 700; }
+.streak-flame   { font-size: 1.2rem; }
+.streak-count   { font-size: 1.1rem; color: #e85d04; }
+.streak-label   { font-size: 0.85rem; color: #888; }
+
+/* ── Radar Chart ───────────────────────────────────────────── */
+.radar-empty { text-align: center; color: #aaa; font-size: 0.9rem; padding: 2rem 1rem; }
+
+/* ── Badge Grid ────────────────────────────────────────────── */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.25rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.15s;
+}
+.badge-item.earned { background: #f0f4ff; }
+.badge-item.locked { background: #f5f5f5; opacity: 0.5; }
+.badge-item.earned:hover { transform: scale(1.05); }
+.badge-item-icon  { font-size: 1.6rem; }
+.badge-item-label { font-size: 0.65rem; font-weight: 600; color: #444; line-height: 1.2; }
+
+/* ── Reinforcement Card ────────────────────────────────────── */
+.reinforcement-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1rem;
+  background: #fff8f0;
+  border: 1px solid #fde8c8;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+.reinforcement-icon  { font-size: 1.1rem; }
+.reinforcement-info  { display: flex; flex-direction: column; }
+.reinforcement-skill { font-weight: 600; font-size: 0.9rem; color: #333; text-transform: capitalize; }
+.reinforcement-score { font-size: 0.8rem; color: #888; }
+
+/* ── Profile Screen ────────────────────────────────────────── */
+.profile-screen {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+.profile-avatar-lg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4F46E5;
+}
+.profile-pseudo { font-size: 1.3rem; font-weight: 700; margin: 0; }
+.profile-section {
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.profile-section h3 { font-size: 1rem; font-weight: 700; margin: 0 0 1rem; color: #1a1a2e; }
+.skills-strong   { margin-top: 0.75rem; }
+.skill-tags      { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
+.skill-tag-strong {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.weak-skill {
+  font-size: 0.9rem;
+  color: #92400e;
+  background: #fef3c7;
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  margin-bottom: 0.4rem;
+}
+.profile-back-btn {
+  align-self: center;
+  background: none;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+.profile-back-btn:hover { background: #f5f5f5; }
+.profile-loading { text-align: center; padding: 3rem 1rem; color: #888; }
+.profile-loading span { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+
+/* ── NavHeader ──────────────────────────────────────────────── */
+.nav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(12, 8, 35, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 1rem;
+}
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.nav-btn:hover  { background: rgba(255,255,255,0.10); }
+.nav-btn:active { background: rgba(255,255,255,0.18); }
+.nav-btn-active { background: rgba(255,255,255,0.14); }
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+/* ── Course Footer (parcours SVG) ───────────────────────────── */
+.course-footer {
+  height: 60px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  background: rgba(12, 8, 35, 0.80);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ── Player Footer (lecteur de leçon) ───────────────────────── */
+.player-footer {
+  height: 60px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background: white;
+  border-top: 1px solid #e9ecef;
+}
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ── Footer buttons ──────────────────────────────────────────── */
+.footer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.footer-btn:active { transform: scale(0.93); }
+
+.footer-btn-dark {
+  background: rgba(255,255,255,0.12);
+}
+.footer-btn-dark:hover { background: rgba(255,255,255,0.22); }
+
+.footer-btn-light {
+  background: #f0f2f5;
+}
+.footer-btn-light:hover { background: #e2e6ea; }
+
+.footer-btn-primary {
+  background: #4F46E5;
+}
+.footer-btn-primary:hover { background: #4338ca; }
+
+.footer-icon-light {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+.footer-icon-dark {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(0.3);
+}

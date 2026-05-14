@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { validateAnswer } from '../../services/exerciseService'
-import { calcScore, recordResult } from '../../services/scoreService'
+import { calcScore, saveResult } from '../../services/scoreService'
 import ExerciseResult from './shared/ExerciseResult'
 import SvgIllustration from './shared/SvgIllustration'
 import MultipleChoiceExercise from './exercises/MultipleChoiceExercise'
@@ -32,7 +32,14 @@ export default function ExerciseEngine({
   debugMode = false,
   onDebugResult = null,
 }) {
-  const [result, setResult] = useState(null)
+  const [result,        setResult]        = useState(null)
+  const [gamification,  setGamification]  = useState({ newBadges: [], newTrophies: [] })
+
+  const fireAndForgetSave = (id, fullResult) => {
+    saveResult(id, { ...fullResult, skills: exercise.skills ?? [] })
+      .then(g => setGamification(g ?? { newBadges: [], newTrophies: [] }))
+      .catch(() => {})
+  }
 
   // Auto-submit when debug injects an answer
   useEffect(() => {
@@ -41,7 +48,7 @@ export default function ExerciseEngine({
     const computed = calcScore(validation, exercise)
     const fullResult = { ...validation, ...computed }
     setResult(fullResult)
-    recordResult(exercise.id, fullResult)
+    fireAndForgetSave(exercise.id, fullResult)
     onDebugResult?.(injectedAnswer)
   }, [injectedAnswer]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -50,11 +57,11 @@ export default function ExerciseEngine({
     const computed = calcScore(validation, exercise)
     const fullResult = { ...validation, ...computed }
     setResult(fullResult)
-    recordResult(exercise.id, fullResult)
+    fireAndForgetSave(exercise.id, fullResult)
     onDebugResult?.(userAnswer)
   }
 
-  const handleReset = () => setResult(null)
+  const handleReset = () => { setResult(null); setGamification({ newBadges: [], newTrophies: [] }) }
 
   const ExerciseComponent = EXERCISE_REGISTRY[exercise?.exercise?.type]
 
@@ -86,7 +93,12 @@ export default function ExerciseEngine({
         exerciseData={exercise}
         courseId={courseId}
       />
-      <ExerciseResult result={result} xp={exercise.xp} onReset={result ? handleReset : null} />
+      <ExerciseResult
+        result={result}
+        xp={exercise.xp}
+        onReset={result ? handleReset : null}
+        newBadges={gamification.newBadges}
+      />
     </div>
   )
 }

@@ -1,0 +1,111 @@
+badges:
+
+  # ── Premiers pas ────────────────────────────────────────────────────────────
+  - id: "badge-first-exercise"
+    label: "Premier pas"
+    description: "Complète ton premier exercice"
+    icon: "🎯"
+    category: "progression"
+    condition:
+      type: "exercise_count"
+      operator: "gte"
+      value: 1
+
+  - id: "badge-first-course"
+    label: "Premier cours"
+    description: "Termine un cours complet"
+    icon: "📖"
+    category: "progression"
+    condition:
+      type: "course_complete_count"
+      operator: "gte"
+      value: 1
+
+  - id: "badge-ten-exercises"
+    label: "En route !"
+    description: "Complète 10 exercices"
+    icon: "🚀"
+    category: "progression"
+    condition:
+      type: "exercise_count"
+      operator: "gte"
+      value: 10
+
+  # ── Streak ───────────────────────────────────────────────────────────────────
+  - id: "badge-streak-3"
+    label: "3 jours d'affilée"
+    description: "Reviens 3 jours de suite"
+    icon: "🔥"
+    category: "streak"
+    condition:
+      type: "streak"
+      operator: "gte"
+      value: 3
+
+  - id: "badge-streak-7"
+    label: "Une semaine !"
+    description: "Reviens 7 jours de suite"
+    icon: "🔥🔥"
+    category: "streak"
+    condition:
+      type: "streak"
+      operator: "gte"
+      value: 7
+
+  # ── Compétences ──────────────────────────────────────────────────────────────
+  - id: "badge-fraction-master"
+    label: "Maître des fractions"
+    description: "Atteins 80% sur toutes les compétences fractions"
+    icon: "½"
+    category: "skill"
+    condition:
+      type: "skill_score"
+      skill_tag: "fraction/*"
+      operator: "gte"
+      value: 0.8
+      min_confidence: "medium"
+
+  - id: "badge-multiplication-master"
+    label: "As de la multiplication"
+    description: "Atteins 80% en multiplication"
+    icon: "✖️"
+    category: "skill"
+    condition:
+      type: "skill_score"
+      skill_tag: "multiplication/*"
+      operator: "gte"
+      value: 0.8
+      min_confidence: "medium"
+
+  - id: "badge-dictee-master"
+    label: "Petit écrivain"
+    description: "Atteins 80% en dictée"
+    icon: "✍️"
+    category: "skill"
+    condition:
+      type: "skill_score"
+      skill_tag: "orthographe/dictee"
+      operator: "gte"
+      value: 0.8
+      min_confidence: "medium"
+
+  # ── Score parfait ─────────────────────────────────────────────────────────────
+  - id: "badge-perfect-score"
+    label: "Parfait !"
+    description: "Obtiens 100% à un exercice"
+    icon: "💯"
+    category: "performance"
+    condition:
+      type: "exercise_perfect_count"
+      operator: "gte"
+      value: 1
+
+  - id: "badge-five-perfect"
+    label: "Excellence"
+    description: "Obtiens 5 scores parfaits"
+    icon: "✨"
+    category: "performance"
+    condition:
+      type: "exercise_perfect_count"
+      operator: "gte"
+      value: 5

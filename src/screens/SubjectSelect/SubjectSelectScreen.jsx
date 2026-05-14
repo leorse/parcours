@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChevronLeft, Calculator, BookOpen, Landmark, FlaskConical } from 'lucide-react'
+import { Calculator, BookOpen, Landmark, FlaskConical, ChevronLeft } from 'lucide-react'
 import fondMathImg from '@images/fond_mathématique.webp'
 import fondHistoireImg from '@images/fond_histoire.webp'
 import PageTransition from '../../components/layout/PageTransition'
@@ -42,21 +42,12 @@ export default function SubjectSelectScreen() {
   }
 
   return (
-    <PageTransition className="px-6 py-8 bg-app-gradient">
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <button
-          onClick={() => navigate(ROUTES.MENU)}
-          className="p-2 bg-white/10 rounded-xl hover:bg-white/20 transition-colors"
-        >
-          <ChevronLeft className="text-white w-6 h-6" />
-        </button>
-        <div>
-          <h1 className="text-2xl font-display font-bold text-white">Choisir une matière</h1>
-          <p className="text-brand-5/70 text-sm font-body">
-            Qu&apos;est-ce qu&apos;on apprend aujourd&apos;hui ?
-          </p>
-        </div>
+    <PageTransition className="px-6 pb-8 pt-[60px] bg-app-gradient">
+      <div className="mb-8">
+        <h1 className="text-2xl font-display font-bold text-white">Choisir une matière</h1>
+        <p className="text-brand-5/70 text-sm font-body">
+          Qu&apos;est-ce qu&apos;on apprend aujourd&apos;hui ?
+        </p>
       </div>
 
       {/* Grille des matières */}

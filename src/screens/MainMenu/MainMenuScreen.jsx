@@ -20,9 +20,9 @@ export default function MainMenuScreen() {
   }
 
   return (
-    <PageTransition className="relative flex flex-col items-center justify-between py-12 px-6 bg-app-gradient">
-      {/* Haut : son + déconnexion */}
-      <div className="absolute top-6 right-6 flex gap-2">
+    <PageTransition className="relative flex flex-col items-center justify-between pb-12 pt-[60px] px-6 bg-app-gradient">
+      {/* Son + déconnexion — sous le NavHeader */}
+      <div className="absolute top-[56px] right-6 flex gap-2">
         <button
           onClick={() => setMusicEnabled(!musicEnabled)}
           className="p-3 bg-white/10 rounded-2xl hover:bg-white/20 transition-colors"

@@ -9,6 +9,8 @@ import CourseSelectScreen from '../screens/CourseSelect/CourseSelectScreen'
 import StepSelectScreen from '../screens/StepSelect/StepSelectScreen'
 import StepPlayerScreen from '../screens/StepPlayer/StepPlayerScreen'
 import ProfileSelectScreen from '../screens/ProfileSelect/ProfileSelectScreen'
+import ProfileScreen from '../screens/Profile/ProfileScreen'
+import NavHeader from '../components/layout/NavHeader'
 import DebugFAB from '../components/debug/DebugFAB'
 
 // Debug dashboard — lazy-loaded, tree-shaken en prod (import.meta.env.DEV = false → dead code)
@@ -24,6 +26,7 @@ export const ROUTES = {
   COURSES:         '/courses/:subjectId',
   STEPS:           '/steps/:subjectId/:courseId',
   PLAYER:          '/player/:subjectId/:courseId/:stepId',
+  PROFILE:         '/profile',
   ...(import.meta.env.DEV ? { DEBUG: '/debug' } : {}),
 }
 
@@ -37,7 +40,12 @@ function RequireAuth({ children }) {
   const { isLoggedIn, loading } = useProfile()
   if (loading) return null
   if (!isLoggedIn) return <Navigate to={ROUTES.PROFILE_SELECT} replace />
-  return children
+  return (
+    <>
+      <NavHeader />
+      {children}
+    </>
+  )
 }
 
 function AnimatedRoutes() {
@@ -52,6 +60,7 @@ function AnimatedRoutes() {
         <Route path={ROUTES.COURSES}         element={<RequireAuth><CourseSelectScreen /></RequireAuth>} />
         <Route path={ROUTES.STEPS}           element={<RequireAuth><StepSelectScreen /></RequireAuth>} />
         <Route path={ROUTES.PLAYER}          element={<RequireAuth><StepPlayerScreen /></RequireAuth>} />
+        <Route path={ROUTES.PROFILE}         element={<RequireAuth><ProfileScreen /></RequireAuth>} />
 
         {import.meta.env.DEV && DebugDashboard && (
           <Route

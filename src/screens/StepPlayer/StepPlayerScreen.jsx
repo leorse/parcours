@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import PageTransition from '../../components/layout/PageTransition'
-import Button from '../../components/ui/Button'
+import PlayerFooter from '../../components/layout/PlayerFooter'
 import LoadingView from '../../components/ui/LoadingView'
+import Button from '../../components/ui/Button'
 import LessonRenderer from '../../components/lesson/LessonRenderer'
 import { getStepsFlat, getStepContent } from '../../services/contentService'
 import { buildRoute } from '../../router/AppRouter'
 import { useAppContext } from '../../context/AppContext'
 import { theme } from '../../styles/theme'
+
+const NAV_H = 52  // NavHeader height
 
 export default function StepPlayerScreen() {
   const navigate = useNavigate()
@@ -47,38 +49,32 @@ export default function StepPlayerScreen() {
   const subjectColor = theme.colors.subjects[currentSubject?.id] ?? theme.colors.brand[2]
   const currentIndex = lecons.findIndex((l) => l.id === stepId)
   const currentLecon = lecons[currentIndex]
+  const prevLecon    = lecons[currentIndex - 1]
   const nextLecon    = lecons[currentIndex + 1]
 
-  const handleNext = () => {
-    if (nextLecon) {
-      navigate(buildRoute.player(subjectId, courseId, nextLecon.id))
-    } else {
-      navigate(buildRoute.steps(subjectId, courseId))
-    }
-  }
+  const stepsRoute = buildRoute.steps(subjectId, courseId)
+
+  const handlePrevious = () => navigate(buildRoute.player(subjectId, courseId, prevLecon.id))
+  const handleNext     = () => navigate(buildRoute.player(subjectId, courseId, nextLecon.id))
+  const handleBack     = () => navigate(stepsRoute)
 
   return (
-    <PageTransition className="flex flex-col bg-app-gradient min-h-screen">
-      {/* Header */}
-      <div className="flex items-center gap-4 px-6 pt-8 pb-4 flex-shrink-0">
-        <button
-          onClick={() => navigate(buildRoute.steps(subjectId, courseId))}
-          className="p-2 bg-white/10 rounded-xl hover:bg-white/20 transition-colors"
-        >
-          <ChevronLeft className="text-white w-6 h-6" />
-        </button>
-        <div className="flex-1 min-w-0">
-          <p className="text-brand-5/60 text-sm font-body">
-            Leçon {currentIndex + 1} / {lecons.length}
-          </p>
-          <h1 className="text-base font-display font-bold text-white leading-tight truncate">
-            {currentLecon?.title ?? step.id}
-          </h1>
-        </div>
+    <div
+      className="flex flex-col bg-app-gradient"
+      style={{ height: '100vh', paddingTop: NAV_H }}
+    >
+      {/* Info leçon */}
+      <div className="flex-shrink-0 px-5 py-3">
+        <p className="text-brand-5/60 text-xs font-body">
+          Leçon {currentIndex + 1} / {lecons.length}
+        </p>
+        <h1 className="text-sm font-display font-bold text-white leading-tight truncate">
+          {currentLecon?.title ?? step.id}
+        </h1>
       </div>
 
       {/* Barre de progression */}
-      <div className="w-full h-1.5 bg-white/10 flex-shrink-0">
+      <div className="w-full h-1 bg-white/10 flex-shrink-0">
         <div
           className="h-full transition-all duration-500"
           style={{
@@ -88,33 +84,19 @@ export default function StepPlayerScreen() {
         />
       </div>
 
-      {/* Contenu de la leçon */}
-      <div className="flex-1 overflow-y-auto bg-white rounded-t-3xl mt-4">
+      {/* Contenu scrollable */}
+      <div className="flex-1 overflow-y-auto bg-white rounded-t-3xl mt-2">
         <LessonRenderer blocks={step.content ?? []} />
       </div>
 
-      {/* Navigation */}
-      <div className="flex gap-3 px-6 py-5 bg-white flex-shrink-0">
-        <Button
-          variant="ghost"
-          size="lg"
-          className="flex-1 flex items-center justify-center gap-2"
-          onClick={() => navigate(buildRoute.steps(subjectId, courseId))}
-        >
-          <ChevronLeft className="w-5 h-5" />
-          Retour
-        </Button>
-
-        <Button
-          variant="primary"
-          size="lg"
-          className="flex-1 flex items-center justify-center gap-2"
-          onClick={handleNext}
-        >
-          {nextLecon ? 'Suivant' : 'Terminer'}
-          <ChevronRight className="w-5 h-5" />
-        </Button>
-      </div>
-    </PageTransition>
+      {/* Footer navigation */}
+      <PlayerFooter
+        onBack={handleBack}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+        hasPrevious={currentIndex > 0}
+        hasNext={!!nextLecon}
+      />
+    </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ChevronLeft, Lock, CheckCircle, Play } from 'lucide-react'
+import { Lock, CheckCircle, Play } from 'lucide-react'
 import PageTransition from '../../components/layout/PageTransition'
 import LoadingView from '../../components/ui/LoadingView'
 import Card from '../../components/ui/Card'
@@ -51,21 +51,12 @@ export default function CourseSelectScreen() {
   }
 
   return (
-    <PageTransition className="px-6 py-8 bg-app-gradient">
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-6">
-        <button
-          onClick={() => navigate(ROUTES.SUBJECTS)}
-          className="p-2 bg-white/10 rounded-xl hover:bg-white/20 transition-colors"
-        >
-          <ChevronLeft className="text-white w-6 h-6" />
-        </button>
-        <div>
-          <p className="text-sm font-body font-bold" style={{ color: subjectColor }}>
-            {subject?.label}
-          </p>
-          <h1 className="text-xl font-display font-bold text-white">Choisir un cours</h1>
-        </div>
+    <PageTransition className="px-6 pb-8 pt-[60px] bg-app-gradient">
+      <div className="mb-6">
+        <p className="text-sm font-body font-bold" style={{ color: subjectColor }}>
+          {subject?.label}
+        </p>
+        <h1 className="text-xl font-display font-bold text-white">Choisir un cours</h1>
       </div>
 
       {/* Progression globale */}
