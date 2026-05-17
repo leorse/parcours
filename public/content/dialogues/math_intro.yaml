@@ -1,0 +1,20 @@
+dialogue:
+  id: "math_intro"
+  type: "monologue"
+  sound: null
+  pages:
+    - text: |
+        Bienvenue dans ton parcours de **Mathématiques** !
+
+        Un voyage au cœur de la base de toutes les **sciences**.
+      image: "personnages/gribouille_coucou.png"
+
+    - text: |
+        On a un beau programme devant nous, conçu pour faire
+        de toi un expert de la **précision**.
+      image: "personnages/gribouille_coucou.png"
+
+    - text: |
+        Au programme : **fractions**, **diviseurs**, **multiples**
+        et bien plus encore. Step by step ! 😊
+      image: "personnages/gribouille_doigt_leve.png"

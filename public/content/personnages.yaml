@@ -1,0 +1,57 @@
+personnages:
+
+  - name: "Crac"
+    spritesheet: "personnages/tete_lapin.png"
+    width: 379
+    height: 379
+    cols: 2
+    rows: 3
+    emotions:
+      - name: "content"
+        coords: [0, 0]
+      - name: "serieux"
+        coords: [1, 0]
+      - name: "interrogation"
+        coords: [0, 1]
+      - name: "moue"
+        coords: [1, 1]
+      - name: "sur"
+        coords: [0, 2]
+      - name: "parle"
+        coords: [1, 2]
+
+  - name: "Moggy"
+    spritesheet: "personnages/tete_chat.png"
+    width: 379
+    height: 379
+    cols: 2
+    rows: 3
+    emotions:
+      - name: "content"
+        coords: [0, 0]
+      - name: "serieux"
+        coords: [1, 0]
+      - name: "interrogation"
+        coords: [0, 1]
+      - name: "moue"
+        coords: [1, 1]
+      - name: "sur"
+        coords: [0, 2]
+      - name: "parle"
+        coords: [1, 2]
+
+  - name: "Lumio"
+    spritesheet: "personnages/lumio.png"
+    width: 200
+    height: 200
+    cols: 2
+    rows: 2
+    emotions:
+      - name: "wave"
+        coords: [0, 0]
+      - name: "happy"
+        coords: [1, 0]
+      - name: "thinking"
+        coords: [0, 1]
+      - name: "proud"
+        coords: [1, 1]

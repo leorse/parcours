@@ -1,0 +1,206 @@
+events:
+
+  # ── Premier lancement ─────────────────────────────────────────────────────────
+  - id: "evt-first-launch"
+    once: true
+    trigger:
+      on: "app_start"
+    conditions:
+      - type: "session_count"
+        operator: "eq"
+        value: 1
+    actions:
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "wave"
+        sound: "sounds/welcome.mp3"
+        messages:
+          - "Bienvenue ! Je m'appelle Lumio 👋"
+          - "Je vais t'accompagner dans ton apprentissage."
+          - "Choisis une matière pour commencer !"
+
+  # ── Retour après absence ──────────────────────────────────────────────────────
+  - id: "evt-long-absence"
+    once: false
+    cooldown_days: 1
+    trigger:
+      on: "app_start"
+    conditions:
+      - type: "days_since_last_session"
+        operator: "gte"
+        value: 3
+    actions:
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "concerned"
+        sound: "sounds/comeback.mp3"
+        messages:
+          - "Ça fait {days_absent} jours qu'on ne s'est pas vus !"
+          - "Voici quelques exercices pour se remettre dans le bain :"
+      - type: "show_reinforcement"
+        max: 3
+
+  # ── Connexion quotidienne ─────────────────────────────────────────────────────
+  - id: "evt-daily-login"
+    once: false
+    cooldown_days: 1
+    trigger:
+      on: "daily_login"
+    conditions: []
+    actions:
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "happy"
+        messages:
+          - "Bonjour {pseudo} ! 🌟"
+          - "Tu es là depuis {current_streak} jours d'affilée !"
+
+  # ── Première matière ──────────────────────────────────────────────────────────
+  - id: "evt-first-subject"
+    once: true
+    trigger:
+      on: "subject_enter"
+    conditions:
+      - type: "subject_attempts"
+        operator: "eq"
+        value: 1
+    actions:
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "excited"
+        messages:
+          - "Tu commences {subject_name} pour la première fois !"
+          - "Prends ton temps, on y va étape par étape. 😊"
+
+  # ── Premier cours complété ────────────────────────────────────────────────────
+  - id: "evt-first-course-complete"
+    once: true
+    trigger:
+      on: "course_complete"
+    conditions:
+      - type: "total_courses_completed"
+        operator: "eq"
+        value: 1
+    actions:
+      - type: "show_celebration"
+        animation: "confetti"
+        sound: "sounds/victory.mp3"
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "proud"
+        messages:
+          - "Bravo ! Tu viens de finir ton premier cours ! 🎉"
+          - "Tu as gagné {xp_earned} points d'expérience !"
+
+  # ── Streak 7 jours ────────────────────────────────────────────────────────────
+  - id: "evt-streak-7"
+    once: true
+    trigger:
+      on: "app_start"
+    conditions:
+      - type: "streak"
+        operator: "gte"
+        value: 7
+    actions:
+      - type: "show_celebration"
+        animation: "fireworks"
+        sound: "sounds/streak.mp3"
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "amazed"
+        messages:
+          - "7 jours d'affilée ! Tu es incroyable {pseudo} ! 🔥🔥🔥"
+
+  # ── Badge débloqué ────────────────────────────────────────────────────────────
+  - id: "evt-badge-earned"
+    once: false
+    trigger:
+      on: "badge_earned"
+    conditions: []
+    actions:
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "celebrate"
+        sound: "sounds/badge.mp3"
+        messages:
+          - "Tu as débloqué le badge {badge_label} {badge_icon} !"
+
+  # ── Compétence faible détectée ────────────────────────────────────────────────
+  - id: "evt-weak-skill"
+    once: false
+    cooldown_days: 3
+    trigger:
+      on: "course_enter"
+    conditions:
+      - type: "has_weak_skill"
+        min_score: 0.4
+        min_attempts: 5
+    actions:
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "thinking"
+        messages:
+          - "J'ai remarqué que tu galères un peu sur {weak_skill_label}."
+          - "Je te propose quelques exercices de renforcement ! 💪"
+      - type: "show_reinforcement"
+        skill_tag: "{weak_skill_tag}"
+        max: 3
+
+  # ── Session longue ────────────────────────────────────────────────────────────
+  - id: "evt-long-session"
+    once: false
+    cooldown_days: 0
+    trigger:
+      on: "step_complete"
+    conditions:
+      - type: "session_duration_minutes"
+        operator: "gte"
+        value: 30
+    actions:
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "sleepy"
+        messages:
+          - "Tu travailles depuis {session_minutes} minutes !"
+          - "Tu veux faire une petite pause ?"
+        buttons:
+          - label: "Continuer"
+            action: "dismiss"
+          - label: "Faire une pause"
+            action: "go_to_menu"
+
+  # ── Encouragement après exercice réussi ──────────────────────────────────────
+  - id: "evt-exercise-perfect"
+    once: false
+    cooldown_days: 0
+    trigger:
+      on: "exercise_complete"
+    conditions:
+      - type: "score"
+        operator: "gte"
+        value: 1.0
+    actions:
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "jump"
+        messages:
+          - "Parfait ! 100% — tu maîtrises ça ! ⭐"
+          - "Tu as gagné {xp_earned} XP !"
+
+  # ── Encouragement après exercice difficile ───────────────────────────────────
+  - id: "evt-exercise-encouragement"
+    once: false
+    cooldown_days: 0
+    trigger:
+      on: "exercise_complete"
+    conditions:
+      - type: "score"
+        operator: "lt"
+        value: 0.5
+    actions:
+      - type: "show_dialog"
+        character: "mascotte"
+        animation: "concerned"
+        messages:
+          - "C'est difficile, mais tu vas y arriver ! 💪"
+          - "Réessaie, je crois en toi !"

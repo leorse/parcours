@@ -5,49 +5,66 @@ import ExercisePreview from './panels/ExercisePreview'
 import YamlInspector  from './panels/YamlInspector'
 import EngineState    from './panels/EngineState'
 import AnswerInjector from './panels/AnswerInjector'
+import EventsTester   from './panels/EventsTester'
 import { useDebugExercise } from './hooks/useDebugExercise'
 
-const TABS = ['YAML', 'État', 'Réponses']
+const MODES     = ['Exercices', 'Mascotte']
+const EXO_TABS  = ['YAML', 'État', 'Réponses']
 
 export default function DebugDashboard() {
+  const [mode,      setMode]      = useState('Exercices')
   const [activeTab, setActiveTab] = useState('État')
   const debug = useDebugExercise()
 
   return (
     <div style={s.container}>
 
-      {/* Header */}
+      {/* Header avec sélecteur de mode */}
       <div style={s.header}>
         <span style={s.logo}>🐛 Debug Console — Parc-Cours</span>
+        <div style={s.modeBar}>
+          {MODES.map(m => (
+            <button
+              key={m}
+              style={{ ...s.modeBtn, ...(mode === m ? s.modeBtnActive : {}) }}
+              onClick={() => setMode(m)}
+            >
+              {m === 'Exercices' ? '⚙️ Exercices' : '🎭 Mascotte'}
+            </button>
+          ))}
+        </div>
         <span style={s.env}>DEV · {new Date().toLocaleTimeString()}</span>
       </div>
 
-      {/* Layout 3 colonnes */}
-      <div style={s.body}>
-
-        {/* Colonne gauche — arbre */}
-        <div style={s.sidebar}>
-          <ContentTree
-            onSelect={debug.loadExercise}
-            selectedId={debug.exerciseData?.id}
-          />
+      {/* ── Mode Exercices ── */}
+      {mode === 'Exercices' && (
+        <div style={s.body}>
+          <div style={s.sidebar}>
+            <ContentTree
+              onSelect={debug.loadExercise}
+              selectedId={debug.exerciseData?.id}
+            />
+          </div>
+          <div style={s.main}>
+            <ExerciseBrowser debug={debug} />
+            <ExercisePreview debug={debug} />
+          </div>
+          <div style={s.inspector}>
+            <TabBar tabs={EXO_TABS} active={activeTab} onChange={setActiveTab} />
+            {activeTab === 'YAML'     && <YamlInspector data={debug.exerciseData} />}
+            {activeTab === 'État'     && <EngineState state={debug.lastResult} />}
+            {activeTab === 'Réponses' && <AnswerInjector debug={debug} />}
+          </div>
         </div>
+      )}
 
-        {/* Colonne centre — exercice */}
-        <div style={s.main}>
-          <ExerciseBrowser debug={debug} />
-          <ExercisePreview debug={debug} />
+      {/* ── Mode Mascotte ── */}
+      {mode === 'Mascotte' && (
+        <div style={{ flex: 1, overflow: 'hidden', display: 'flex' }}>
+          <EventsTester />
         </div>
+      )}
 
-        {/* Colonne droite — inspecteurs */}
-        <div style={s.inspector}>
-          <TabBar tabs={TABS} active={activeTab} onChange={setActiveTab} />
-          {activeTab === 'YAML'     && <YamlInspector data={debug.exerciseData} />}
-          {activeTab === 'État'     && <EngineState state={debug.lastResult} />}
-          {activeTab === 'Réponses' && <AnswerInjector debug={debug} />}
-        </div>
-
-      </div>
     </div>
   )
 }
@@ -76,12 +93,23 @@ const s = {
   },
   header: {
     display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-    padding: '8px 16px', background: '#161b22',
-    borderBottom: '1px solid #30363d', flexShrink: 0,
+    padding: '6px 16px', background: '#161b22',
+    borderBottom: '1px solid #30363d', flexShrink: 0, gap: 16,
   },
-  logo:  { color: '#00ff88', fontWeight: 'bold', fontSize: '14px' },
-  env:   { color: '#8b949e', fontSize: '11px' },
-  body:  { display: 'flex', flex: 1, overflow: 'hidden' },
+  logo:  { color: '#00ff88', fontWeight: 'bold', fontSize: '14px', flexShrink: 0 },
+  env:   { color: '#8b949e', fontSize: '11px', flexShrink: 0 },
+
+  modeBar: { display: 'flex', gap: 4 },
+  modeBtn: {
+    background: 'transparent', border: '1px solid #30363d', borderRadius: 4,
+    color: '#8b949e', cursor: 'pointer', fontSize: '11px', fontFamily: 'monospace',
+    padding: '4px 12px',
+  },
+  modeBtnActive: {
+    background: '#0d2027', border: '1px solid #00ff88', color: '#00ff88',
+  },
+
+  body:      { display: 'flex', flex: 1, overflow: 'hidden' },
   sidebar:   { width: '230px', borderRight: '1px solid #30363d', overflow: 'auto', padding: '4px 8px', flexShrink: 0 },
   main:      { flex: 1, overflow: 'auto', padding: '12px 16px', background: '#f6f8fa' },
   inspector: { width: '310px', borderLeft: '1px solid #30363d', overflow: 'hidden', display: 'flex', flexDirection: 'column', flexShrink: 0 },

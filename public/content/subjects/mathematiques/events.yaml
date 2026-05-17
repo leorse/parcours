@@ -1,0 +1,23 @@
+events:
+
+  - id: "evt-math-first-enter"
+    once: true
+    trigger:
+      on: "subject_enter"
+    conditions: []
+    actions:
+      - type: "show_monologue"
+        ref: "dialogues/math_intro.yaml"
+
+  - id: "evt-math-weak-fraction"
+    once: false
+    cooldown_days: 7
+    trigger:
+      on: "course_enter"
+    conditions:
+      - type: "has_weak_skill"
+        min_score: 0.4
+        min_attempts: 5
+    actions:
+      - type: "show_dialogue"
+        ref: "dialogues/crac_moggy_fractions.yaml"

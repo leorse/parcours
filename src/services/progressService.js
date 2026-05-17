@@ -6,6 +6,7 @@
 import { getFirebaseToken } from './profileService'
 
 const STORAGE_KEY = 'parcours_progress'
+const SESSION_KEY = 'parcours_session'
 const BACKEND     = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:8000'
 
 // ── Helpers backend (fire and forget — jamais bloquants pour l'UI) ────────────
@@ -171,6 +172,50 @@ export async function hydrateFromBackend(userId) {
     }
   })
   saveProgress(userId, progress)
+}
+
+// ── Session validée par exercice ──────────────────────────────────────────────
+
+/**
+ * Appelé quand un exercice est complété.
+ * Valide la session du jour si pas encore fait.
+ * @returns {boolean} true si c'est le premier exercice du jour
+ */
+export function markSessionActive(userId) {
+  const today  = new Date().toISOString().slice(0, 10)
+  const stored = localStorage.getItem(`${SESSION_KEY}_${userId}`)
+  const data   = stored ? JSON.parse(stored) : {}
+
+  if (data.lastSessionDate === today) {
+    data.exercisesToday = (data.exercisesToday ?? 0) + 1
+    localStorage.setItem(`${SESSION_KEY}_${userId}`, JSON.stringify(data))
+    return false
+  }
+
+  const previousDate  = data.lastSessionDate ?? null
+  const daysSinceLast = previousDate
+    ? Math.floor((Date.now() - new Date(previousDate)) / (1000 * 60 * 60 * 24))
+    : 999
+
+  data.lastSessionDate = today
+  data.exercisesToday  = 1
+  data.sessionCount    = (data.sessionCount ?? 0) + 1
+  data.daysSinceLast   = daysSinceLast
+  localStorage.setItem(`${SESSION_KEY}_${userId}`, JSON.stringify(data))
+
+  backendPost('/api/streak/check', {}) // fire-and-forget
+  return true
+}
+
+export function getSessionStats(userId) {
+  const stored = localStorage.getItem(`${SESSION_KEY}_${userId}`)
+  const data   = stored ? JSON.parse(stored) : {}
+  return {
+    sessionCount:         data.sessionCount   ?? 0,
+    exercisesToday:       data.exercisesToday  ?? 0,
+    daysSinceLastSession: data.daysSinceLast   ?? 999,
+    lastSessionDate:      data.lastSessionDate ?? null,
+  }
 }
 
 // ── Utilitaire interne ────────────────────────────────────────────────────────

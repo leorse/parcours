@@ -1,26 +1,65 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import logoImg from '@images/logo.png'
-import parcoursImg from '@images/parcours.png'
-import PageTransition from '../../components/layout/PageTransition'
-import { ROUTES } from '../../router/AppRouter'
-import { useProfile } from '../../hooks/useProfile'
-import { checkStreak } from '../../services/progressService'
+import { useEffect }         from 'react'
+import { useNavigate }       from 'react-router-dom'
+import { motion }            from 'framer-motion'
+import logoImg               from '@images/logo.png'
+import parcoursImg           from '@images/parcours.png'
+import PageTransition        from '../../components/layout/PageTransition'
+import { ROUTES }            from '../../router/AppRouter'
+import { useProfile }        from '../../hooks/useProfile'
+import { useEventEngine }    from '../../hooks/useEventEngine'
+import { checkStreak, getSessionStats } from '../../services/progressService'
+import { getFirebaseToken }            from '../../services/profileService'
+
+const BACKEND = import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:8000'
+
+async function buildStartContext(uid) {
+  // Session count basé sur les vrais exercices complétés (pas à la simple connexion)
+  const sessionStats = getSessionStats(uid)
+
+  try {
+    const token = await getFirebaseToken()
+    const [streakRes, skillsRes] = await Promise.allSettled([
+      fetch(`${BACKEND}/api/streak/${uid}?token=${token}`).then(r => r.json()),
+      fetch(`${BACKEND}/api/skills/${uid}?token=${token}`).then(r => r.json()),
+    ])
+
+    const streak = streakRes.status === 'fulfilled' ? streakRes.value : {}
+    const skills = skillsRes.status === 'fulfilled' ? (skillsRes.value.skills ?? []) : []
+
+    return {
+      sessionCount:         sessionStats.sessionCount,
+      daysSinceLastSession: sessionStats.daysSinceLastSession,
+      days_absent:          sessionStats.daysSinceLastSession,
+      currentStreak:        streak.current_streak ?? 0,
+      current_streak:       streak.current_streak ?? 0,
+      skills,
+    }
+  } catch {
+    return {
+      sessionCount:         sessionStats.sessionCount,
+      daysSinceLastSession: sessionStats.daysSinceLastSession,
+      days_absent:          sessionStats.daysSinceLastSession,
+    }
+  }
+}
 
 export default function SplashScreen() {
   const navigate = useNavigate()
-  const { user } = useProfile()
+  const { user, uid } = useProfile()
+  const { trigger }   = useEventEngine()
 
   useEffect(() => {
-    // checkStreak une fois par jour — fire and forget
-    if (user?.uid) {
-      checkStreak()
-    }
-  }, [user?.uid])
+    if (!uid) return
+
+    checkStreak() // fire-and-forget
+
+    buildStartContext(uid).then(ctx => {
+      trigger('app_start', ctx)
+    })
+  }, [uid]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    const dest = user ? ROUTES.SUBJECTS : ROUTES.PROFILE_SELECT
+    const dest  = user ? ROUTES.SUBJECTS : ROUTES.PROFILE_SELECT
     const timer = setTimeout(() => navigate(dest), 2800)
     return () => clearTimeout(timer)
   }, [navigate, user])
@@ -28,7 +67,6 @@ export default function SplashScreen() {
   return (
     <PageTransition className="flex items-center justify-center bg-app-gradient">
       <div className="text-center px-6">
-        {/* Card blanche avec le logo et le titre */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -47,7 +85,6 @@ export default function SplashScreen() {
           />
         </motion.div>
 
-        {/* Sous-titre */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -57,7 +94,6 @@ export default function SplashScreen() {
           Apprends à ton rythme
         </motion.p>
 
-        {/* Points de chargement */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

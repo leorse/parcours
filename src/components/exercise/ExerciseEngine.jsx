@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { validateAnswer } from '../../services/exerciseService'
 import { calcScore, saveResult } from '../../services/scoreService'
+import { useEventEngine } from '../../hooks/useEventEngine'
 import ExerciseResult from './shared/ExerciseResult'
 import SvgIllustration from './shared/SvgIllustration'
 import MultipleChoiceExercise from './exercises/MultipleChoiceExercise'
@@ -34,10 +35,36 @@ export default function ExerciseEngine({
 }) {
   const [result,        setResult]        = useState(null)
   const [gamification,  setGamification]  = useState({ newBadges: [], newTrophies: [] })
+  const { trigger } = useEventEngine()
 
   const fireAndForgetSave = (id, fullResult) => {
     saveResult(id, { ...fullResult, skills: exercise.skills ?? [] })
-      .then(g => setGamification(g ?? { newBadges: [], newTrophies: [] }))
+      .then(g => {
+        const gamif = g ?? { newBadges: [], newTrophies: [], isFirstToday: false, sessionStats: null }
+        setGamification(gamif)
+
+        trigger('exercise_complete', {
+          xp_earned: fullResult.xpEarned ?? 0,
+          score:     fullResult.score    ?? 0,
+        })
+
+        // Première session du jour → daily_login
+        if (gamif.isFirstToday && gamif.sessionStats) {
+          trigger('daily_login', {
+            currentStreak:  gamif.sessionStats.currentStreak ?? 0,
+            current_streak: gamif.sessionStats.currentStreak ?? 0,
+            sessionCount:   gamif.sessionStats.sessionCount  ?? 0,
+          })
+        }
+
+        // Un événement par badge débloqué
+        for (const badge of (gamif.newBadges ?? [])) {
+          trigger('badge_earned', {
+            badge_label: badge.label ?? badge.id,
+            badge_icon:  badge.icon  ?? '🏅',
+          })
+        }
+      })
       .catch(() => {})
   }
 

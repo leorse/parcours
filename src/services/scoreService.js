@@ -1,25 +1,22 @@
 // Jalon 4b : saveResult transmet les skills au backend via progressService
 // Jalon 5  : saveResult évalue les badges et retourne { newBadges, newTrophies }
+// Jalon 6b : markSessionActive — session validée au premier exercice du jour
 
-import { saveExerciseResult } from './progressService'
+import { saveExerciseResult, markSessionActive, getSessionStats } from './progressService'
 import { getCurrentUser, getFirebaseToken } from './profileService'
 import { checkNewBadges, checkNewTrophies } from './badgeService'
 
 const BACKEND = import.meta.env.VITE_BACKEND_URL
 
 export function calcScore(validationResult, exerciseData) {
-  const score   = validationResult.score ?? 0
+  const score    = validationResult.score ?? 0
   const xpEarned = Math.round((exerciseData.xp ?? 0) * score)
-  return {
-    score,
-    xpEarned,
-    correct: validationResult.correct,
-  }
+  return { score, xpEarned, correct: validationResult.correct }
 }
 
 export async function saveResult(exerciseId, result, userId) {
   const uid = userId ?? getCurrentUser()?.uid
-  if (!uid) return { newBadges: [], newTrophies: [] }
+  if (!uid) return { newBadges: [], newTrophies: [], isFirstToday: false, sessionStats: null }
 
   await saveExerciseResult(uid, exerciseId, {
     score:        result.score,
@@ -28,6 +25,10 @@ export async function saveResult(exerciseId, result, userId) {
     skills:       result.skills       ?? [],
     timeSpentSec: result.timeSpentSec ?? null,
   })
+
+  // Session validée au premier exercice du jour
+  const isFirstToday  = markSessionActive(uid)
+  const sessionStats  = getSessionStats(uid)
 
   try {
     const token = await getFirebaseToken()
@@ -39,12 +40,12 @@ export async function saveResult(exerciseId, result, userId) {
     ])
 
     const stats = {
-      totalXP:            xpData.total_xp          ?? 0,
-      skills:             skillsData.skills         ?? [],
-      currentStreak:      streakData.current_streak ?? 0,
-      earnedBadgeCount:   badgesData.badges?.length ?? 0,
-      exerciseCount:      xpData.exercise_count     ?? 0,
-      perfectCount:       result.score >= 1.0 ? 1 : 0,
+      totalXP:             xpData.total_xp          ?? 0,
+      skills:              skillsData.skills         ?? [],
+      currentStreak:       streakData.current_streak ?? 0,
+      earnedBadgeCount:    badgesData.badges?.length ?? 0,
+      exerciseCount:       xpData.exercise_count     ?? 0,
+      perfectCount:        result.score >= 1.0 ? 1 : 0,
       courseCompleteCount: 0,
     }
 
@@ -60,10 +61,10 @@ export async function saveResult(exerciseId, result, userId) {
       })
     }
 
-    return { newBadges, newTrophies }
+    return { newBadges, newTrophies, isFirstToday, sessionStats }
   } catch (e) {
     console.warn('[scoreService] Évaluation badges échouée :', e.message)
-    return { newBadges: [], newTrophies: [] }
+    return { newBadges: [], newTrophies: [], isFirstToday, sessionStats }
   }
 }
 

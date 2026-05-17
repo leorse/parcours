@@ -5,6 +5,8 @@ import {
   markStepComplete,
   getCourseProgress,
   resetProgress,
+  markSessionActive,
+  getSessionStats,
 } from '../services/progressService'
 
 const localStorageMock = (() => {
@@ -66,4 +68,30 @@ describe('progressService', () => {
     expect(getStepStatus(USER_ID, STEP_ID)).toBe('locked')
   })
 
+})
+
+describe('markSessionActive / getSessionStats', () => {
+
+  test('première fois → retourne true et sessionCount=1', () => {
+    const result = markSessionActive(USER_ID)
+    expect(result).toBe(true)
+    expect(getSessionStats(USER_ID).sessionCount).toBe(1)
+    expect(getSessionStats(USER_ID).exercisesToday).toBe(1)
+  })
+
+  test('deuxième exercice le même jour → retourne false, sessionCount inchangé', () => {
+    markSessionActive(USER_ID)
+    const result = markSessionActive(USER_ID)
+    expect(result).toBe(false)
+    expect(getSessionStats(USER_ID).sessionCount).toBe(1)
+    expect(getSessionStats(USER_ID).exercisesToday).toBe(2)
+  })
+
+  test('getSessionStats renvoie daysSinceLastSession=999 sans historique', () => {
+    expect(getSessionStats(USER_ID).daysSinceLastSession).toBe(999)
+  })
+
+  test('getSessionStats.sessionCount=0 sans historique', () => {
+    expect(getSessionStats(USER_ID).sessionCount).toBe(0)
+  })
 })

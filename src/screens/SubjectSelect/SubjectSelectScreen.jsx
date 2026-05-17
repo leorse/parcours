@@ -8,6 +8,7 @@ import LoadingView from '../../components/ui/LoadingView'
 import { getSubjects } from '../../services/contentService'
 import { ROUTES, buildRoute } from '../../router/AppRouter'
 import { useAppContext } from '../../context/AppContext'
+import { useEventEngine } from '../../hooks/useEventEngine'
 
 const ICON_MAP = {
   'calculator':    Calculator,
@@ -24,6 +25,7 @@ const FOND_MAP = {
 export default function SubjectSelectScreen() {
   const navigate = useNavigate()
   const { setCurrentSubject } = useAppContext()
+  const { trigger } = useEventEngine()
 
   const [subjects, setSubjects] = useState([])
   const [loading, setLoading]   = useState(true)
@@ -38,6 +40,12 @@ export default function SubjectSelectScreen() {
 
   const handleSelect = (subject) => {
     setCurrentSubject(subject)
+    trigger('subject_enter', {
+      subject_name:    subject.label,
+      subjectAttempts: 1,
+    }, [
+      `subjects/${subject.id}/events.yaml`,
+    ])
     navigate(buildRoute.courses(subject.id))
   }
 

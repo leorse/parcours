@@ -1,28 +1,36 @@
-import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import PageTransition from '../../components/layout/PageTransition'
-import PlayerFooter from '../../components/layout/PlayerFooter'
-import LoadingView from '../../components/ui/LoadingView'
-import Button from '../../components/ui/Button'
-import LessonRenderer from '../../components/lesson/LessonRenderer'
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate, useParams }      from 'react-router-dom'
+import PageTransition                  from '../../components/layout/PageTransition'
+import PlayerFooter                    from '../../components/layout/PlayerFooter'
+import LoadingView                     from '../../components/ui/LoadingView'
+import Button                          from '../../components/ui/Button'
+import LessonRenderer                  from '../../components/lesson/LessonRenderer'
+import DialoguePlayer                  from '../../components/personnages/DialoguePlayer'
+import MonologuePlayer                 from '../../components/personnages/MonologuePlayer'
 import { getStepsFlat, getStepContent } from '../../services/contentService'
-import { buildRoute } from '../../router/AppRouter'
-import { useAppContext } from '../../context/AppContext'
-import { theme } from '../../styles/theme'
+import { resolveDialogueRef }          from '../../services/dialogueService'
+import { buildRoute }                  from '../../router/AppRouter'
+import { useAppContext }               from '../../context/AppContext'
+import { useEventEngine }              from '../../hooks/useEventEngine'
+import { theme }                       from '../../styles/theme'
 
-const NAV_H = 52  // NavHeader height
+const NAV_H = 52
 
 export default function StepPlayerScreen() {
   const navigate = useNavigate()
   const { subjectId, courseId, stepId } = useParams()
   const { currentSubject }              = useAppContext()
+  const { trigger }                     = useEventEngine()
 
   const [step, setStep]       = useState(null)
   const [lecons, setLecons]   = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError]     = useState(null)
 
+  const sessionStartRef = useRef(Date.now())
+
   useEffect(() => {
+    sessionStartRef.current = Date.now()
     Promise.all([
       getStepContent(courseId, subjectId, stepId),
       getStepsFlat(courseId, subjectId),
@@ -54,9 +62,23 @@ export default function StepPlayerScreen() {
 
   const stepsRoute = buildRoute.steps(subjectId, courseId)
 
+  const sessionMinutes = () =>
+    Math.round((Date.now() - sessionStartRef.current) / 60000)
+
   const handlePrevious = () => navigate(buildRoute.player(subjectId, courseId, prevLecon.id))
-  const handleNext     = () => navigate(buildRoute.player(subjectId, courseId, nextLecon.id))
   const handleBack     = () => navigate(stepsRoute)
+
+  const handleNext = () => {
+    trigger('step_complete', {
+      step_id:                stepId,
+      sessionDurationMinutes: sessionMinutes(),
+      session_minutes:        sessionMinutes(),
+    })
+    if (nextLecon) navigate(buildRoute.player(subjectId, courseId, nextLecon.id))
+    else navigate(stepsRoute)
+  }
+
+  const isNarrative = step.type === 'dialogue' || step.type === 'monologue'
 
   return (
     <div
@@ -84,9 +106,15 @@ export default function StepPlayerScreen() {
         />
       </div>
 
-      {/* Contenu scrollable */}
-      <div className="flex-1 overflow-y-auto bg-white rounded-t-3xl mt-2">
-        <LessonRenderer blocks={step.content ?? []} />
+      {/* Contenu */}
+      <div className={`flex-1 mt-2 ${isNarrative ? 'overflow-hidden' : 'overflow-y-auto bg-white rounded-t-3xl'}`}>
+        {isNarrative ? (
+          step.type === 'dialogue'
+            ? <DialoguePlayer dialogueRef={resolveDialogueRef(step.content_ref)} onComplete={handleNext} embedded />
+            : <MonologuePlayer dialogueRef={resolveDialogueRef(step.content_ref)} onComplete={handleNext} embedded />
+        ) : (
+          <LessonRenderer blocks={step.content ?? []} />
+        )}
       </div>
 
       {/* Footer navigation */}

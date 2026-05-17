@@ -9,16 +9,19 @@ import Badge from '../../components/ui/Badge'
 import { getCourses, getSubjects } from '../../services/contentService'
 import { ROUTES, buildRoute } from '../../router/AppRouter'
 import { useAppContext } from '../../context/AppContext'
+import { useEventEngine } from '../../hooks/useEventEngine'
 import { theme } from '../../styles/theme'
 
 export default function CourseSelectScreen() {
   const navigate = useNavigate()
   const { subjectId } = useParams()
   const { setCurrentCourse } = useAppContext()
+  const { trigger }          = useEventEngine()
 
   const [subject, setSubject]   = useState(null)
   const [courses, setCourses]   = useState([])
   const [loading, setLoading]   = useState(true)
+  const [skills,  setSkills]    = useState([])
 
   useEffect(() => {
     Promise.all([
@@ -34,12 +37,21 @@ export default function CourseSelectScreen() {
 
   if (loading) return <LoadingView />
 
-  const subjectColor    = theme.colors.subjects[subjectId] ?? theme.colors.brand[2]
-  const completedCount  = courses.filter((c) => c.status === 'completed').length
+  const subjectColor   = theme.colors.subjects[subjectId] ?? theme.colors.brand[2]
+  const completedCount = courses.filter((c) => c.status === 'completed').length
 
   const handleSelect = (course) => {
     if (course.status === 'locked') return
     setCurrentCourse(course)
+    const weakSkill = skills.find(s => (s.score ?? 1) < 0.4 && (s.attempts ?? 0) >= 5)
+    trigger('course_enter', {
+      skills,
+      weak_skill_tag:   weakSkill?.skill_tag             ?? '',
+      weak_skill_label: weakSkill?.skill_tag?.split('/').pop() ?? '',
+    }, [
+      `subjects/${subjectId}/events.yaml`,
+      `subjects/${subjectId}/courses/${course.id}/events.yaml`,
+    ])
     navigate(buildRoute.steps(subjectId, course.id))
   }
 

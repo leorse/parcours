@@ -12,6 +12,7 @@ import ProfileSelectScreen from '../screens/ProfileSelect/ProfileSelectScreen'
 import ProfileScreen from '../screens/Profile/ProfileScreen'
 import NavHeader from '../components/layout/NavHeader'
 import DebugFAB from '../components/debug/DebugFAB'
+import MascotteDialog from '../components/mascotte/MascotteDialog'
 
 // Debug dashboard — lazy-loaded, tree-shaken en prod (import.meta.env.DEV = false → dead code)
 const DebugDashboard = import.meta.env.DEV
@@ -83,6 +84,7 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <AnimatedRoutes />
+      <MascotteDialog />
       {import.meta.env.DEV && <DebugFAB />}
     </BrowserRouter>
   )

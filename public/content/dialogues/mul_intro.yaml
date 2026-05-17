@@ -1,0 +1,20 @@
+dialogue:
+  id: "mul_intro"
+  type: "monologue"
+  sound: null
+  pages:
+    - text: |
+        Bienvenue dans le cours **Multiplication** !
+      image: "personnages/gribouille_coucou.png"
+
+    - text: |
+        La multiplication, c'est une addition répétée.
+        **3 × 4** = 3 + 3 + 3 + 3 = **12** 💡
+      image: "personnages/gribouille_coucou.png"
+
+    - text: |
+        Mais avant de commencer, on va revoir les bases
+        avec les **tables de multiplication**.
+
+        Prêt·e ? C'est parti ! 🚀
+      image: "personnages/gribouille_doigt_leve.png"

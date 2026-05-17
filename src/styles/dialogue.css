@@ -1,0 +1,263 @@
+/* ════════════════════════════════════════════════════════
+   Monologues & dialogues — Jalon 6b
+   ════════════════════════════════════════════════════════ */
+
+/* ── Monologue ──────────────────────────────────────────── */
+.monologue-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9995;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.monologue-overlay.embedded {
+  position: relative;
+  inset: unset;
+  z-index: auto;
+  height: 100%;
+  cursor: default;
+  overflow-y: auto;
+}
+
+.monologue-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 480px;
+  width: 100%;
+  gap: 16px;
+  cursor: default;
+}
+
+.monologue-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.monologue-image {
+  max-height: 260px;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6));
+}
+
+.monologue-text-box {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px 24px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.monologue-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.btn-monologue-next {
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 22px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-monologue-next:hover { opacity: 0.88; }
+
+/* ── Dialogue ───────────────────────────────────────────── */
+.dialogue-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 22, 0.96);
+  display: flex;
+  flex-direction: column;
+  z-index: 9995;
+}
+
+.dialogue-overlay.embedded {
+  position: relative;
+  inset: unset;
+  z-index: auto;
+  height: 100%;
+}
+
+/* Zone de messages — scrollable, pousse le contenu vers le bas */
+.dialogue-messages {
+  flex: 1;
+  min-height: 0;           /* indispensable pour le scroll dans un flex child */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 14px 16px;
+}
+
+/* Bulle générique */
+.dialogue-msg {
+  max-width: 72%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  word-break: break-word;
+  position: relative;
+}
+
+/* Supprime les marges des paragraphes à l'intérieur des bulles */
+.dialogue-msg p { margin: 0; }
+
+/* Côté gauche — bleu */
+.dialogue-msg.left {
+  align-self: flex-start;
+  background: #3b82f6;
+  color: #fff;
+  border-bottom-left-radius: 5px;
+}
+
+/* Côté droit — rouge-orange */
+.dialogue-msg.right {
+  align-self: flex-end;
+  background: #f05252;
+  color: #fff;
+  border-bottom-right-radius: 5px;
+}
+
+/* Messages passés : légèrement atténués */
+.dialogue-msg.past {
+  opacity: 0.65;
+}
+
+/* Dernier message — queue de bulle BD */
+.dialogue-msg.current.left::after {
+  content: '';
+  position: absolute;
+  bottom: -11px;
+  left: 14px;
+  border: 12px solid transparent;
+  border-top-color: #3b82f6;
+  border-bottom: 0;
+  border-left: 0;
+}
+
+.dialogue-msg.current.right::after {
+  content: '';
+  position: absolute;
+  bottom: -11px;
+  right: 14px;
+  border: 12px solid transparent;
+  border-top-color: #f05252;
+  border-bottom: 0;
+  border-right: 0;
+}
+
+/* Personnages fixes en bas */
+.dialogue-stage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 128px;
+  flex-shrink: 0;
+}
+
+.dialogue-character {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.dialogue-character.inactive {
+  opacity: 0.38;
+  transform: scale(0.87);
+}
+
+.dialogue-character.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Personnage de droite regarde vers la gauche */
+.dialogue-character.right .sprite-emotion {
+  transform: scaleX(-1);
+}
+
+.character-name {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.dialogue-controls {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.btn-dialogue-next {
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  transition: opacity 0.15s;
+}
+
+.btn-dialogue-next:hover { opacity: 0.88; }
+
+/* ── Sprite emotion ─────────────────────────────────────── */
+.sprite-emotion {
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Le personnage de droite regarde vers la gauche */
+.dialogue-character.right .sprite-emotion {
+  transform: scaleX(-1);
+}
+
+/* ── Dots partagés (réutilisés par monologue + dialogue) ── */
+.monologue-dots,
+.dialogue-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.2s;
+}
+
+.dot.active {
+  background: #fff;
+}
+
+/* Dans les boîtes blanches, les dots sont sombres */
+.monologue-footer .dot          { background: #cbd5e1; }
+.monologue-footer .dot.active   { background: #4f46e5; }

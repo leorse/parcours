@@ -1,10 +1,13 @@
-import { AppProvider } from './context/AppContext'
-import AppRouter from './router/AppRouter'
+import { AppProvider }   from './context/AppContext'
+import { EventProvider } from './context/EventContext'
+import AppRouter         from './router/AppRouter'
 
 export default function App() {
   return (
     <AppProvider>
-      <AppRouter />
+      <EventProvider>
+        <AppRouter />
+      </EventProvider>
     </AppProvider>
   )
 }

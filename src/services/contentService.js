@@ -47,8 +47,22 @@ export async function getStepsFlat(courseId, subjectId) {
 
 export async function getStepContent(courseId, subjectId, stepId) {
   const data = await getCourseData(courseId, subjectId)
+
+  // Cherche d'abord dans steps_content (leçons, exercices)
   const stepsContent = data?.course?.steps_content ?? []
-  return stepsContent.find((s) => s.id === stepId) ?? null
+  const found = stepsContent.find((s) => s.id === stepId)
+  if (found) return found
+
+  // Fallback : cherche dans grandes_etapes.lessons les types narratifs
+  const grandeEtapes = data?.course?.grandes_etapes ?? []
+  for (const ge of grandeEtapes) {
+    const lesson = (ge.lessons ?? []).find((l) => l.id === stepId)
+    if (lesson && (lesson.type === 'dialogue' || lesson.type === 'monologue')) {
+      return { id: lesson.id, type: lesson.type, content_ref: lesson.content_ref }
+    }
+  }
+
+  return null
 }
 
 export async function getExercises(courseId, subjectId) {

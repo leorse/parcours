@@ -1,0 +1,31 @@
+dialogue:
+  id: "crac_moggy_fractions"
+  type: "dialogue"
+  sound: null
+  personnages:
+    - "Crac"
+    - "Moggy"
+  repliques:
+    - personnage: "Crac"
+      text: "Coucou Moggy ! T'es prête pour les fractions ?"
+      emotion: "parle"
+
+    - personnage: "Moggy"
+      text: "Hmm... les fractions ? C'est pas trop mon fort."
+      emotion: "interrogation"
+
+    - personnage: "Crac"
+      text: "Pas de panique ! Une fraction c'est juste une **division**."
+      emotion: "content"
+
+    - personnage: "Moggy"
+      text: "Ah bon ? Genre ½ c'est 1 divisé par 2 ?"
+      emotion: "interrogation"
+
+    - personnage: "Crac"
+      text: "Exactement ! Tu vois, t'as déjà compris l'essentiel. 😄"
+      emotion: "sur"
+
+    - personnage: "Moggy"
+      text: "Finalement c'est pas si compliqué ! Allons-y !"
+      emotion: "content"

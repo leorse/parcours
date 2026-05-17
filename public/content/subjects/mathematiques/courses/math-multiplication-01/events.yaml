@@ -1,0 +1,10 @@
+events:
+
+  - id: "evt-mul-course-intro"
+    once: true
+    trigger:
+      on: "course_enter"
+    conditions: []
+    actions:
+      - type: "show_monologue"
+        ref: "dialogues/mul_intro.yaml"

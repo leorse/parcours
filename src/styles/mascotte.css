@@ -1,0 +1,200 @@
+/* ════════════════════════════════════════════════════════
+   Mascotte & événements — Jalon 6
+   ════════════════════════════════════════════════════════ */
+
+/* ── Confettis ─────────────────────────────────────────── */
+.celebration-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: all;
+  z-index: 9998;
+  overflow: hidden;
+  background: transparent;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  border-radius: 2px;
+  animation: confetti-fall 2s ease-in forwards;
+}
+
+.confetti-piece.circle {
+  border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* ── Overlay mascotte ───────────────────────────────────── */
+.mascotte-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 9990;
+  padding-bottom: 0;
+}
+
+/* ── Dialog mascotte ────────────────────────────────────── */
+.mascotte-dialog {
+  background: #fff;
+  border-radius: 24px 24px 0 0;
+  padding: 24px 20px 32px;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Avatar ─────────────────────────────────────────────── */
+.mascotte-avatar {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+}
+
+.mascotte-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+/* ── Message ────────────────────────────────────────────── */
+.mascotte-message {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mascotte-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #1e293b;
+  margin: 0;
+  min-height: 2.5em;
+}
+
+.mascotte-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.mascotte-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  transition: background 0.2s;
+}
+
+.mascotte-dot.active {
+  background: #4f46e5;
+}
+
+/* ── Boutons ────────────────────────────────────────────── */
+.btn-mascotte-next {
+  align-self: flex-end;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-mascotte-next:hover {
+  opacity: 0.88;
+}
+
+.mascotte-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-mascotte {
+  flex: 1;
+  background: #f1f5f9;
+  color: #1e293b;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-mascotte:hover {
+  background: #e2e8f0;
+}
+
+/* ── Animations CSS mascotte ────────────────────────────── */
+.mascotte-wave    { animation: mascotte-wave    0.8s ease-in-out infinite alternate; }
+.mascotte-bounce  { animation: mascotte-bounce  0.5s ease-in-out infinite alternate; }
+.mascotte-jump    { animation: mascotte-jump    0.4s ease-in-out 3; }
+.mascotte-shake   { animation: mascotte-shake   0.3s ease-in-out 4; }
+.mascotte-tilt    { animation: mascotte-tilt    1.2s ease-in-out infinite alternate; }
+.mascotte-grow    { animation: mascotte-grow    0.5s ease-out; }
+.mascotte-spin    { animation: mascotte-spin    0.6s ease-in-out 1; }
+.mascotte-pulse   { animation: mascotte-pulse   0.5s ease-in-out infinite alternate; }
+.mascotte-sway    { animation: mascotte-sway    2s ease-in-out infinite; }
+
+@keyframes mascotte-wave {
+  from { transform: rotate(-10deg); }
+  to   { transform: rotate(10deg); }
+}
+@keyframes mascotte-bounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-12px); }
+}
+@keyframes mascotte-jump {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-20px); }
+}
+@keyframes mascotte-shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-8px); }
+  75%       { transform: translateX(8px); }
+}
+@keyframes mascotte-tilt {
+  from { transform: rotate(-5deg); }
+  to   { transform: rotate(5deg); }
+}
+@keyframes mascotte-grow {
+  from { transform: scale(0.7); opacity: 0.6; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+@keyframes mascotte-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes mascotte-pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.18); }
+}
+@keyframes mascotte-sway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}

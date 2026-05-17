@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import './styles/lesson.css'
+import './styles/mascotte.css'
+import './styles/dialogue.css'
 import 'katex/dist/katex.min.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
