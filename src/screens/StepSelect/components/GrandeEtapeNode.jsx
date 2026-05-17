@@ -1,5 +1,26 @@
 const R = 38
 
+function renderIcon(icon, cx, cy, size, isLocked) {
+  if (isLocked) {
+    return <text x={cx} y={cy + 8} textAnchor="middle" fontSize="22" fill="white" fontWeight="bold">🔒</text>
+  }
+  if (icon?.endsWith('.svg')) {
+    return (
+      <image
+        href={`/assets/icons/${icon}`}
+        x={cx - size / 2} y={cy - size / 2}
+        width={size} height={size}
+        style={{ filter: 'brightness(0) invert(1)' }}
+      />
+    )
+  }
+  return (
+    <text x={cx} y={cy + 8} textAnchor="middle" dominantBaseline="auto" fontSize="22" fill="white" fontWeight="bold">
+      {icon}
+    </text>
+  )
+}
+
 export default function GrandeEtapeNode({ x, y, step, onClick }) {
   const isLocked     = step.status === 'locked'
   const isCompleted  = step.status === 'completed'
@@ -32,10 +53,8 @@ export default function GrandeEtapeNode({ x, y, step, onClick }) {
       {/* Reflet interne */}
       <ellipse cx={x - 10} cy={y - 14} rx="14" ry="8" fill="white" opacity="0.15" />
 
-      {/* Icône texte */}
-      <text x={x} y={y + 8} textAnchor="middle" dominantBaseline="auto" fontSize="22" fill="white" fontWeight="bold">
-        {isLocked ? '🔒' : step.icon}
-      </text>
+      {/* Icône */}
+      {renderIcon(step.icon, x, y, 26, isLocked)}
 
       {/* Badge "terminé" */}
       {isCompleted && (

@@ -14,7 +14,7 @@ course:
     # ─────────────────────────────────────────
     - id: "ge-div-divisibilite"
       title: "Divisibilité et diviseurs"
-      icon: "🔢"
+      icon: "book.svg"
       color: "#4F46E5"
       order: 1
       status: "available"
@@ -22,7 +22,9 @@ course:
         - id: "lec-div-intro"
           title: "Qu'est-ce que la divisibilité ?"
           type: "dialogue"
+          icon: "dialog.svg"
           order: 1
+          on_exit: "next"
           status: "available"
           content_ref: "crac_moggy_fractions"
         - id: "lec-div-001"
@@ -49,6 +51,7 @@ course:
         - id: "lec-div-exo-001"
           title: "Exercices — Divisibilité"
           type: "exercise_set"
+          icon: "exercice.svg"
           order: 5
           status: "available"
           content_ref: "lec-div-exo-001"
@@ -284,8 +287,12 @@ course:
             Le critère de divisibilité par **6** n'est pas dans le tableau, mais :
             $n$ est divisible par $6$ si et seulement si $n$ est divisible par $2$ **ET** par $3$.
 
+        - type: break
+
         - type: exercise
           ref: "exo-div-mc-001"
+
+        - type: break
 
         - type: exercise
           ref: "exo-div-mc-002"

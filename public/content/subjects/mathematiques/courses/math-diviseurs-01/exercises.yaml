@@ -8,11 +8,13 @@ exercises:
   - id: "exo-div-fitb-001"
     xp: 30
     difficulty: 1
+    generation: dynamique
     skills:
       - tag: "mathematiques/arithmetique"
         weight: 1.0
     exercise:
       type: fill_in_the_blank
+      
       instruction: |
         🧝 **Link a trouvé 60 rubis** dans un coffre du donjon de la Forêt.
         Il veut les répartir **équitablement** entre ses compagnons sans en garder.

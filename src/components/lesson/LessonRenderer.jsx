@@ -14,6 +14,7 @@ export default function LessonRenderer({ blocks = [] }) {
           case 'image':    return <ImageBlock    key={i} {...block} />
           case 'notice':   return <NoticeBlock   key={i} {...block} />
           case 'exercise': return <ExerciseBlock key={i} exercise_id={block.ref} />
+          case 'break':    return null
           default:
             console.warn(`Type de bloc inconnu : ${block.type}`)
             return null
