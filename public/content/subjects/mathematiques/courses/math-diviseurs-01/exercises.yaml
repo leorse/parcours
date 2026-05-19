@@ -9,34 +9,42 @@ exercises:
     xp: 30
     difficulty: 1
     generation: dynamique
+    params:
+      - name: "diviseur"
+        type: int
+        range: [2, 9]
+      - name: "quotient"
+        type: int
+        range: [3, 12]
+      - name: "dividende"
+        formula: "diviseur * quotient"
     skills:
       - tag: "mathematiques/arithmetique"
         weight: 1.0
     exercise:
       type: fill_in_the_blank
-      
       instruction: |
-        🧝 **Link a trouvé 60 rubis** dans un coffre du donjon de la Forêt.
+        🧝 **Link a trouvé {{dividende}} rubis** dans un coffre du donjon de la Forêt.
         Il veut les répartir **équitablement** entre ses compagnons sans en garder.
         Complète les phrases suivantes.
       segments:
-        - text: "60 divisé par 4 donne "
+        - text: "{{dividende}} divisé par {{diviseur}} donne "
         - blank:
             id: "b1"
-            answer: "15"
+            answer: "{{quotient}}"
         - text: " et un reste de "
         - blank:
             id: "b2"
             answer: "0"
-        - text: ". Donc 4 "
+        - text: ". Donc {{diviseur}} "
         - blank:
             id: "b3"
             answer: "divise"
             accept_variants:
               - "est un diviseur de"
               - "divide"
-        - text: " 60. Link peut répartir ses rubis entre 4 compagnons."
-      hint: "Effectue la division euclidienne : 60 = 4 × ? + reste"
+        - text: " {{dividende}}. Link peut répartir ses rubis entre {{diviseur}} compagnons."
+      hint: "Effectue la division euclidienne : {{dividende}} = {{diviseur}} × ? + reste"
 
   # ── Exercice 2 : multiple_choice — Critères de divisibilité (pots du donjon) ──
   - id: "exo-div-mc-001"

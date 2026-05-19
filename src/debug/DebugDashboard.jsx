@@ -6,9 +6,10 @@ import YamlInspector  from './panels/YamlInspector'
 import EngineState    from './panels/EngineState'
 import AnswerInjector from './panels/AnswerInjector'
 import EventsTester   from './panels/EventsTester'
+import ElevesPanel    from './panels/ElevesPanel'
 import { useDebugExercise } from './hooks/useDebugExercise'
 
-const MODES     = ['Exercices', 'Mascotte']
+const MODES     = ['Exercices', 'Mascotte', 'Élèves']
 const EXO_TABS  = ['YAML', 'État', 'Réponses']
 
 export default function DebugDashboard() {
@@ -29,7 +30,7 @@ export default function DebugDashboard() {
               style={{ ...s.modeBtn, ...(mode === m ? s.modeBtnActive : {}) }}
               onClick={() => setMode(m)}
             >
-              {m === 'Exercices' ? '⚙️ Exercices' : '🎭 Mascotte'}
+              {m === 'Exercices' ? '⚙️ Exercices' : m === 'Mascotte' ? '🎭 Mascotte' : '👥 Élèves'}
             </button>
           ))}
         </div>
@@ -62,6 +63,13 @@ export default function DebugDashboard() {
       {mode === 'Mascotte' && (
         <div style={{ flex: 1, overflow: 'hidden', display: 'flex' }}>
           <EventsTester />
+        </div>
+      )}
+
+      {/* ── Mode Élèves ── */}
+      {mode === 'Élèves' && (
+        <div style={{ flex: 1, overflow: 'hidden', display: 'flex' }}>
+          <ElevesPanel />
         </div>
       )}
 

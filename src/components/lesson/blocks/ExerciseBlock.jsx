@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getExercise } from '../../../services/contentService'
+import { instantiateExercise } from '../../../services/dynamicExerciseService'
 import ExerciseEngine from '../../exercise/ExerciseEngine'
 
 export default function ExerciseBlock({ exercise_id }) {
@@ -15,7 +16,7 @@ export default function ExerciseBlock({ exercise_id }) {
     getExercise(courseId, subjectId, exercise_id)
       .then((data) => {
         if (!data) setError(`Exercice introuvable : ${exercise_id}`)
-        else setExercise(data)
+        else setExercise(instantiateExercise(data))
       })
       .catch(() => setError(`Erreur de chargement : ${exercise_id}`))
       .finally(() => setLoading(false))
