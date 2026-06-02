@@ -340,7 +340,7 @@ Ne jamais importer `DebugDashboard` ou les panels `src/debug/` depuis du code de
 | Jalon | Contenu | Commentaires |
 |---|---|---|
 | 7 | Firebase Auth | Remplace `profileService.js` fake. Interface publique identique. Commentaires `JALON 7` dans le code marquent les points de changement. |
-| 8 | Android — Kotlin/Jetpack Compose | Portage mobile, hors scope React. |
+| 8 | Android — Capacitor | Wrape le build Vite dans une WebView Android. Génère un APK via Gradle/Android Studio. Voir `_bmad-output/planning-artifacts/architecture-jalon-8-android-capacitor.md`. |
 
 ---
 
