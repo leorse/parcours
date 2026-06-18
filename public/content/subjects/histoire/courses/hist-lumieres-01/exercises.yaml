@@ -1,0 +1,321 @@
+exercises:
+
+  # ── Étape 1 : Les philosophes ────────────────────────────────────────────────
+
+  - id: "exo-lum-mc-001"
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "histoire/lumieres-idees"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        Laquelle de ces propositions **n'est pas** une grande idée des Lumières ?
+      choices:
+        - id: a
+          text: "La tolérance"
+          correct: false
+          feedback: "Si ! La tolérance (notamment religieuse) est au cœur des idées de Voltaire."
+        - id: b
+          text: "La liberté"
+          correct: false
+          feedback: "Oui, la liberté est bien une idée centrale des Lumières."
+        - id: c
+          text: "Le droit de vote des femmes"
+          correct: true
+          feedback: "Exact ! Les philosophes des Lumières ne revendiquaient pas encore le droit de vote des femmes — ce combat viendra bien plus tard."
+        - id: d
+          text: "Penser par soi-même"
+          correct: false
+          feedback: "Oui ! C'est même la définition que Kant donne des Lumières : « Sapere aude ! » (Ose savoir !)"
+      settings:
+        shuffle: true
+
+  - id: "exo-lum-mc-002"
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "histoire/lumieres-idees"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        Que contestent principalement les Français sous le règne de **Louis XVI** ?
+      choices:
+        - id: a
+          text: "La société d'ordres et ses inégalités"
+          correct: true
+          feedback: "Oui ! La division en trois ordres (clergé, noblesse, tiers état) est très mal vécue car seul le tiers état paie des impôts."
+        - id: b
+          text: "Les conditions de travail dans les usines"
+          correct: false
+          feedback: "Non, la révolution industrielle et les usines, c'est plutôt le XIXe siècle."
+        - id: c
+          text: "La hausse des prix alimentaires uniquement"
+          correct: false
+          feedback: "La hausse des prix existe, mais la contestation va bien au-delà — c'est tout le système social qui est remis en cause."
+        - id: d
+          text: "La reine Marie-Antoinette"
+          correct: false
+          feedback: "Marie-Antoinette est impopulaire, mais la contestation porte surtout sur le système politique et social."
+      settings:
+        shuffle: true
+
+  - id: "exo-lum-match-001"
+    xp: 20
+    difficulty: 2
+    skills:
+      - tag: "histoire/lumieres-philosophes"
+        weight: 1.0
+    exercise:
+      type: matching
+      instruction: "Relie chaque philosophe à l'idée qu'il défend principalement."
+      pairs:
+        - left:  { id: l1, text: "Voltaire" }
+          right: { id: r1, text: "La tolérance et la fraternité" }
+        - left:  { id: l2, text: "Rousseau" }
+          right: { id: r2, text: "L'égalité entre tous les hommes" }
+        - left:  { id: l3, text: "Montesquieu" }
+          right: { id: r3, text: "La séparation des pouvoirs" }
+        - left:  { id: l4, text: "Diderot" }
+          right: { id: r4, text: "La souveraineté du peuple" }
+        - left:  { id: l5, text: "Kant" }
+          right: { id: r5, text: "La raison et la liberté de penser" }
+      settings:
+        shuffle_right: true
+
+  - id: "exo-lum-fitb-003"
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "histoire/lumieres-philosophes"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: "Qui suis-je ?"
+      segments:
+        - text: "Philosophe français et voyageur européen, je défends la tolérance religieuse. Je suis "
+        - blank:
+            id: b1
+            answer: "Voltaire"
+            accept_variants: ["voltaire"]
+        - text: "."
+
+  - id: "exo-lum-fitb-001"
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "histoire/lumieres-philosophes"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: "Qui suis-je ?"
+      segments:
+        - text: "Je suis un philosophe allemand qui encourage les hommes à utiliser leur raison. Je suis "
+        - blank:
+            id: b1
+            answer: "Kant"
+            accept_variants: ["kant"]
+        - text: "."
+
+  # ── Étape 2 : Les grandes idées ─────────────────────────────────────────────
+
+  - id: "exo-lum-mc-003"
+    xp: 15
+    difficulty: 2
+    skills:
+      - tag: "histoire/lumieres-idees"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        Comment les penseurs des Lumières critiquent-ils la **monarchie absolue** ?
+      choices:
+        - id: a
+          text: "Par des caricatures et des écrits satiriques"
+          correct: true
+          feedback: "Oui ! Les philosophes utilisent la plume et l'image pour tourner le pouvoir en ridicule. C'est une arme redoutable."
+        - id: b
+          text: "Par des manifestations dans les rues"
+          correct: false
+          feedback: "Non, les manifestations organisées n'existaient pas encore à cette époque de la même façon."
+        - id: c
+          text: "Par des grèves dans les ateliers"
+          correct: false
+          feedback: "Non, ce type d'action collective viendra surtout avec la révolution industrielle, au XIXe siècle."
+        - id: d
+          text: "Par le refus d'obéir directement aux ordres du roi"
+          correct: false
+          feedback: "Non, une telle désobéissance directe aurait coûté très cher — les philosophes utilisaient surtout leurs écrits."
+      settings:
+        shuffle: true
+
+  - id: "exo-lum-mc-004"
+    xp: 15
+    difficulty: 2
+    skills:
+      - tag: "histoire/lumieres-idees"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        De quoi s'inspirent les revendications françaises à la fin du **XVIIIe siècle** ?
+      choices:
+        - id: a
+          text: "De la révolution américaine et des idées des Lumières"
+          correct: true
+          feedback: "Exact ! Les Américains ont montré qu'on pouvait renverser un pouvoir colonial et fonder une république fondée sur la liberté — une inspiration directe pour les Français."
+        - id: b
+          text: "Du despotisme éclairé"
+          correct: false
+          feedback: "Le despotisme éclairé, c'est l'inverse : un souverain fort qui garde son pouvoir tout en adoptant quelques idées des Lumières."
+        - id: c
+          text: "De la Déclaration des Droits de l'homme et du citoyen"
+          correct: false
+          feedback: "Non, la Déclaration de 1789 est une conséquence de la Révolution, pas une inspiration — elle vient après !"
+        - id: d
+          text: "De la monarchie parlementaire anglaise seulement"
+          correct: false
+          feedback: "La monarchie parlementaire anglaise est une influence parmi d'autres, mais l'inspiration est plus large."
+      settings:
+        shuffle: true
+
+  - id: "exo-lum-match-002"
+    xp: 20
+    difficulty: 2
+    skills:
+      - tag: "histoire/lumieres-vocabulaire"
+        weight: 1.0
+    exercise:
+      type: matching
+      instruction: "Relie chaque mot à sa définition."
+      pairs:
+        - left:  { id: l1, text: "Lumières" }
+          right: { id: r1, text: "Courant de pensée qui veut guider l'humanité par la raison" }
+        - left:  { id: l2, text: "Encyclopédie" }
+          right: { id: r2, text: "Ouvrage rassemblant l'ensemble des connaissances" }
+        - left:  { id: l3, text: "Salon" }
+          right: { id: r3, text: "Lieu de réunion où l'on se cultive et débat" }
+        - left:  { id: l4, text: "Censure" }
+          right: { id: r4, text: "Contrôle des textes par une autorité qui décide de leur publication" }
+        - left:  { id: l5, text: "Despote éclairé" }
+          right: { id: r5, text: "Souverain autoritaire qui s'inspire des idées des Lumières" }
+      settings:
+        shuffle_right: true
+
+  - id: "exo-lum-mc-006"
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "histoire/lumieres-sciences"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        Dans quelle discipline scientifique le couple **Lavoisier** a-t-il travaillé ?
+      choices:
+        - id: a
+          text: "La chimie"
+          correct: true
+          feedback: "Oui ! Les Lavoisier ont notamment travaillé sur les états de l'eau et ont établi des lois fondamentales de la chimie."
+        - id: b
+          text: "Les mathématiques"
+          correct: false
+          feedback: "Non. Les Lavoisier sont des chimistes, connus pour leurs expériences sur les états de l'eau et la composition de l'air."
+        - id: c
+          text: "La géographie"
+          correct: false
+          feedback: "Non, la géographie n'est pas leur domaine. Les Lavoisier ont révolutionné la chimie."
+      settings:
+        shuffle: true
+
+  # ── Étape 3 : La diffusion des idées ────────────────────────────────────────
+
+  - id: "exo-lum-mc-005"
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "histoire/lumieres-diffusion"
+        weight: 1.0
+    exercise:
+      type: multiple_choice
+      question: |
+        Parmi ces éléments, lequel a **le plus contribué** à diffuser les idées des Lumières ?
+      choices:
+        - id: a
+          text: "L'Encyclopédie de Diderot et d'Alembert"
+          correct: true
+          feedback: "Oui ! L'Encyclopédie (1751-1772) est l'œuvre symbole des Lumières. Elle a diffusé le savoir dans toute l'Europe, malgré la censure."
+        - id: b
+          text: "Les écoles publiques"
+          correct: false
+          feedback: "Non, l'école publique obligatoire n'existera qu'au XIXe siècle. À l'époque, ce n'est pas ce canal-là."
+        - id: c
+          text: "Les journaux télévisés"
+          correct: false
+          feedback: "La télévision n'existait pas au XVIIIe siècle ! On est en 1700-1800."
+      settings:
+        shuffle: true
+
+  - id: "exo-lum-fitb-002"
+    xp: 15
+    difficulty: 1
+    skills:
+      - tag: "histoire/lumieres-diffusion"
+        weight: 1.0
+    exercise:
+      type: fill_in_the_blank
+      instruction: "Qui suis-je ?"
+      segments:
+        - text: "Impératrice de Russie, je m'affirme comme souveraine absolue, mais je suis aussi très influencée par les idées des Lumières. Je suis "
+        - blank:
+            id: b1
+            answer: "Catherine II"
+            accept_variants: ["catherine 2", "catherine ii", "Catherine 2"]
+        - text: "."
+
+  - id: "exo-lum-fitb-004"
+    xp: 25
+    difficulty: 3
+    skills:
+      - tag: "histoire/lumieres-idees"
+        weight: 0.5
+      - tag: "histoire/lumieres-diffusion"
+        weight: 0.5
+    exercise:
+      type: fill_in_the_blank
+      instruction: "Complète ce texte de synthèse à l'aide des mots proposés."
+      hint: "Mots à utiliser : raison · Europe · l'Encyclopédie · salons · despotes éclairés · censurent"
+      segments:
+        - text: "Les philosophes des Lumières utilisent la "
+        - blank:
+            id: b1
+            answer: "raison"
+            accept_variants: ["Raison"]
+        - text: " pour comprendre et améliorer le monde. Leurs idées se diffusent en "
+        - blank:
+            id: b2
+            answer: "Europe"
+            accept_variants: ["europe"]
+        - text: " grâce à des ouvrages comme "
+        - blank:
+            id: b3
+            answer: "l'Encyclopédie"
+            accept_variants: ["l'encyclopédie", "l'encyclopedie", "lEncyclopedie", "encyclopédie", "encyclopedie"]
+        - text: ". Ils se réunissent dans des "
+        - blank:
+            id: b4
+            answer: "salons"
+            accept_variants: ["Salons"]
+        - text: " et des cafés pour débattre. Certains souverains, séduits par ces idées, sont appelés des "
+        - blank:
+            id: b5
+            answer: "despotes éclairés"
+            accept_variants: ["despotes eclairés", "despotes eclaires", "despotes éclairés"]
+        - text: ". D'autres, au contraire, "
+        - blank:
+            id: b6
+            answer: "censurent"
+            accept_variants: ["Censurent"]
+        - text: " ces idées pour en interdire la diffusion."

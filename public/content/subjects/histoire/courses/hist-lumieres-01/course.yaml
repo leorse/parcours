@@ -1,0 +1,258 @@
+course:
+  id: "hist-lumieres-01"
+  version: "1.0"
+  title: "Les Lumières"
+  subject: "histoire"
+  domain: "histoire-moderne"
+  thumbnail: null
+  xp_total: 180
+
+  grandes_etapes:
+
+    # ── Étape 1 : Les philosophes ──────────────────────────────────────────────
+    - id: "ge-lum-philosophes"
+      title: "Les philosophes"
+      icon: "🖋"
+      color: "#7C3AED"
+      order: 1
+      status: "in_progress"
+
+      lessons:
+        - id: "lec-lum-d001"
+          title: "Bienvenue aux Lumières !"
+          type: "monologue"
+          order: 1
+          status: "in_progress"
+          content_ref: "lumieres_intro"
+
+        - id: "lec-lum-001"
+          title: "Qu'est-ce que les Lumières ?"
+          type: "lesson"
+          order: 2
+          status: "in_progress"
+          content_ref: "lec-lum-001"
+
+        - id: "lec-lum-002"
+          title: "Les grands philosophes"
+          type: "lesson"
+          order: 3
+          status: "in_progress"
+          content_ref: "lec-lum-002"
+
+    # ── Étape 2 : Les grandes idées ───────────────────────────────────────────
+    - id: "ge-lum-idees"
+      title: "Les grandes idées"
+      icon: "💡"
+      color: "#D97706"
+      order: 2
+      status: "in_progress"
+
+      lessons:
+        - id: "lec-lum-d002"
+          title: "La société d'ordres"
+          type: "dialogue"
+          order: 4
+          status: "in_progress"
+          content_ref: "lumieres_ordres"
+
+        - id: "lec-lum-003"
+          title: "Politique et société"
+          type: "lesson"
+          order: 5
+          status: "in_progress"
+          content_ref: "lec-lum-003"
+
+        - id: "lec-lum-004"
+          title: "Tolérance et science"
+          type: "lesson"
+          order: 6
+          status: "in_progress"
+          content_ref: "lec-lum-004"
+
+    # ── Étape 3 : La diffusion ────────────────────────────────────────────────
+    - id: "ge-lum-diffusion"
+      title: "La diffusion"
+      icon: "📚"
+      color: "#059669"
+      order: 3
+      status: "locked"
+
+      lessons:
+        - id: "lec-lum-d003"
+          title: "L'Encyclopédie et les salons"
+          type: "dialogue"
+          order: 7
+          status: "locked"
+          content_ref: "lumieres_encyclopedie"
+
+        - id: "lec-lum-005"
+          title: "Diffuser les idées"
+          type: "lesson"
+          order: 8
+          status: "locked"
+          content_ref: "lec-lum-005"
+
+        - id: "lec-lum-006"
+          title: "Révision — Les Lumières"
+          type: "exercise_set"
+          order: 9
+          status: "locked"
+          content_ref: "lec-lum-006"
+
+  steps_content:
+
+    # ── Leçon 1 : Qu'est-ce que les Lumières ? ────────────────────────────────
+    - id: "lec-lum-001"
+      content:
+        - type: md
+          text: |
+            ## Le mouvement des Lumières
+
+            Les **Lumières** désignent un mouvement intellectuel du **XVIIIe siècle** (1700–1800).
+
+            Des philosophes, des scientifiques et des écrivains souhaitent **transformer la société** grâce à la raison et à la connaissance. Leur but : remplacer les croyances aveugles et les traditions injustes par la **réflexion critique**.
+
+            > « Le siècle des Lumières » — parce que ces penseurs voulaient « **éclairer** » le plus grand nombre.
+
+        - type: break
+
+        - type: md
+          text: |
+            ### Teste tes connaissances !
+
+        - type: exercise
+          ref: "exo-lum-mc-001"
+
+        - type: break
+
+        - type: exercise
+          ref: "exo-lum-mc-002"
+
+    # ── Leçon 2 : Les grands philosophes ─────────────────────────────────────
+    - id: "lec-lum-002"
+      content:
+        - type: md
+          text: |
+            ## Les grands penseurs des Lumières
+
+            | Philosophe | Nationalité | Idée principale |
+            |---|---|---|
+            | **Voltaire** | Français | La tolérance religieuse |
+            | **Rousseau** | Genevois | L'égalité entre tous les hommes |
+            | **Montesquieu** | Français | La séparation des pouvoirs |
+            | **Diderot** | Français | La liberté individuelle |
+            | **Kant** | Allemand | L'usage de la raison |
+
+            Ils diffusent leurs idées par les **livres**, les **voyages** et les débats dans les cafés et salons.
+
+        - type: break
+
+        - type: md
+          text: |
+            ### À toi de jouer !
+
+        - type: exercise
+          ref: "exo-lum-match-001"
+
+        - type: break
+
+        - type: exercise
+          ref: "exo-lum-fitb-003"
+
+        - type: break
+
+        - type: exercise
+          ref: "exo-lum-fitb-001"
+
+    # ── Leçon 3 : Politique et société ───────────────────────────────────────
+    - id: "lec-lum-003"
+      content:
+        - type: md
+          text: |
+            ## La monarchie absolue en question
+
+            En France, le roi concentre **tous les pouvoirs** — exécutif, législatif, judiciaire. Il tient son autorité de Dieu : c'est la **monarchie absolue de droit divin**.
+
+            Les philosophes, notamment **Montesquieu**, réclament une **séparation des pouvoirs** afin qu'aucun homme ne puisse tout contrôler.
+
+        - type: notice
+          text: |
+            **La société d'ordres**
+            La société est divisée en trois ordres :
+            - Le **clergé** et la **noblesse** (3 % de la population) ont des privilèges et ne paient pas d'impôts.
+            - Le **tiers état** (97 %) — paysans, artisans, bourgeois — supporte seul le poids fiscal.
+
+            **Rousseau** et les autres philosophes exigent la fin de ces inégalités.
+
+        - type: break
+
+        - type: exercise
+          ref: "exo-lum-mc-003"
+
+        - type: break
+
+        - type: exercise
+          ref: "exo-lum-mc-004"
+
+    # ── Leçon 4 : Tolérance et science ───────────────────────────────────────
+    - id: "lec-lum-004"
+      content:
+        - type: md
+          text: |
+            ## Tolérance et démarche scientifique
+
+            **Voltaire** défend la **tolérance religieuse** : après des siècles de guerres entre catholiques et protestants (comme la Saint-Barthélémy en 1572), il prône le respect des convictions de chacun.
+
+            > « Fais que nous nous aidions mutuellement à supporter le fardeau d'une vie pénible et passagère. »
+            > — Voltaire, *Traité sur la Tolérance*, 1763
+
+            Le couple **Lavoisier** illustre l'esprit scientifique des Lumières : émettre des hypothèses et les vérifier par l'expérience — c'est la **démarche hypothético-déductive**. Ils ont notamment travaillé sur les états de l'eau, en **chimie**.
+
+        - type: break
+
+        - type: exercise
+          ref: "exo-lum-match-002"
+
+        - type: break
+
+        - type: exercise
+          ref: "exo-lum-mc-006"
+
+    # ── Leçon 5 : Diffuser les idées ─────────────────────────────────────────
+    - id: "lec-lum-005"
+      content:
+        - type: md
+          text: |
+            ## Comment les idées se diffusent
+
+            Sans réseaux sociaux ni télévision, les philosophes utilisent d'autres moyens :
+
+            📖 **L'Encyclopédie** (1751–1772) — dirigée par **Diderot** et d'Alembert — rassemble tout le savoir de l'époque : sciences, arts, philosophie, métiers... Elle est censurée par le roi, mais circule malgré tout en Europe.
+
+            ☕ **Les salons et les cafés** — lieux de réunion où philosophes et scientifiques débattent librement de politique et de société.
+
+            ✈️ **Les voyages** — Diderot se rend en Russie auprès de **Catherine II**, impératrice influencée par les Lumières tout en conservant son pouvoir absolu : un « **despote éclairé** ».
+
+        - type: break
+
+        - type: exercise
+          ref: "exo-lum-mc-005"
+
+        - type: break
+
+        - type: exercise
+          ref: "exo-lum-fitb-002"
+
+    # ── Leçon 6 : Révision ────────────────────────────────────────────────────
+    - id: "lec-lum-006"
+      content:
+        - type: md
+          text: |
+            ## Révision — Les Lumières
+
+            Tu as parcouru les grandes idées, les philosophes et les moyens de diffusion des Lumières.
+
+            Dernier défi : complète ce texte de synthèse pour vérifier que tu as tout retenu !
+
+        - type: exercise
+          ref: "exo-lum-fitb-004"

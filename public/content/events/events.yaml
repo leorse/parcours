@@ -15,8 +15,11 @@ events:
         animation: "wave"
         sound: "sounds/welcome.mp3"
         messages:
-          - "Bienvenue ! Je m'appelle Lumio 👋"
+          - "Bienvenue ! Je m'appelle Gribouille"
           - "Je vais t'accompagner dans ton apprentissage."
+          - "Le but du jeu est simple : on avance pas à pas"
+          - "Au fur et à mesure que tu progresses, tu débloqueras de nouveaux univers et de nouveaux défis."
+          - "N'hésite pas à revenir quand tu veux, je suis toujours là pour t'aider."
           - "Choisis une matière pour commencer !"
 
   # ── Retour après absence ──────────────────────────────────────────────────────

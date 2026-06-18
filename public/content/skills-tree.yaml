@@ -63,3 +63,43 @@ skills:
     color: "#059669"
     description: "Distinguer les homophones (a/à, ou/où…)"
     prerequisites: []
+
+  - id: "histoire/lumieres-idees"
+    label: "Les idées des Lumières"
+    subject: "histoire"
+    color: "#7C3AED"
+    description: "Liberté, tolérance, égalité, séparation des pouvoirs"
+    prerequisites: []
+
+  - id: "histoire/lumieres-philosophes"
+    label: "Les philosophes des Lumières"
+    subject: "histoire"
+    color: "#7C3AED"
+    description: "Voltaire, Rousseau, Diderot, Montesquieu, Kant"
+    prerequisites:
+      - "histoire/lumieres-idees"
+
+  - id: "histoire/lumieres-vocabulaire"
+    label: "Vocabulaire des Lumières"
+    subject: "histoire"
+    color: "#D97706"
+    description: "Encyclopédie, despote éclairé, censure, salon"
+    prerequisites:
+      - "histoire/lumieres-idees"
+
+  - id: "histoire/lumieres-sciences"
+    label: "Sciences et Lumières"
+    subject: "histoire"
+    color: "#D97706"
+    description: "Démarche scientifique, Lavoisier"
+    prerequisites:
+      - "histoire/lumieres-idees"
+
+  - id: "histoire/lumieres-diffusion"
+    label: "Diffusion des idées"
+    subject: "histoire"
+    color: "#059669"
+    description: "Encyclopédie, salons, cafés, voyages, Catherine II"
+    prerequisites:
+      - "histoire/lumieres-philosophes"
+      - "histoire/lumieres-vocabulaire"

@@ -1,0 +1,22 @@
+dialogue:
+  id: "lumieres_intro"
+  type: "monologue"
+  sound: null
+  pages:
+    - text: |
+        Bienvenue dans le chapitre sur les **Lumières** !
+
+        Au XVIIIe siècle, des philosophes ont voulu transformer la société… avec des **idées** !
+      image: "personnages/lumio.png"
+
+    - text: |
+        Ils s'appelaient **Voltaire**, **Rousseau**, **Diderot**, **Montesquieu**, **Kant**…
+
+        Leur arme ? La **raison** et la **tolérance**.
+      image: "personnages/lumio.png"
+
+    - text: |
+        On va découvrir leurs idées, leurs combats, et comment ils ont changé l'histoire de France… et du monde entier.
+
+        C'est parti ! 💡
+      image: "personnages/lumio.png"

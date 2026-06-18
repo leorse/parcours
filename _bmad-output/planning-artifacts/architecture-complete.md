@@ -1,9 +1,10 @@
 ---
 status: 'reference'
-version: '1.0'
-date: '2026-06-02'
+version: '1.1'
+date: '2026-06-08'
 project_name: 'ParcCours'
 author: 'Winston (BMAD Architect)'
+updated_by: 'Damien MESSNER — rétro documentation complète'
 description: "Architecture complète de l'application — référence vivante à maintenir à jour"
 ---
 
@@ -76,13 +77,14 @@ L'app est utilisable sans réseau. Toute mutation d'état passe d'abord par loca
 │  HOOKS (4)                                            │
 │  useProfile · useProgress · useEventEngine · useAudio │
 ├───────────────────────────────────────────────────────┤
-│  SERVICES (15)                                        │
+│  SERVICES (16)                                        │
 │  contentService · profileService · progressService    │
-│  scoreService · exerciseService · eventEngine         │
+│  scoreService · exerciseService · dynamicExerciseService │
+│  eventEngine · eventActions · eventConditions         │
 │  badgeService · xpService · streakService · skillService │
 │  recommendationService · personnageService            │
-│  dialogueService · dynamicExerciseService             │
-│  (backendService — Jalon 7)                           │
+│  dialogueService                                      │
+│  (backendService — Jalon 7, à créer)                  │
 ├───────────────────────────────────────────────────────┤
 │  CONTEXTES (2)                                        │
 │  AppContext · EventContext                            │
@@ -279,7 +281,7 @@ backendService         ← (Jalon 7) profileService (token)
 | Type YAML | Composant | Validation (`exerciseService`) |
 |---|---|---|
 | `multiple_choice` | MultipleChoiceExercise | validateMultipleChoice |
-| `fill_in_the_blanks` | FillInTheBlanksExercise | validateFillInTheBlank |
+| `fill_in_the_blank` | FillInTheBlanksExercise | validateFillInTheBlank |
 | `image_tap` | ImageTapExercise | validateImageTap |
 | `drag_drop` | DragDropExercise | validateDragDrop |
 | `timeline` | TimelineExercise | validateTimeline |
@@ -287,6 +289,8 @@ backendService         ← (Jalon 7) profileService (token)
 | `free_text` | FreeTextExercise | validateFreeText + IA backend |
 | `fraction_tap` | FractionTapExercise | validateFractionTap |
 | `dictation` | DictationExercise | validateDictation |
+
+> **⚠️ Attention :** le type YAML est `fill_in_the_blank` (sans `s` final). Utiliser `fill_in_the_blanks` dans un exercice YAML provoque silencieusement "Type inconnu".
 
 ### Interface d'un composant exercice
 
@@ -300,6 +304,21 @@ function MonExercise({ exercise, onSubmit, result, exerciseData, courseId }) {
 }
 ```
 
+### Exercices dynamiques (`dynamicExerciseService`)
+
+Un exercice peut déclarer `generation: dynamique` avec une liste `params`. `instantiateExercise(exo)` génère une instance aléatoire à chaque affichage via substitution des variables `{{nom}}` dans le YAML.
+
+**Types de paramètres supportés :**
+
+| Type | Description | Propriétés |
+|---|---|---|
+| `int` | Entier aléatoire | `range: [min, max]` |
+| `float` | Flottant aléatoire | `range: [min, max]`, `decimals` |
+| `choice` | Valeur aléatoire parmi une liste | `values: [...]` |
+| `formula` | Calcul à partir des autres params | `formula: "a * b"` |
+
+Un exercice fixe (`generation: fixe` ou `params: []`) est retourné tel quel. Jamais de `eval` non sécurisé : les formules sont validées par regex `^[\d\s+\-*/%().*]+$` avant exécution via `Function`.
+
 ### Flux d'un exercice
 
 ```
@@ -310,11 +329,16 @@ StepPlayerScreen
         → onSubmit(userAnswer)
             → exerciseService.validateAnswer()
             → scoreService.saveResult()    [fire-and-forget]
-                → localStorage
+                → progressService.saveExerciseResult() → localStorage
+                → progressService.markSessionActive()  → localStorage
                 → POST /progress/exercise  [fire-and-forget]
                 → POST /streak/check       [fire-and-forget]
-                → checkNewBadges()
-            → trigger('exercise_complete', context)
+                → GET /xp, /skills, /badges [pour évaluation badges]
+                → checkNewBadges() / checkNewTrophies()
+                → POST /badges/award       [par badge gagné]
+                → retourne { newBadges, newTrophies, isFirstToday, sessionStats }
+            → trigger('exercise_complete', { xp_earned, score })
+            → trigger('daily_login', ...) si isFirstToday
             → trigger('badge_earned', ...) par badge
         → <ExerciseResult> [XpGainAnimation, LevelUpCelebration, BadgeUnlock]
 ```
@@ -404,29 +428,133 @@ public/content/
 
 ---
 
+## 7b. Blocs de leçon et système narratif
+
+### Blocs de leçon (`LessonRenderer`)
+
+Un `step_content` est une liste de blocs rendus séquentiellement par `LessonRenderer`. Les blocs `break` découpent le contenu en pages navigables dans `StepPlayerScreen`.
+
+| Type | Composant | Description |
+|---|---|---|
+| `md` | `MdBlock` | Markdown (react-markdown + remark-gfm). Supporte GFM, listes, gras, code inline |
+| `math` | `MathBlock` | Formule LaTeX (remark-math + rehype-katex → KaTeX) |
+| `image` | `ImageBlock` | Image depuis `/public/content/images/` avec `src` + `alt` optionnel |
+| `notice` | `NoticeBlock` | Encadré coloré (info, avertissement, astuce) |
+| `exercise` | `ExerciseBlock` | Exercice interactif dans le flux leçon — référencé par `ref: exo-001` |
+| `break` | (pas de rendu) | Marque un saut de page — ne produit aucun élément DOM |
+
+**Structure YAML d'un step_content :**
+```yaml
+steps_content:
+  - id: step-lesson-01
+    type: lesson
+    content:
+      - type: md
+        content: "## Titre de section\nTexte explicatif."
+      - type: math
+        formula: "\\frac{a}{b} = \\frac{c}{d}"
+      - type: image
+        src: "images/carte-mediterranee-antique.svg"
+        alt: "Carte de la Méditerranée antique"
+      - type: notice
+        content: "⚠️ Attention à ne pas confondre..."
+      - type: break
+      - type: exercise
+        ref: exo-001
+```
+
+**Rendu de MathBlock :** utilise `react-markdown` avec plugins `remark-math` + `rehype-katex`. Nécessite l'import CSS de KaTeX dans l'entrée principale.
+
+### Impact — ajouter un bloc de leçon
+
+| Fichier | Action |
+|---|---|
+| `src/components/lesson/blocks/MonBloc.jsx` | Créer le composant |
+| `src/components/lesson/LessonRenderer.jsx` | Ajouter `case 'mon_type':` dans le switch |
+| `course.yaml` | Utiliser le nouveau type dans `steps_content` |
+
+---
+
+### Système narratif — Personnages, Dialogues, Monologues
+
+#### Personnages (`personnages.yaml`)
+
+3 personnages définis dans `public/content/personnages.yaml` :
+
+| Nom | Rôle | Spritesheet | Émotions disponibles |
+|---|---|---|---|
+| `Crac` | Personnage enseignant (lapin) | `personnages/tete_lapin.png` | content, serieux, interrogation, moue, sur, parle |
+| `Moggy` | Personnage élève (chat) | `personnages/tete_chat.png` | content, serieux, interrogation, moue, sur, parle |
+| `Lumio` | Mascotte Gribouille | `personnages/lumio.png` | wave, happy, thinking, proud |
+
+Chaque personnage est un spritesheet (grille `cols × rows`). `personnageService.getSpritePosition(personnage, emotionName)` retourne `{ x, y }` en pixels pour le CSS `background-position`.
+
+**Interface `personnageService` :**
+```javascript
+getPersonnages()               // → array (cachée)
+getPersonnage(name)            // → objet | null
+getSpritePosition(perso, emo)  // → { x: number, y: number }
+```
+
+> **Dette connue :** `personnageService` fait un `fetch` direct vers `/content/personnages.yaml` plutôt que de passer par `contentService`. Ne pas étendre ce pattern.
+
+#### Dialogues et monologues
+
+Les étapes de type `dialogue` / `monologue` dans `grandes_etapes.lessons` du course.yaml sont lues par `StepPlayerScreen` et redirigées vers `DialoguePlayer` / `MonologuePlayer` au lieu de `LessonRenderer`.
+
+**Chargement :** `dialogueService.loadDialogue(ref)` charge le YAML depuis `/content/{ref}` avec cache par chemin. `resolveDialogueRef(contentRef)` normalise un nom court (`crac_moggy_fractions`) en chemin complet (`dialogues/crac_moggy_fractions.yaml`).
+
+**Structure d'un fichier dialogue YAML :**
+```yaml
+dialogue:
+  title: "Les fractions avec Crac et Moggy"
+  turns:
+    - character: "Crac"
+      emotion: "content"
+      text: "Bonjour Moggy ! Tu sais ce qu'est une fraction ?"
+    - character: "Moggy"
+      emotion: "interrogation"
+      text: "Euh... c'est quand on coupe quelque chose ?"
+```
+
+**Structure d'un monologue YAML :** similaire, un seul personnage s'exprime.
+
+#### Déclenchement via MascotteDialog
+
+Les actions `show_dialogue` et `show_monologue` dans `events.yaml` permettent de déclencher un dialogue/monologue depuis la queue d'événements mascotte (sans dépendance à la navigation).
+
+---
+
 ## 8. Système d'événements et mascotte
 
 ### Triggers disponibles
 
 | Trigger | Déclencheur | Contexte passé |
 |---|---|---|
-| `app_start` | SplashScreen (montage) | streak, xp, skills depuis backend |
-| `subject_enter` | SubjectSelectScreen (clic matière) | subject_name |
-| `course_enter` | CourseSelectScreen (chargement données) | course_name, subject_name |
-| `step_complete` | StepPlayerScreen (clic "Suivant") | duration_sec, step_id |
-| `exercise_complete` | ExerciseEngine (après saveResult) | score, xp_earned, correct |
-| `badge_earned` | ExerciseEngine (par badge débloqué) | badge_id, badge_name |
-| `daily_login` | (disponible, non déclenché) | — |
-| `course_complete` | (disponible, non déclenché) | — |
+| `app_start` | `SplashScreen` (si uid connu) | sessionCount, daysSinceLastSession, days_absent, currentStreak, current_streak, skills |
+| `subject_enter` | `SubjectSelectScreen` (clic matière) | subject_name, subjectAttempts |
+| `course_enter` | `CourseSelectScreen` (clic cours) | skills, weak_skill_tag, weak_skill_label |
+| `step_complete` | `StepPlayerScreen` (clic "Suivant" dernière page) | step_id, sessionDurationMinutes, session_minutes |
+| `exercise_complete` | `ExerciseEngine` (après saveResult) | xp_earned, score |
+| `daily_login` | `ExerciseEngine` (premier exercice du jour) | currentStreak, current_streak, sessionCount |
+| `badge_earned` | `ExerciseEngine` (par badge débloqué) | badge_label, badge_icon |
+| `course_complete` | (disponible, non déclenché en Jalon 6b) | — |
+
+> **Note :** `app_start` n'est déclenché que si `uid` est défini (utilisateur connecté). Sur SplashScreen sans session, le trigger est ignoré silencieusement.
 
 ### Types d'actions disponibles
 
-| Type | Effet |
-|---|---|
-| `dialog` | Affiche dialog mascotte avec message |
-| `celebration` | Overlay confettis/feux (auto-dismiss 2.5s) |
-| `badge_unlock` | Animation déblocage badge |
-| `reinforcement` | Suggère exercices de renforcement (placeholder Jalon 7) |
+| Type YAML | Clé `type` payload | Rendu dans `MascotteDialog` |
+|---|---|---|
+| `show_dialog` | `dialog` | `MascotteAvatar` + `MascotteMessage` (Framer Motion slide-up) |
+| `show_celebration` | `celebration` | `CelebrationOverlay` (confettis / feux, auto-dismiss 2.5s) |
+| `show_reinforcement` | `reinforcement` | Auto-dismiss 100ms (placeholder — à implémenter au Jalon 7) |
+| `show_monologue` | `monologue` | `MonologuePlayer` depuis `MascotteDialog` |
+| `show_dialogue` | `dialogue` | `DialoguePlayer` depuis `MascotteDialog` |
+
+**Boutons dans `show_dialog` :** le champ optionnel `buttons` permet des actions personnalisées :
+- `action: "dismiss"` → ferme le dialog
+- `action: "go_to_menu"` → navigue vers MENU (traité dans `MascotteMessage`)
 
 ### Impact — ajouter un trigger
 
@@ -726,14 +854,17 @@ Voir `architecture.md` pour le détail complet (Jalon 7 Firebase Auth). Le fichi
 
 | Zone | Risque | Mitigation |
 |---|---|---|
-| `ExerciseEngine` clé manquante | Exercice silencieusement cassé | Toujours `key={exercise.id}` |
-| Mutation cache `contentService` | Corruption silencieuse session entière | Toujours cloner les retours |
-| `profileService` interface | 15 callsites cassés | Interface gelée, ne pas changer les signatures |
-| `EventContext` double dialog | UX incohérente | Tout passe par `useEventEngine().trigger()` |
-| `speechSynthesis` sur Android | DictationExercise muet | `ttsService.js` à créer avant Jalon 8 |
-| `localStorage` eviction Android | Perte de progression | `storageService.js` + `@capacitor/preferences` |
-| Appels backend `await` dans UI | UI bloquée sur réseau | Toujours fire-and-forget |
-| Import `getFirebaseToken` dans composant | Token non rafraîchi, dette auth | Uniquement via `backendService` |
+| `ExerciseEngine` clé manquante | Exercice silencieusement cassé — résultat du précédent reste affiché | Toujours `key={exercise.id}` |
+| Typo `fill_in_the_blanks` dans YAML | Type inconnu silencieux, exercice non rendu | Le type correct est `fill_in_the_blank` (sans `s`) |
+| Mutation cache `contentService` | Corruption silencieuse session entière | Toujours cloner : `[...arr]` ou `structuredClone(obj)` |
+| `profileService` interface | ~15 callsites cassés | Interface gelée — ne jamais changer les signatures |
+| `EventContext` double dialog | UX incohérente | Tout passe par `useEventEngine().trigger()`, jamais directement |
+| `speechSynthesis` sur Android | DictationExercise muet | `ttsService.js` à créer avant Jalon 8 avec fallback `@capacitor/text-to-speech` |
+| `localStorage` eviction Android | Perte de progression sous pression mémoire | `storageService.js` + `@capacitor/preferences` avant Jalon 8 |
+| Appels backend `await` dans UI | UI bloquée sur réseau | Toujours fire-and-forget — jamais `await` dans un handler utilisateur |
+| Import `getFirebaseToken` dans composant | Token non rafraîchi, dette auth | Uniquement via `progressService.backendPost/Get` ou futur `backendService` |
+| `personnageService` fetch direct | Contourne le cache de `contentService` | Connu — ne pas étendre ce pattern à d'autres services |
+| `app_start` déclenché sans uid | Trigger silencieusement ignoré | Normal — SplashScreen déclenche seulement si `uid` connu |
 
 ---
 
@@ -813,11 +944,49 @@ src/__tests__/
 
 **141 tests total, tous verts.**
 
+**Fichiers de tests :**
+
+| Fichier | Service couvert | Stratégie |
+|---|---|---|
+| `contentService.test.js` | contentService | Mock `fetch` |
+| `scoreService.test.js` | scoreService | Mock services dépendants |
+| `exerciseService.test.js` | exerciseService | Tests purs (pas de fetch) |
+| `xpService.test.js` | xpService | Helpers `_sync` (pas de fetch) |
+| `skillService.test.js` | skillService | Fonctions pures |
+| `badgeService.test.js` | badgeService | `evaluateCondition` exporté |
+| `streakService.test.js` | streakService | Logique pure |
+| `eventConditions.test.js` | eventConditions | `evaluateCondition` exporté |
+| `eventEngine.test.js` | eventEngine | Mock `fetch` + events fixtures |
+| `answerGenerator.test.js` | debug/answerGenerator | Tests purs |
+
 **Règles :**
 - Environnement `node` (pas `jsdom`) — pas de `render()` React dans ces tests
-- Ne pas mocker `fetch` si un helper `_sync` existe (xpService, badgeService)
+- Ne pas mocker `fetch` si un helper `_sync` existe (`xpService`, `badgeService`) — utiliser les variantes synchrones
 - Chaque nouveau service avec logique conditionnelle → fichier de test obligatoire
-- `npm run build` échoue si un test est rouge
+- `npm run build` = `vitest run && vite build` — échoue si un test est rouge
+
+---
+
+## 17b. Debug Dashboard (DEV uniquement)
+
+Accessible sur `/debug` — lazy-loaded, tree-shaké en build prod. Rendu via `Suspense` + `import.meta.env.DEV`. Le `DebugFAB` (bouton flottant) permet d'y accéder sans navigation.
+
+**Panneaux disponibles :**
+
+| Panneau | Fichier | Fonction |
+|---|---|---|
+| `ContentTree` | `debug/panels/ContentTree.jsx` | Arbre du contenu YAML chargé en mémoire |
+| `YamlInspector` | `debug/panels/YamlInspector.jsx` | Inspection brute d'un fichier YAML |
+| `EngineState` | `debug/panels/EngineState.jsx` | État du moteur d'exercices courant |
+| `ExerciseBrowser` | `debug/panels/ExerciseBrowser.jsx` | Liste tous les exercices par cours, avec preview |
+| `AnswerInjector` | `debug/panels/AnswerInjector.jsx` | Injecte une réponse automatique dans l'exercice courant |
+| `ExercisePreview` | `debug/panels/ExercisePreview.jsx` | Rendu live d'un exercice sélectionné |
+
+**`useDebugExercise`** (`debug/hooks/useDebugExercise.js`) : hook interne qui expose un `injectedAnswer` au composant `ExerciseEngine`. L'injection auto-submit l'exercice via le même chemin que `handleSubmit` — même flux de gamification.
+
+**`answerGenerator`** (`debug/utils/answerGenerator.js`) : génère automatiquement une réponse correcte ou incorrecte selon le type d'exercice. Utilisé par `AnswerInjector` pour le test one-click.
+
+**Règle :** aucun import de `debug/` ne doit apparaître hors de `import.meta.env.DEV`. Les chemins `debug/` sont exclus du build prod par Vite tree-shaking.
 
 ---
 

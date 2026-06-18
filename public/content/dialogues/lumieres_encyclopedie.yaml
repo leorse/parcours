@@ -1,0 +1,51 @@
+dialogue:
+  id: "lumieres_encyclopedie"
+  type: "dialogue"
+  sound: null
+  personnages:
+    - "Crac"
+    - "Moggy"
+  repliques:
+    - personnage: "Crac"
+      text: "Tu sais ce qu'est l'**Encyclopédie** de Diderot ?"
+      emotion: "parle"
+
+    - personnage: "Moggy"
+      text: "C'est comme Wikipedia... mais en papier ?"
+      emotion: "interrogation"
+
+    - personnage: "Crac"
+      text: "Presque ! C'est un dictionnaire géant de **tous les savoirs de l'époque** — sciences, arts, philosophie, métiers..."
+      emotion: "content"
+
+    - personnage: "Moggy"
+      text: "Et tout le monde pouvait la lire ?"
+      emotion: "interrogation"
+
+    - personnage: "Crac"
+      text: "Pas vraiment. Le roi l'a **censurée** ! Ces idées étaient trop dangereuses pour le pouvoir en place."
+      emotion: "serieux"
+
+    - personnage: "Moggy"
+      text: "Et les philosophes se réunissaient où, alors ?"
+      emotion: "interrogation"
+
+    - personnage: "Crac"
+      text: "Dans les **salons** — des réunions chez des nobles cultivés — et dans les **cafés**, où le tiers état pouvait débattre librement."
+      emotion: "parle"
+
+    - personnage: "Moggy"
+      text: "Comme un cours de philo... mais avec de la nourriture !"
+      emotion: "content"
+
+    - personnage: "Crac"
+      text: "Exactement ! Et Diderot a même voyagé en Russie pour rencontrer **Catherine II**, une impératrice qui admirait les Lumières."
+      emotion: "sur"
+
+    - personnage: "Moggy"
+      text: "Une reine fan de philosophie ? C'est inattendu !"
+      emotion: "moue"
+
+    - personnage: "Crac"
+      text: "On l'appelle un « **despote éclairé** » : elle gardait son pouvoir absolu... mais en appliquant certaines idées des Lumières."
+      emotion: "serieux"

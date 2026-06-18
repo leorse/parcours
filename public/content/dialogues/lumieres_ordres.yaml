@@ -1,0 +1,47 @@
+dialogue:
+  id: "lumieres_ordres"
+  type: "dialogue"
+  sound: null
+  personnages:
+    - "Crac"
+    - "Moggy"
+  repliques:
+    - personnage: "Moggy"
+      text: "Crac, c'est quoi cette histoire de « société d'ordres » ?"
+      emotion: "interrogation"
+
+    - personnage: "Crac"
+      text: "Au XVIIIe siècle, la société française était divisée en **trois ordres**."
+      emotion: "parle"
+
+    - personnage: "Moggy"
+      text: "Trois ordres ? Qu'est-ce que ça veut dire ?"
+      emotion: "interrogation"
+
+    - personnage: "Crac"
+      text: "Il y avait le **clergé** (les prêtres), la **noblesse**, et le **tiers état** — paysans, artisans, bourgeois. Soit 97 % des Français !"
+      emotion: "serieux"
+
+    - personnage: "Moggy"
+      text: "Et ce tiers état, il payait des impôts ?"
+      emotion: "interrogation"
+
+    - personnage: "Crac"
+      text: "Lui seul ! Le clergé et la noblesse en étaient exemptés. Ils avaient des **privilèges**."
+      emotion: "sur"
+
+    - personnage: "Moggy"
+      text: "C'est pour ça que Rousseau criait à l'injustice !"
+      emotion: "content"
+
+    - personnage: "Crac"
+      text: "Exactement. Et Montesquieu, lui, voulait que le roi ne garde plus **tous les pouvoirs** dans ses mains."
+      emotion: "parle"
+
+    - personnage: "Moggy"
+      text: "La séparation des pouvoirs ! J'en ai entendu parler."
+      emotion: "content"
+
+    - personnage: "Crac"
+      text: "Voilà ! Exécutif, législatif, judiciaire — trois pouvoirs séparés. C'est encore la base de nos démocraties aujourd'hui."
+      emotion: "sur"

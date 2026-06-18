@@ -19,3 +19,13 @@ courses:
     status: "locked"
     order: 2
     path: "subjects/histoire/courses/hist-moyen-age-01/course.yaml"
+
+  - id: "hist-lumieres-01"
+    title: "Les Lumières"
+    thumbnail: null
+    description: "Philosophes, raison et liberté au XVIIIe siècle"
+    stepsCount: 9
+    progress: 0
+    status: "available"
+    order: 3
+    path: "subjects/histoire/courses/hist-lumieres-01/course.yaml"
